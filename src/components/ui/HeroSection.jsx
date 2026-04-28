@@ -18,7 +18,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.35, ease: smoothEase }}
           >
-            ✦ Premium Ayurvedic Hair Care
+            Premium Ayurvedic Hair Care
           </motion.div>
 
           <motion.h1 
@@ -27,7 +27,9 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.45, ease: smoothEase }}
           >
-            Bhagya Veda <br />
+            <span className="hero-title-word hero-title-word-primary">Bhagya</span>{' '}
+            <span className="hero-title-word hero-title-word-accent">Veda</span>
+            <br />
             <span className="hero-subtitle">The Science of Ancient Hair Healing</span>
           </motion.h1>
           
@@ -61,7 +63,7 @@ export default function HeroSection() {
               animate={{ opacity: 1 }}
               transition={{ delay: 1.1, duration: 0.8 }}
             >
-              Scroll to explore ↓
+              Scroll to explore
             </motion.span>
           </motion.div>
         </motion.div>
