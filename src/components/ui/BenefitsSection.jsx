@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { ShieldCheck, Activity, Feather, Sparkle } from 'lucide-react'
 
+const smoothEase = [0.16, 1, 0.3, 1]
+
 const benefits = [
   {
     title: "Reduces Hair Fall",
@@ -31,10 +33,10 @@ export default function BenefitsSection() {
         <div className="text-center mb-16">
           <motion.h2 
             className="section-title"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1, ease: smoothEase }}
           >
             The Bhagya Veda <span className="text-gold">Advantage</span>
           </motion.h2>
@@ -45,15 +47,23 @@ export default function BenefitsSection() {
             <motion.div 
               key={index}
               className="benefit-card glass"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 60, filter: "blur(6px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              whileHover={{ y: -10, boxShadow: "0 15px 30px rgba(0,0,0,0.1)" }}
+              transition={{ duration: 0.8, delay: index * 0.12, ease: smoothEase }}
+              whileHover={{ 
+                y: -12, 
+                boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
+                transition: { type: "spring", stiffness: 300, damping: 20 }
+              }}
             >
-              <div className="benefit-icon-wrapper mb-6">
+              <motion.div 
+                className="benefit-icon-wrapper mb-6"
+                whileHover={{ scale: 1.15, rotate: -5 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+              >
                 {benefit.icon}
-              </div>
+              </motion.div>
               <h3 className="benefit-title">{benefit.title}</h3>
               <p className="benefit-text">{benefit.text}</p>
             </motion.div>

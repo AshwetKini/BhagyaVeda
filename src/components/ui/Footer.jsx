@@ -1,28 +1,34 @@
 import { motion } from 'framer-motion'
 
+const smoothEase = [0.16, 1, 0.3, 1]
+
 export default function Footer() {
   return (
     <footer className="footer ui-layer glass-dark">
       <div className="container">
-        <div className="footer-cta text-center mb-16">
+        <div id="footer-cta" className="footer-cta text-center mb-16">
           <motion.h2 
             className="section-title text-bg mb-8"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 1, ease: smoothEase }}
           >
             Experience the Power of <br />
             <span className="text-gold">Bhagya Veda</span>
           </motion.h2>
-          <motion.button 
+          <motion.a
+            href="#ingredients"
             className="btn btn-primary btn-glow btn-large"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(212, 175, 55, 0.5)" }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
-            Buy Now
-          </motion.button>
+            Shop Now
+          </motion.a>
         </div>
 
         <div className="footer-content">
