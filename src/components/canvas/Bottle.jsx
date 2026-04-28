@@ -4,12 +4,18 @@ import { MeshTransmissionMaterial, Float, Decal, useTexture } from '@react-three
 import * as THREE from 'three'
 
 export default function Bottle(props) {
-  const baseYOffset = -0.8
   const group = useRef()
   const bottleRef = useRef()
   const oilRef = useRef()
   const capRef = useRef()
-  const { gl } = useThree()
+  const { gl, size } = useThree()
+  const isMobile = size.width < 768
+  const baseYOffset = isMobile ? -1.08 : -0.8
+  const baseXOffset = isMobile ? 0.5 : 0
+  const ySwing = isMobile ? 0.24 : 0.45
+  const baseScale = isMobile ? 0.72 : 0.92
+  const scaleSwing = isMobile ? 0.05 : 0.1
+  const rotationSpan = isMobile ? Math.PI * 2.2 : Math.PI * 4
   const labelTexture = useTexture('/bottle-label-reference.png')
 
   labelTexture.colorSpace = THREE.SRGBColorSpace
@@ -35,7 +41,7 @@ export default function Bottle(props) {
 
     if (group.current) {
       // Rotate the bottle based on scroll — smooth 2 full rotations
-      const targetRotationY = progress * Math.PI * 4
+      const targetRotationY = progress * rotationSpan
       group.current.rotation.y = THREE.MathUtils.damp(group.current.rotation.y, targetRotationY, 4, delta)
       
       // Gentle tilt on scroll for cinematic feel
@@ -47,15 +53,16 @@ export default function Bottle(props) {
       )
 
       // Keep bottle lower overall, then add subtle scroll motion
-      const targetY = baseYOffset + Math.sin(progress * Math.PI) * 0.45
+      const targetY = baseYOffset + Math.sin(progress * Math.PI) * ySwing
       group.current.position.y = THREE.MathUtils.damp(group.current.position.y, targetY, 3, delta)
+      group.current.position.x = THREE.MathUtils.damp(group.current.position.x, baseXOffset, 3, delta)
 
       // Subtle zoom: start at z=0, push closer at mid-scroll, pull back at end
       const targetZ = Math.sin(progress * Math.PI) * 1.5
       group.current.position.z = THREE.MathUtils.damp(group.current.position.z, targetZ, 3, delta)
 
       // Scale up slightly at the midpoint for dramatic effect
-      const targetScale = 0.92 + Math.sin(progress * Math.PI) * 0.1
+      const targetScale = baseScale + Math.sin(progress * Math.PI) * scaleSwing
       group.current.scale.setScalar(
         THREE.MathUtils.damp(group.current.scale.x, targetScale, 3, delta)
       )
@@ -68,8 +75,13 @@ export default function Bottle(props) {
   })
 
   return (
-    <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.3} floatingRange={[-0.08, 0.08]}>
-      <group ref={group} {...props} dispose={null} position={[0, baseYOffset, 0]}>
+    <Float
+      speed={isMobile ? 1 : 1.5}
+      rotationIntensity={isMobile ? 0.08 : 0.15}
+      floatIntensity={isMobile ? 0.16 : 0.3}
+      floatingRange={isMobile ? [-0.04, 0.04] : [-0.08, 0.08]}
+    >
+      <group ref={group} {...props} dispose={null} position={[baseXOffset, baseYOffset, 0]}>
         
         {/* Bottle Body (dark glass like the product shot) */}
         <mesh ref={bottleRef} position={[0, 0, 0]} castShadow receiveShadow>
