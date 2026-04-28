@@ -1,12 +1,22 @@
 import { useRef } from 'react'
-import { useFrame } from '@react-three/fiber'
-import { MeshTransmissionMaterial, Float } from '@react-three/drei'
+import { useFrame, useThree } from '@react-three/fiber'
+import { MeshTransmissionMaterial, Float, Decal, useTexture } from '@react-three/drei'
 import * as THREE from 'three'
 
 export default function Bottle(props) {
   const group = useRef()
+  const bottleRef = useRef()
   const oilRef = useRef()
   const capRef = useRef()
+  const { gl } = useThree()
+  const labelTexture = useTexture('/bottle-label-reference.png')
+
+  labelTexture.colorSpace = THREE.SRGBColorSpace
+  labelTexture.wrapS = THREE.ClampToEdgeWrapping
+  labelTexture.wrapT = THREE.ClampToEdgeWrapping
+  labelTexture.flipY = true
+  labelTexture.needsUpdate = true
+  labelTexture.anisotropy = gl.capabilities.getMaxAnisotropy()
 
   // Smooth scroll tracking with damping
   const smoothProgress = useRef(0)
@@ -60,64 +70,77 @@ export default function Bottle(props) {
     <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.3} floatingRange={[-0.08, 0.08]}>
       <group ref={group} {...props} dispose={null} position={[0, -0.5, 0]}>
         
-        {/* Bottle Body (Glass) — slightly tapered for realism */}
-        <mesh position={[0, 0, 0]} castShadow receiveShadow>
-          <cylinderGeometry args={[0.95, 1.05, 3, 64]} />
+        {/* Bottle Body (dark glass like the product shot) */}
+        <mesh ref={bottleRef} position={[0, 0, 0]} castShadow receiveShadow>
+          <cylinderGeometry args={[0.9, 0.98, 3.05, 64]} />
           <MeshTransmissionMaterial 
-            backside
             samples={6}
-            thickness={0.3}
-            chromaticAberration={0.04}
-            anisotropy={0.2}
-            distortion={0.15}
-            distortionScale={0.15}
-            temporalDistortion={0.02}
-            color="#E8F0E5"
-            transmission={0.92}
-            roughness={0.05}
+            thickness={0.55}
+            color="#1c140b"
+            transmission={0.22}
+            roughness={0.2}
             ior={1.5}
-            envMapIntensity={1.5}
+            envMapIntensity={1.2}
+            attenuationColor="#3f2e1a"
+            attenuationDistance={1.2}
           />
         </mesh>
 
+        {/* Label projected directly onto bottle surface */}
+        <Decal
+          mesh={bottleRef}
+          position={[0, -0.08, 0.92]}
+          rotation={[0, 0, 0]}
+          scale={[1.72, 2.05, 1]}
+          map={labelTexture}
+        >
+          <meshStandardMaterial
+            map={labelTexture}
+            transparent
+            polygonOffset
+            polygonOffsetFactor={-1}
+            roughness={0.85}
+            metalness={0}
+          />
+        </Decal>
+
         {/* Bottle Shoulder (Glass taper) */}
         <mesh position={[0, 1.7, 0]} castShadow receiveShadow>
-          <cylinderGeometry args={[0.4, 0.85, 0.45, 64]} />
+          <cylinderGeometry args={[0.35, 0.78, 0.55, 64]} />
           <MeshTransmissionMaterial 
-            backside
             samples={4}
-            thickness={0.2}
-            color="#E8F0E5"
-            transmission={0.92}
-            roughness={0.05}
+            thickness={0.25}
+            color="#1c140b"
+            transmission={0.22}
+            roughness={0.2}
             ior={1.5}
           />
         </mesh>
 
         {/* Bottle Neck */}
         <mesh position={[0, 2.05, 0]} castShadow receiveShadow>
-          <cylinderGeometry args={[0.35, 0.4, 0.25, 64]} />
+          <cylinderGeometry args={[0.3, 0.35, 0.3, 64]} />
           <MeshTransmissionMaterial 
             thickness={0.15}
-            color="#E8F0E5"
-            transmission={0.92}
-            roughness={0.05}
+            color="#1a120a"
+            transmission={0.2}
+            roughness={0.2}
             ior={1.5}
           />
         </mesh>
 
         {/* Inner Oil (Liquid) — animated glow */}
         <mesh ref={oilRef} position={[0, -0.15, 0]}>
-          <cylinderGeometry args={[0.88, 0.88, 2.6, 64]} />
+          <cylinderGeometry args={[0.82, 0.82, 2.55, 64]} />
           <meshPhysicalMaterial 
-            color="#8B9A30"
-            transmission={0.4}
-            opacity={0.85}
+            color="#978833"
+            transmission={0.2}
+            opacity={0.88}
             transparent
-            roughness={0.15}
+            roughness={0.2}
             metalness={0.05}
-            emissive="#4A5D23"
-            emissiveIntensity={0.15}
+            emissive="#443918"
+            emissiveIntensity={0.1}
           />
         </mesh>
 
@@ -148,35 +171,6 @@ export default function Bottle(props) {
         <mesh position={[0, 2.15, 0]}>
           <torusGeometry args={[0.43, 0.015, 8, 64]} />
           <meshStandardMaterial color="#B08D2D" metalness={1} roughness={0.3} />
-        </mesh>
-
-        {/* Label (Premium Dark Green/Gold) */}
-        <mesh position={[0, 0, 0]}>
-          <cylinderGeometry args={[1.06, 1.06, 1.6, 64, 1, true, -Math.PI * 0.6, Math.PI * 1.2]} />
-          <meshStandardMaterial 
-            color="#0A1C11" 
-            roughness={0.7}
-            metalness={0.05}
-            side={THREE.DoubleSide}
-          />
-        </mesh>
-        
-        {/* Label Gold Border Top */}
-        <mesh position={[0, 0.78, 0]}>
-          <cylinderGeometry args={[1.07, 1.07, 0.04, 64, 1, true, -Math.PI * 0.6, Math.PI * 1.2]} />
-          <meshStandardMaterial color="#D4AF37" metalness={1} roughness={0.15} side={THREE.DoubleSide} />
-        </mesh>
-
-        {/* Label Gold Border Bottom */}
-        <mesh position={[0, -0.78, 0]}>
-          <cylinderGeometry args={[1.07, 1.07, 0.04, 64, 1, true, -Math.PI * 0.6, Math.PI * 1.2]} />
-          <meshStandardMaterial color="#D4AF37" metalness={1} roughness={0.15} side={THREE.DoubleSide} />
-        </mesh>
-
-        {/* Label Gold Center Accent Line */}
-        <mesh position={[0, 0.3, 0]}>
-          <cylinderGeometry args={[1.065, 1.065, 0.02, 64, 1, true, -Math.PI * 0.6, Math.PI * 1.2]} />
-          <meshStandardMaterial color="#D4AF37" metalness={1} roughness={0.2} side={THREE.DoubleSide} />
         </mesh>
 
         {/* Bottle Bottom Rim */}
