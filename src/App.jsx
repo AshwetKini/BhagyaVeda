@@ -10,6 +10,7 @@ import TestimonialsSection from './components/ui/TestimonialsSection'
 import Footer from './components/ui/Footer'
 import Navbar from './components/ui/Navbar'
 import LoadingScreen from './components/ui/LoadingScreen'
+import FloatingWhatsAppButton from './components/ui/FloatingWhatsAppButton'
 
 function App() {
   useEffect(() => {
@@ -63,6 +64,7 @@ function App() {
       </main>
       
       <Footer className="ui-layer" />
+      <FloatingWhatsAppButton />
     </>
   )
 }
