@@ -4,6 +4,7 @@ import { MeshTransmissionMaterial, Float, Decal, useTexture } from '@react-three
 import * as THREE from 'three'
 
 export default function Bottle(props) {
+  const baseYOffset = -0.95
   const group = useRef()
   const bottleRef = useRef()
   const oilRef = useRef()
@@ -45,8 +46,8 @@ export default function Bottle(props) {
         delta
       )
 
-      // Slightly move up and zoom based on scroll progress
-      const targetY = Math.sin(progress * Math.PI) * 0.8
+      // Keep bottle lower overall, then add subtle scroll motion
+      const targetY = baseYOffset + Math.sin(progress * Math.PI) * 0.55
       group.current.position.y = THREE.MathUtils.damp(group.current.position.y, targetY, 3, delta)
 
       // Subtle zoom: start at z=0, push closer at mid-scroll, pull back at end
@@ -54,7 +55,7 @@ export default function Bottle(props) {
       group.current.position.z = THREE.MathUtils.damp(group.current.position.z, targetZ, 3, delta)
 
       // Scale up slightly at the midpoint for dramatic effect
-      const targetScale = 1 + Math.sin(progress * Math.PI) * 0.15
+      const targetScale = 0.92 + Math.sin(progress * Math.PI) * 0.1
       group.current.scale.setScalar(
         THREE.MathUtils.damp(group.current.scale.x, targetScale, 3, delta)
       )
@@ -68,7 +69,7 @@ export default function Bottle(props) {
 
   return (
     <Float speed={1.5} rotationIntensity={0.15} floatIntensity={0.3} floatingRange={[-0.08, 0.08]}>
-      <group ref={group} {...props} dispose={null} position={[0, -0.5, 0]}>
+      <group ref={group} {...props} dispose={null} position={[0, baseYOffset, 0]}>
         
         {/* Bottle Body (dark glass like the product shot) */}
         <mesh ref={bottleRef} position={[0, 0, 0]} castShadow receiveShadow>
