@@ -4,7 +4,7 @@ import { MeshTransmissionMaterial, Float, Decal, useTexture } from '@react-three
 import * as THREE from 'three'
 
 export default function Bottle(props) {
-  const baseYOffset = -0.95
+  const baseYOffset = -0.8
   const group = useRef()
   const bottleRef = useRef()
   const oilRef = useRef()
@@ -47,7 +47,7 @@ export default function Bottle(props) {
       )
 
       // Keep bottle lower overall, then add subtle scroll motion
-      const targetY = baseYOffset + Math.sin(progress * Math.PI) * 0.55
+      const targetY = baseYOffset + Math.sin(progress * Math.PI) * 0.45
       group.current.position.y = THREE.MathUtils.damp(group.current.position.y, targetY, 3, delta)
 
       // Subtle zoom: start at z=0, push closer at mid-scroll, pull back at end
