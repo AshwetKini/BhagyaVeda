@@ -173,11 +173,6 @@ export default function Bottle(props) {
           <meshStandardMaterial color="#B08D2D" metalness={1} roughness={0.3} />
         </mesh>
 
-        {/* Bottle Bottom Rim */}
-        <mesh position={[0, -1.5, 0]}>
-          <torusGeometry args={[1.05, 0.03, 8, 64]} />
-          <meshStandardMaterial color="rgba(200,200,200,0.3)" metalness={0.3} roughness={0.4} />
-        </mesh>
       </group>
     </Float>
   )
