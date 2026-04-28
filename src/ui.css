@@ -533,6 +533,31 @@
   color: var(--color-accent);
 }
 
+.social-links {
+  align-items: center;
+}
+
+.icon-link {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.25s ease, color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.icon-link:hover {
+  transform: translateY(-2px);
+  color: var(--color-accent);
+  border-color: rgba(212, 175, 55, 0.65);
+  background: rgba(212, 175, 55, 0.14);
+}
+
 .footer-bottom {
   text-align: center;
   color: rgba(255, 255, 255, 0.62);
