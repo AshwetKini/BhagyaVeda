@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { Leaf, Droplets, Sun, Sparkles } from 'lucide-react'
 
+const smoothEase = [0.16, 1, 0.3, 1]
+
 const ingredients = [
   {
     name: "Amla (Indian Gooseberry)",
@@ -27,13 +29,18 @@ const ingredients = [
 const containerVariants = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.2 }
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
   }
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, x: -30 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  hidden: { opacity: 0, x: -40, filter: "blur(4px)" },
+  show: { 
+    opacity: 1, 
+    x: 0, 
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: smoothEase } 
+  }
 }
 
 export default function IngredientsSection() {
@@ -43,10 +50,10 @@ export default function IngredientsSection() {
         <div className="ingredients-layout">
           <motion.div 
             className="ingredients-text"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1, ease: smoothEase }}
           >
             <h2 className="section-title">Nature's Best<br/>Kept Secrets</h2>
             <p className="section-text">
@@ -61,10 +68,19 @@ export default function IngredientsSection() {
               viewport={{ once: true, margin: "-100px" }}
             >
               {ingredients.map((item, index) => (
-                <motion.div key={index} className="ingredient-item" variants={itemVariants}>
-                  <div className="ingredient-icon glass">
+                <motion.div 
+                  key={index} 
+                  className="ingredient-item" 
+                  variants={itemVariants}
+                  whileHover={{ x: 10, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                >
+                  <motion.div 
+                    className="ingredient-icon glass"
+                    whileHover={{ scale: 1.15, rotate: 10 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  >
                     {item.icon}
-                  </div>
+                  </motion.div>
                   <div className="ingredient-info">
                     <h3>{item.name}</h3>
                     <p>{item.desc}</p>
