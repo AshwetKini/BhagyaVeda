@@ -18,14 +18,15 @@ export default function Navbar() {
           <a href="#promise">Our Promise</a>
           <a href="#ingredients">Ingredients</a>
           <a href="#benefits">Benefits</a>
+          <a href="#how-it-works">How It Works</a>
           <a href="#testimonials">Reviews</a>
         </div>
 
         <div className="nav-actions">
-          <button className="icon-btn">
+          <button className="icon-btn" aria-label="Open shopping bag">
             <ShoppingBag size={20} />
           </button>
-          <button className="icon-btn mobile-only">
+          <button className="icon-btn mobile-only" aria-label="Open menu">
             <Menu size={20} />
           </button>
         </div>
