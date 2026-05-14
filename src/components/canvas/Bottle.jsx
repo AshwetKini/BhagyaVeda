@@ -111,6 +111,7 @@ export default function Bottle(props) {
           <meshStandardMaterial
             map={labelTexture}
             transparent
+            depthWrite={false}
             polygonOffset
             polygonOffsetFactor={-1}
             roughness={0.85}
