@@ -32,19 +32,19 @@ export default function Bottle(props) {
     // Bottom fillet (radius 0.1)
     for (let i = 0; i <= 10; i++) {
       const angle = (i / 10) * (Math.PI / 2)
-      const x = 0.85 + Math.sin(angle) * 0.1
+      const x = 0.75 + Math.sin(angle) * 0.1
       const y = -1.4 - Math.cos(angle) * 0.1
       points.push(new THREE.Vector2(x, y))
     }
 
     // Straight body (taller for elegant look)
-    points.push(new THREE.Vector2(0.95, 1.2))
+    points.push(new THREE.Vector2(0.85, 1.2))
 
     // Shoulder (Smooth natural curve, preventing deep shadows)
     const neckRadius = 0.44;
     for (let i = 0; i <= 20; i++) {
       const t = i / 20 // 0 to 1
-      const x = neckRadius + (0.95 - neckRadius) * Math.pow(1 - t, 1.5) // Tapers naturally to 0.44
+      const x = neckRadius + (0.85 - neckRadius) * Math.pow(1 - t, 1.5) // Tapers naturally to 0.44
       const y = 1.2 + t * 0.4 // Reaches 1.6
       points.push(new THREE.Vector2(x, y))
     }
@@ -155,9 +155,9 @@ export default function Bottle(props) {
         {/* Label projected directly onto bottle surface */}
         <Decal
           mesh={bottleRef}
-          position={[0, -0.15, 0.95]}
+          position={[0, -0.15, 0.85]}
           rotation={[0, 0, 0]}
-          scale={[1.72, 2.05, 1]}
+          scale={[1.55, 1.85, 1]}
           map={labelTexture}
         >
           <meshStandardMaterial
