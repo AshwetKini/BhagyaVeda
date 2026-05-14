@@ -3,7 +3,7 @@ import { Menu, ShoppingBag } from 'lucide-react'
 
 export default function Navbar() {
   return (
-    <motion.nav 
+    <motion.nav
       className="navbar glass-dark"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -11,9 +11,9 @@ export default function Navbar() {
     >
       <div className="container nav-container">
         <div className="nav-logo">
-          Bhagya Veda
+          <img src="/logo.png" alt="BhagyaVeda" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
         </div>
-        
+
         <div className="nav-links">
           <a href="#promise">Our Promise</a>
           <a href="#ingredients">Ingredients</a>

@@ -70,7 +70,9 @@ export default function LoadingScreen() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h1 className="loading-logo">Bhagya Veda</h1>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+              <img src="/logo.png" alt="BhagyaVeda" style={{ height: '80px', width: 'auto', objectFit: 'contain' }} />
+            </div>
             <p className="loading-tagline">Ancient Wisdom. Modern Luxury.</p>
             <div className="loading-bar-container">
               <motion.div 
