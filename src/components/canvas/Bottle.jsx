@@ -40,45 +40,44 @@ export default function Bottle(props) {
     // Straight body (taller for elegant look)
     points.push(new THREE.Vector2(0.95, 1.2))
 
-    // Shoulder (Smooth elegant S-curve to a wider flat top)
+    // Shoulder (Smooth natural curve, preventing deep shadows)
+    const neckRadius = 0.44;
     for (let i = 0; i <= 20; i++) {
       const t = i / 20 // 0 to 1
-      const smoothT = (1 - Math.cos(t * Math.PI)) / 2 // S-curve easing
-      const x = 0.95 - smoothT * (0.95 - 0.5) // Tapers to radius 0.5
-      const y = 1.2 + t * 0.4 // Reaches y=1.6
+      const x = neckRadius + (0.95 - neckRadius) * Math.pow(1 - t, 1.5) // Tapers naturally to 0.44
+      const y = 1.2 + t * 0.4 // Reaches 1.6
       points.push(new THREE.Vector2(x, y))
     }
     
     const neckBaseY = 1.6
 
-    // 1. The Thick Ring (Bulge)
-    // Curves out to 0.54 and back to 0.5
+    // 1. The Thick Ring (Prominent, but not an overhang to avoid deep shadows)
     for (let i = 0; i <= 10; i++) {
       const angle = (i / 10) * Math.PI
-      const x = 0.5 + Math.sin(angle) * 0.04 // out to 0.54
+      const x = 0.44 + Math.sin(angle) * 0.02 // out to 0.46
       const y = neckBaseY + 0.03 - Math.cos(angle) * 0.03 // up to 1.66
       points.push(new THREE.Vector2(x, y))
     }
     
-    const indentationY = neckBaseY + 0.06
+    const ringTopY = neckBaseY + 0.06 // 1.66
     
     // 2. The Indentation
-    points.push(new THREE.Vector2(0.5, indentationY))
-    points.push(new THREE.Vector2(0.5, indentationY + 0.02))
+    points.push(new THREE.Vector2(0.44, ringTopY))
+    points.push(new THREE.Vector2(0.44, ringTopY + 0.02)) // vertical indent
     
-    const lipY = indentationY + 0.02
+    const lipBaseY = ringTopY + 0.02 // 1.68
     
     // 3. The Thin Top Lip
-    points.push(new THREE.Vector2(0.5, lipY))
-    points.push(new THREE.Vector2(0.52, lipY + 0.01)) // Sharply out to 0.52
-    points.push(new THREE.Vector2(0.52, lipY + 0.02)) // Straight edge
-    points.push(new THREE.Vector2(0.5, lipY + 0.03)) // Back to 0.5
+    points.push(new THREE.Vector2(0.44, lipBaseY))
+    points.push(new THREE.Vector2(0.45, lipBaseY + 0.01)) // sharply out to 0.45
+    points.push(new THREE.Vector2(0.45, lipBaseY + 0.02)) // straight edge
+    points.push(new THREE.Vector2(0.44, lipBaseY + 0.03)) // back to 0.44
     
-    const topOfNeckY = lipY + 0.03
+    const topOfNeckY = lipBaseY + 0.03 // 1.71
 
     // Straight inner Neck (hidden inside cap)
-    points.push(new THREE.Vector2(0.5, topOfNeckY))
-    points.push(new THREE.Vector2(0.5, topOfNeckY + 0.2))
+    points.push(new THREE.Vector2(neckRadius, topOfNeckY))
+    points.push(new THREE.Vector2(neckRadius, topOfNeckY + 0.2))
     points.push(new THREE.Vector2(0, topOfNeckY + 0.2))
 
     return points
@@ -173,23 +172,23 @@ export default function Bottle(props) {
           />
         </Decal>
 
-        {/* Sleek Solid Gold Cap - Widened and scaled to match massive proportions */}
+        {/* Sleek Solid Gold Cap - Refined natural proportions */}
         <group ref={capRef} position={[0, 1.709, 0]}>
           {/* Main Cap Cylinder */}
-          <mesh position={[0, 0.2, 0]} castShadow receiveShadow>
-            <cylinderGeometry args={[0.55, 0.55, 0.4, isMobile ? 32 : 64]} />
+          <mesh position={[0, 0.16, 0]} castShadow receiveShadow>
+            <cylinderGeometry args={[0.46, 0.46, 0.32, isMobile ? 32 : 64]} />
             <meshStandardMaterial color="#D4AF37" metalness={0.8} roughness={0.2} envMapIntensity={2} />
           </mesh>
 
           {/* Smooth Rounded Top Edge */}
-          <mesh position={[0, 0.4, 0]} rotation={[Math.PI / 2, 0, 0]}>
-            <torusGeometry args={[0.5, 0.05, 16, isMobile ? 32 : 64]} />
+          <mesh position={[0, 0.32, 0]} rotation={[Math.PI / 2, 0, 0]}>
+            <torusGeometry args={[0.4, 0.06, 16, isMobile ? 32 : 64]} />
             <meshStandardMaterial color="#D4AF37" metalness={0.8} roughness={0.2} envMapIntensity={2} />
           </mesh>
 
           {/* Flat Top Cap */}
-          <mesh position={[0, 0.425, 0]}>
-            <cylinderGeometry args={[0.5, 0.5, 0.05, isMobile ? 32 : 64]} />
+          <mesh position={[0, 0.35, 0]}>
+            <cylinderGeometry args={[0.4, 0.4, 0.06, isMobile ? 32 : 64]} />
             <meshStandardMaterial color="#D4AF37" metalness={0.8} roughness={0.2} envMapIntensity={2} />
           </mesh>
         </group>
