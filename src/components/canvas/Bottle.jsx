@@ -85,7 +85,7 @@ export default function Bottle(props) {
         
         {/* Bottle Body (dark glass like the product shot) */}
         <mesh ref={bottleRef} position={[0, 0, 0]} castShadow receiveShadow>
-          <cylinderGeometry args={[0.9, 0.98, 3.05, 64]} />
+          <cylinderGeometry args={[0.9, 0.98, 3.05, isMobile ? 32 : 64]} />
           <MeshTransmissionMaterial 
             samples={isMobile ? 3 : 6}
             resolution={isMobile ? 256 : 1024}
@@ -120,7 +120,7 @@ export default function Bottle(props) {
 
         {/* Bottle Shoulder (Glass taper) */}
         <mesh position={[0, 1.7, 0]} castShadow receiveShadow>
-          <cylinderGeometry args={[0.35, 0.78, 0.55, 64]} />
+          <cylinderGeometry args={[0.35, 0.78, 0.55, isMobile ? 32 : 64]} />
           <MeshTransmissionMaterial 
             samples={isMobile ? 2 : 4}
             resolution={isMobile ? 128 : 512}
@@ -134,7 +134,7 @@ export default function Bottle(props) {
 
         {/* Bottle Neck */}
         <mesh position={[0, 2.05, 0]} castShadow receiveShadow>
-          <cylinderGeometry args={[0.3, 0.35, 0.3, 64]} />
+          <cylinderGeometry args={[0.3, 0.35, 0.3, isMobile ? 32 : 64]} />
           <MeshTransmissionMaterial 
             resolution={isMobile ? 128 : 256}
             thickness={0.15}
@@ -147,7 +147,7 @@ export default function Bottle(props) {
 
         {/* Inner Oil (Liquid) — animated glow */}
         <mesh ref={oilRef} position={[0, -0.15, 0]}>
-          <cylinderGeometry args={[0.82, 0.82, 2.55, 64]} />
+          <cylinderGeometry args={[0.82, 0.82, 2.55, isMobile ? 32 : 64]} />
           <meshPhysicalMaterial 
             color="#978833"
             transmission={0.2}
@@ -162,7 +162,7 @@ export default function Bottle(props) {
 
         {/* Gold Cap — Premium */}
         <mesh ref={capRef} position={[0, 2.35, 0]} castShadow receiveShadow>
-          <cylinderGeometry args={[0.42, 0.42, 0.5, 64]} />
+          <cylinderGeometry args={[0.42, 0.42, 0.5, isMobile ? 32 : 64]} />
           <meshStandardMaterial 
             color="#D4AF37" 
             metalness={1} 
@@ -173,19 +173,19 @@ export default function Bottle(props) {
 
         {/* Cap Top */}
         <mesh position={[0, 2.6, 0]}>
-          <cylinderGeometry args={[0.38, 0.42, 0.05, 64]} />
+          <cylinderGeometry args={[0.38, 0.42, 0.05, isMobile ? 32 : 64]} />
           <meshStandardMaterial color="#C5A028" metalness={1} roughness={0.2} />
         </mesh>
 
         {/* Cap Rim Detailing — thin ring */}
         <mesh position={[0, 2.55, 0]}>
-          <torusGeometry args={[0.42, 0.02, 8, 64]} />
+          <torusGeometry args={[0.42, 0.02, 8, isMobile ? 32 : 64]} />
           <meshStandardMaterial color="#B08D2D" metalness={1} roughness={0.25} />
         </mesh>
 
         {/* Cap Knurling Detail */}
         <mesh position={[0, 2.15, 0]}>
-          <torusGeometry args={[0.43, 0.015, 8, 64]} />
+          <torusGeometry args={[0.43, 0.015, 8, isMobile ? 32 : 64]} />
           <meshStandardMaterial color="#B08D2D" metalness={1} roughness={0.3} />
         </mesh>
 
