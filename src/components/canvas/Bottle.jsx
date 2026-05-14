@@ -179,13 +179,13 @@ export default function Bottle(props) {
         </mesh>
 
         {/* Cap Rim Detailing — thin ring */}
-        <mesh position={[0, 2.55, 0]}>
+        <mesh position={[0, 2.55, 0]} rotation={[Math.PI / 2, 0, 0]}>
           <torusGeometry args={[0.42, 0.02, 8, isMobile ? 32 : 64]} />
           <meshStandardMaterial color="#B08D2D" metalness={1} roughness={0.25} />
         </mesh>
 
         {/* Cap Knurling Detail */}
-        <mesh position={[0, 2.15, 0]}>
+        <mesh position={[0, 2.15, 0]} rotation={[Math.PI / 2, 0, 0]}>
           <torusGeometry args={[0.43, 0.015, 8, isMobile ? 32 : 64]} />
           <meshStandardMaterial color="#B08D2D" metalness={1} roughness={0.3} />
         </mesh>
