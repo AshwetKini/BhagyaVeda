@@ -23,7 +23,7 @@ export default function Bottle(props) {
   labelTexture.wrapT = THREE.ClampToEdgeWrapping
   labelTexture.flipY = true
   labelTexture.needsUpdate = true
-  labelTexture.anisotropy = gl.capabilities.getMaxAnisotropy()
+  labelTexture.anisotropy = isMobile ? 2 : gl.capabilities.getMaxAnisotropy()
 
   // Smooth scroll tracking with damping
   const smoothProgress = useRef(0)
@@ -87,7 +87,8 @@ export default function Bottle(props) {
         <mesh ref={bottleRef} position={[0, 0, 0]} castShadow receiveShadow>
           <cylinderGeometry args={[0.9, 0.98, 3.05, 64]} />
           <MeshTransmissionMaterial 
-            samples={6}
+            samples={isMobile ? 3 : 6}
+            resolution={isMobile ? 256 : 1024}
             thickness={0.55}
             color="#1c140b"
             transmission={0.22}
@@ -121,7 +122,8 @@ export default function Bottle(props) {
         <mesh position={[0, 1.7, 0]} castShadow receiveShadow>
           <cylinderGeometry args={[0.35, 0.78, 0.55, 64]} />
           <MeshTransmissionMaterial 
-            samples={4}
+            samples={isMobile ? 2 : 4}
+            resolution={isMobile ? 128 : 512}
             thickness={0.25}
             color="#1c140b"
             transmission={0.22}
@@ -134,6 +136,7 @@ export default function Bottle(props) {
         <mesh position={[0, 2.05, 0]} castShadow receiveShadow>
           <cylinderGeometry args={[0.3, 0.35, 0.3, 64]} />
           <MeshTransmissionMaterial 
+            resolution={isMobile ? 128 : 256}
             thickness={0.15}
             color="#1a120a"
             transmission={0.2}

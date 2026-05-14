@@ -49,7 +49,7 @@ export default function Scene() {
     )
   }, [])
 
-  const canvasDpr = isLowPowerDevice ? [1, 1.2] : [1, 1.8]
+  const canvasDpr = isLowPowerDevice ? [1, 1] : [1, 2]
   const particleCount = isLowPowerDevice ? 260 : 520
   const shadowMapSize = isLowPowerDevice ? 512 : 1024
 
