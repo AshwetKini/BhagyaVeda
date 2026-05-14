@@ -15,7 +15,7 @@ export default function Footer() {
             transition={{ duration: 1, ease: smoothEase }}
           >
             Experience the Power of <br />
-            <span className="text-gold">Bhagya Veda</span>
+            <span className="text-gold">BhagyaVeda</span>
           </motion.h2>
           <motion.a
             href="#ingredients"
@@ -33,7 +33,7 @@ export default function Footer() {
 
         <div className="footer-content">
           <div className="footer-brand">
-            <h3 className="footer-logo">Bhagya Veda</h3>
+            <h3 className="footer-logo">BhagyaVeda</h3>
             <p>Ancient Wisdom. Modern Luxury.</p>
           </div>
           
@@ -83,7 +83,7 @@ export default function Footer() {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; {new Date().getFullYear()} Bhagya Veda. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} BhagyaVeda. All rights reserved.</p>
         </div>
       </div>
     </footer>

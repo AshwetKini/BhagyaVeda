@@ -27,7 +27,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.45, ease: smoothEase }}
           >
-            <span className="hero-title-word hero-title-word-primary">Bhagya</span>{' '}
+            <span className="hero-title-word hero-title-word-primary">Bhagya</span>
             <span className="hero-title-word hero-title-word-accent">Veda</span>
             <br />
             <span className="hero-subtitle">The Science of Ancient Hair Healing</span>

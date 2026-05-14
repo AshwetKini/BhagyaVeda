@@ -7,7 +7,7 @@ const testimonials = [
   {
     name: "Anjali Sharma",
     role: "Verified Buyer",
-    text: "I've tried countless hair oils, but Bhagya Veda is something else. My hair fall reduced significantly within a month.",
+    text: "I've tried countless hair oils, but BhagyaVeda is something else. My hair fall reduced significantly within a month.",
     rating: 5,
     location: "Mumbai"
   },

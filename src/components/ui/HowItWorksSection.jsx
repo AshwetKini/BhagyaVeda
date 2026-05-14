@@ -4,7 +4,7 @@ import { useRef } from 'react'
 const smoothEase = [0.16, 1, 0.3, 1]
 
 const steps = [
-  { num: "01", title: "Apply Oil", desc: "Take a few drops of Bhagya Veda oil on your palms." },
+  { num: "01", title: "Apply Oil", desc: "Take a few drops of BhagyaVeda oil on your palms." },
   { num: "02", title: "Massage Scalp", desc: "Gently massage into the scalp using circular motions for 10 mins." },
   { num: "03", title: "Deep Absorption", desc: "Leave it overnight or at least 2 hours for maximum nutrient absorption." },
   { num: "04", title: "Visible Results", desc: "Wash with a mild cleanser and experience softer, stronger hair." }

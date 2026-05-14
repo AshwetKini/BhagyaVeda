@@ -38,7 +38,7 @@ export default function PromiseSection() {
             transition={{ duration: 0.9, delay: 0.4, ease: smoothEase }}
           >
             For thousands of years, Ayurveda has held the secrets to natural beauty and wellness. 
-            Bhagya Veda brings these ancient recipes back to life, blending potent botanicals 
+            BhagyaVeda brings these ancient recipes back to life, blending potent botanicals 
             to restore your hair's natural strength and shine without harsh chemicals.
           </motion.p>
         </motion.div>
