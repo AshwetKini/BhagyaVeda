@@ -255,11 +255,19 @@
 }
 
 .text-gold-gradient {
-  background: linear-gradient(135deg, #D4AF37, #F3CA40, #9B7A22);
+  background: linear-gradient(to right, #C59B27, #F3CA40, #8F6B12, #F3CA40, #C59B27);
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   display: inline-block;
+  animation: goldShimmer 5s linear infinite;
+}
+
+@keyframes goldShimmer {
+  to {
+    background-position: 200% center;
+  }
 }
 
 .promise-divider {
