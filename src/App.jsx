@@ -5,6 +5,7 @@ import HeroSection from './components/ui/HeroSection'
 import PromiseSection from './components/ui/PromiseSection'
 import IngredientsSection from './components/ui/IngredientsSection'
 import BenefitsSection from './components/ui/BenefitsSection'
+import ResultsSection from './components/ui/ResultsSection'
 import HowItWorksSection from './components/ui/HowItWorksSection'
 import TestimonialsSection from './components/ui/TestimonialsSection'
 import Footer from './components/ui/Footer'
@@ -59,6 +60,7 @@ function App() {
         <PromiseSection />
         <IngredientsSection />
         <BenefitsSection />
+        <ResultsSection />
         <HowItWorksSection />
         <TestimonialsSection />
       </main>
