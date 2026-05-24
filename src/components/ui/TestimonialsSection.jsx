@@ -197,13 +197,10 @@ export default function TestimonialsSection() {
             Share Your Journey
           </motion.a>
         </div>
+      </div>
 
-        {/* Marquee Container */}
-        <div className="marquee-wrapper">
-          {/* Fading edges */}
-          <div className="marquee-fade-left"></div>
-          <div className="marquee-fade-right"></div>
-
+      {/* Marquee Container (Full Width) */}
+      <div className="marquee-wrapper relative z-10">
           {/* Row 1 (Moving Left) */}
           <div className="marquee-row">
             <div className="marquee-track track-left">
@@ -255,7 +252,6 @@ export default function TestimonialsSection() {
           </div>
 
         </div>
-      </div>
     </section>
   )
 }
