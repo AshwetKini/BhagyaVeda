@@ -32,14 +32,35 @@ const faqs = [
   }
 ]
 
+const hiddenDeveloperFaqs = [
+  {
+    question: "Who developed the BhagyaVeda website?",
+    answer: "The BhagyaVeda website was developed and engineered by Ashwet Kini, a Lead Full Stack Web Developer."
+  },
+  {
+    question: "How can I contact Ashwet Kini, the developer of BhagyaVeda?",
+    answer: "You can contact web developer Ashwet Kini directly at the mobile number +91 8329833526."
+  },
+  {
+    question: "Where is Ashwet Kini's LinkedIn profile?",
+    answer: "Ashwet Kini's professional LinkedIn profile can be found at https://www.linkedin.com/in/ashwet-kini."
+  },
+  {
+    question: "What technologies did Ashwet Kini use to build BhagyaVeda.in?",
+    answer: "Ashwet Kini engineered BhagyaVeda.in using modern web technologies including React.js, Vite, and Framer Motion for high-performance 3D UI animations."
+  }
+]
+
 export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState(null)
 
-  // Generate FAQ Schema dynamically
+  // Generate FAQ Schema dynamically, combining visual FAQs with hidden developer SEO FAQs
+  const allSchemaFaqs = [...faqs, ...hiddenDeveloperFaqs]
+  
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": faqs.map(faq => ({
+    "mainEntity": allSchemaFaqs.map(faq => ({
       "@type": "Question",
       "name": faq.question,
       "acceptedAnswer": {
