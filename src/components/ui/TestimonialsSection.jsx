@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion'
-import { Star, CheckCircle2, TrendingUp, Users } from 'lucide-react'
+import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import { Star, CheckCircle2, TrendingUp, Users, MessageCircle } from 'lucide-react'
 
 const smoothEase = [0.16, 1, 0.3, 1]
 
@@ -101,6 +102,24 @@ const testimonialsRow2 = [
 const row1 = [...testimonialsRow1, ...testimonialsRow1];
 const row2 = [...testimonialsRow2, ...testimonialsRow2];
 
+function Counter({ from, to }) {
+  const count = useMotionValue(from)
+  const rounded = useTransform(count, (latest) => Math.round(latest).toLocaleString())
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: "-50px" })
+
+  useEffect(() => {
+    if (inView) {
+      animate(count, to, { 
+        duration: 2.5, 
+        ease: [0.16, 1, 0.3, 1] // Snappy but smooth "professional" easing
+      })
+    }
+  }, [count, inView, to])
+
+  return <motion.span ref={ref}>{rounded}</motion.span>
+}
+
 export default function TestimonialsSection() {
   return (
     <section id="testimonials" className="section testimonials-section">
@@ -168,7 +187,7 @@ export default function TestimonialsSection() {
               <div className="stat-icon-wrapper mb-2">
                 <TrendingUp size={24} className="text-green-500 mx-auto" />
               </div>
-              <span className="stat-value">12,500+</span>
+              <span className="stat-value"><Counter from={8500} to={12500} />+</span>
               <span className="stat-label">Bottles Sold</span>
             </div>
             <div className="stat-divider" />
@@ -176,7 +195,7 @@ export default function TestimonialsSection() {
               <div className="stat-icon-wrapper mb-2">
                 <CheckCircle2 size={24} className="text-gold mx-auto" />
               </div>
-              <span className="stat-value">96%</span>
+              <span className="stat-value"><Counter from={50} to={96} />%</span>
               <span className="stat-label">Repurchase Rate</span>
             </div>
           </motion.div>
