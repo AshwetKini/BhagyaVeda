@@ -144,8 +144,9 @@
   justify-content: flex-start;
 }
 
-.hero-content {
+.hero-section .hero-content {
   max-width: 580px;
+  min-height: clamp(320px, 42vh, 420px);
   z-index: 10;
   position: relative;
   margin-left: clamp(-2.6rem, -4vw, -1.4rem);
@@ -1135,6 +1136,7 @@
   .hero-content {
     margin-left: 0;
     max-width: 100%;
+    min-height: auto;
     padding: 0 1rem;
     background: transparent;
     border: none;
