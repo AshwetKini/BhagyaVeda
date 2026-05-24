@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://bhagyaveda.in/</loc>
     <lastmod>2026-05-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/logo.png</image:loc>
+      <image:title>BhagyaVeda Ayurvedic Hair Oil Logo</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/bottle-label-reference.png</image:loc>
+      <image:title>BhagyaVeda Premium Ayurvedic Hair Oil Bottle</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/results/indian_hair_crown_day90.png</image:loc>
+      <image:title>Before and After Hair Growth Results after 90 Days</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/results/indian_female_postpartum_day90.png</image:loc>
+      <image:title>Postpartum Hair Fall Recovery Results</image:title>
+    </image:image>
   </url>
 </urlset>
