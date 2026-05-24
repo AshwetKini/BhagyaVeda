@@ -1116,9 +1116,9 @@
   .nav-links { display: none; }
   .mobile-only { display: block; }
   
-  .hero-section {
+  .section.hero-section {
     align-items: flex-start;
-    padding-top: 5.5rem;
+    padding: 3.5rem 0 2rem;
     justify-content: flex-start;
   }
   .hero-section .container {
