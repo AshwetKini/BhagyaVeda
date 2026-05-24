@@ -17,6 +17,18 @@ const faqs = [
   {
     question: "What makes BhagyaVeda different from regular hair oils?",
     answer: "BhagyaVeda isn't just an oil; it's a clinically formulated Ayurvedic treatment. We use a proprietary slow-infusion process that extracts the maximum potency from herbs like Bhringraj, Amla, and Brahmi without using any synthetic additives, mineral oils, or artificial fragrances."
+  },
+  {
+    question: "Is this the best Ayurvedic hair oil for severe hair fall?",
+    answer: "Yes, BhagyaVeda is specifically formulated using ancient Ayurvedic principles to target the root causes of severe hair fall. Our blend of Bhringraj, Amla, and Brahmi strengthens hair follicles from within, making it one of the most effective natural treatments available."
+  },
+  {
+    question: "Can men use BhagyaVeda hair oil too?",
+    answer: "Absolutely. BhagyaVeda is highly effective for both men and women experiencing hair thinning, receding hairlines, or general hair loss. The natural herbs stimulate dormant follicles regardless of gender."
+  },
+  {
+    question: "Does it help with dandruff and dry scalp?",
+    answer: "Yes, the potent antimicrobial properties of Neem and the deep hydration of our cold-pressed base oils effectively combat dandruff, soothe itchy scalps, and prevent flakiness."
   }
 ]
 

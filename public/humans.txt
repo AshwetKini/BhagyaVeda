@@ -1,0 +1,10 @@
+/* TEAM */
+Developer: Ashwet Kini
+LinkedIn: https://www.linkedin.com/in/ashwet-kini
+Contact: +91 8329833526
+Role: Full Stack Developer
+Site: bhagyaveda.in
+
+/* SITE */
+Language: English
+Tech: React, Vite, Framer Motion
