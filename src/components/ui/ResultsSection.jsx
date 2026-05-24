@@ -28,6 +28,14 @@ const results = [
     stats: "+50% Volume",
     day0: "/results/indian_hair_crown_day0.png",
     day90: "/results/indian_hair_crown_day90.png"
+  },
+  {
+    id: 4,
+    title: "Postpartum Hair Loss",
+    subtitle: "Frontal Hairline",
+    stats: "+60% New Baby Hairs",
+    day0: "/results/indian_female_postpartum_day0.png",
+    day90: "/results/indian_female_postpartum_day90.png"
   }
 ]
 
@@ -96,9 +104,7 @@ export default function ResultsSection() {
               viewport={{ once: true }}
               transition={{ duration: 1, ease: smoothEase }}
             >
-              WHAT <span className="results-title-highlight">90 Days</span> OF<br />
-              <span className="results-title-bold">CONSISTENT</span> USE<br />
-              LOOKS LIKE
+              WHAT <span className="results-title-highlight">90 Days</span> OF <span className="results-title-bold">CONSISTENT</span> USE LOOKS LIKE
             </motion.h2>
             <motion.p
               className="results-text"

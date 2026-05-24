@@ -584,7 +584,7 @@
 }
 
 .results-content {
-  max-width: 500px;
+  width: 100%;
 }
 
 .results-title {
@@ -636,23 +636,29 @@
 .results-carousel-container {
   position: relative;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .results-carousel-viewport {
   overflow: hidden;
   border-radius: 1.5rem;
-  padding: 1rem;
-  margin: -1rem;
+  width: 100%;
+  position: relative;
 }
 
 .results-carousel-track {
   display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .results-slide {
-  min-width: 100%;
-  padding: 0 1rem;
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 0.5rem;
   box-sizing: border-box;
 }
 
@@ -1005,14 +1011,45 @@
   
   .footer-content { grid-template-columns: 1fr; gap: 2rem; }
 
-  .results-layout { grid-template-columns: 1fr; gap: 2rem; }
-  .results-content { margin-bottom: 1rem; }
+  .results-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .results-content { margin-bottom: 0.5rem; max-width: 100%; text-align: center; }
+  .results-nav { justify-content: center; margin-top: 1.5rem; }
   .results-title { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .results-text { margin-left: auto; margin-right: auto; }
+  
+  .glass-premium { padding: 1.25rem; }
+  .result-images { gap: 1rem; }
+  .result-target-circle { width: 70px; height: 70px; }
+  .floating-stat-chip { padding: 0.25rem 0.5rem; top: 0.5rem; right: 0.5rem; }
+  .floating-stat-text { font-size: 0.75rem; }
   
   .floating-whatsapp {
     right: 0.9rem;
     bottom: 1rem;
     width: 3rem;
     height: 3rem;
+  }
+}
+
+/* Tablet Responsive */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .results-layout { 
+    grid-template-columns: 1fr; 
+    gap: 3rem; 
+  }
+  .results-content { 
+    max-width: 80%; 
+    margin: 0 auto; 
+    text-align: center; 
+  }
+  .results-nav { 
+    justify-content: center; 
+  }
+  .results-title { 
+    font-size: clamp(3rem, 5vw, 3.5rem); 
+  }
+  .results-text {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
