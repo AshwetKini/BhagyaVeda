@@ -1119,6 +1119,10 @@
   .hero-section {
     align-items: flex-start;
     padding-top: 5.5rem;
+    justify-content: flex-start;
+  }
+  .hero-section .container {
+    justify-content: center;
   }
   .hero-cta-wrapper {
     flex-direction: column;

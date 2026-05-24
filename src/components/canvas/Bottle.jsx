@@ -11,7 +11,7 @@ export default function Bottle(props) {
   const { gl, size } = useThree()
   const isMobile = size.width < 768
   const baseYOffset = isMobile ? -1.08 : -0.8
-  const baseXOffset = isMobile ? 0.5 : 0
+  const baseXOffset = isMobile ? 0 : 0
   const ySwing = isMobile ? 0.24 : 0.45
   const baseScale = isMobile ? 0.72 : 0.92
   const scaleSwing = isMobile ? 0.05 : 0.1
