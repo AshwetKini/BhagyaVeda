@@ -104,6 +104,26 @@ const row2 = [...testimonialsRow2, ...testimonialsRow2];
 export default function TestimonialsSection() {
   return (
     <section id="testimonials" className="section testimonials-section">
+      {/* Animated Background Orbs */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.15, 0.3, 0.15]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-gold/10 blur-[150px]" 
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.4, 1],
+            opacity: [0.1, 0.25, 0.1]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-gold/15 blur-[120px]" 
+        />
+      </div>
+
       <div className="container relative z-10">
         
         {/* Header Section */}
@@ -119,13 +139,13 @@ export default function TestimonialsSection() {
           </motion.div>
 
           <motion.h2 
-            className="section-title mb-6"
+            className="section-title mb-8"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1, ease: smoothEase }}
           >
-            Loved by <span className="text-gold italic font-serif">Thousands</span>
+            Loved by <span className="text-gold italic font-serif shimmer-text">Thousands</span>
           </motion.h2>
 
           {/* Social Proof Stats */}
@@ -146,7 +166,7 @@ export default function TestimonialsSection() {
             <div className="stat-divider" />
             <div className="stat-item">
               <div className="stat-icon-wrapper mb-2">
-                <TrendingUp size={24} className="text-green-600 mx-auto" />
+                <TrendingUp size={24} className="text-green-500 mx-auto" />
               </div>
               <span className="stat-value">12,500+</span>
               <span className="stat-label">Bottles Sold</span>
@@ -160,6 +180,22 @@ export default function TestimonialsSection() {
               <span className="stat-label">Repurchase Rate</span>
             </div>
           </motion.div>
+
+          {/* Interactive Button */}
+          <motion.a
+            href="https://wa.me/919763567410?text=Hi%20BhagyaVeda%2C%20I%20want%20to%20share%20my%20hair%20journey%20and%20review!"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-primary btn-glow mt-8 inline-flex"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Share Your Journey
+          </motion.a>
         </div>
 
         {/* Marquee Container */}

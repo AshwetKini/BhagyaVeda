@@ -437,6 +437,28 @@
   background: linear-gradient(160deg, #0c2115, #122f1f);
   color: var(--color-bg);
   overflow: hidden;
+  position: relative;
+}
+
+.shimmer-text {
+  display: inline-block;
+  background: linear-gradient(
+    to right,
+    var(--color-accent) 20%,
+    #FFF 50%,
+    var(--color-accent) 80%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
 }
 
 .testimonials-section .section-title {
