@@ -42,30 +42,8 @@ export default function HeroSection() {
             Stronger Roots. Less Hair Fall. Naturally Beautiful Hair.
           </motion.p>
           
-          <motion.div
-            className="hero-cta-wrapper"
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.65, ease: smoothEase }}
-          >
-            <motion.a
-              href="#footer-cta"
-              className="btn btn-primary btn-glow"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(212, 175, 55, 0.5)" }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 400, damping: 17 }}
-            >
-              Shop Now
-            </motion.a>
-            <motion.span 
-              className="hero-scroll-hint"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.1, duration: 0.8 }}
-            >
-              Scroll to explore
-            </motion.span>
-          </motion.div>
+
+
         </motion.div>
       </div>
     </section>
