@@ -436,53 +436,183 @@
 .testimonials-section {
   background: linear-gradient(160deg, #0c2115, #122f1f);
   color: var(--color-bg);
+  overflow: hidden;
 }
 
 .testimonials-section .section-title {
   color: var(--color-bg);
 }
 
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.3rem;
+.testimonials-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
 }
 
-.testimonial-card {
-  padding: 2rem 1.7rem;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
   color: var(--color-bg);
+  line-height: 1;
+  margin-bottom: 0.25rem;
 }
 
-.testimonial-quote {
-  font-family: var(--font-heading);
-  font-size: 3rem;
-  line-height: 0.8;
-  color: rgba(212, 175, 55, 0.8);
-}
-
-.testimonial-text {
-  font-style: normal;
-  font-size: 1rem;
-  line-height: 1.75;
-}
-
-.testimonial-author h4 {
-  font-size: 1.2rem;
-  font-family: var(--font-heading);
-  font-weight: 600;
-  margin-bottom: 0.15rem;
-}
-
-.testimonial-location,
-.testimonial-role {
-  display: block;
-  font-size: 0.84rem;
-  letter-spacing: 0.06em;
+.stat-label {
+  font-size: 0.875rem;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.72);
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.marquee-wrapper {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.marquee-fade-left,
+.marquee-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 15%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.marquee-fade-left {
+  left: 0;
+  background: linear-gradient(to right, #102a1b, transparent);
+}
+
+.marquee-fade-right {
+  right: 0;
+  background: linear-gradient(to left, #102a1b, transparent);
+}
+
+.marquee-row {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 1.5rem;
+  width: fit-content;
+  padding: 0 0.75rem;
+}
+
+.track-left {
+  animation: scroll-left 40s linear infinite;
+}
+
+.track-right {
+  animation: scroll-right 45s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 0.75rem)); }
+}
+
+@keyframes scroll-right {
+  0% { transform: translateX(calc(-50% - 0.75rem)); }
+  100% { transform: translateX(0); }
+}
+
+.review-card {
+  width: 350px;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--color-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.review-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.review-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(212, 175, 55, 0.5);
+}
+
+.review-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-name {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+}
+
+.verified-badge-small {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4ade80;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.review-location {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(212, 175, 55, 0.8);
 }
 
 .stars {
