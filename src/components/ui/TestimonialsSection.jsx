@@ -61,15 +61,39 @@ const testimonialsRow2 = [
     text: "Best investment for my hair. The texture is smoother, and I see less hair on my comb every morning.",
     rating: 5,
     location: "Pune",
-    avatar: "/reviews/avatar_f1.png" 
+    avatar: "/reviews/avatar_f4.png" 
   },
   {
-    name: "Rahul Verma",
+    name: "Aditi Lad",
     role: "Verified Buyer",
-    text: "Incredible traditional formulation. Reminds me of the oil my grandmother used to make. Smells amazing.",
+    text: "I was dealing with severe thinning at the crown. After two months of BhagyaVeda, the difference is honestly unbelievable.",
     rating: 5,
-    location: "Chandigarh",
-    avatar: "/reviews/avatar_m1.png"
+    location: "Mumbai",
+    avatar: "https://ui-avatars.com/api/?name=Aditi+Lad&background=D4AF37&color=fff&size=150&font-size=0.4"
+  },
+  {
+    name: "Ruchi Patil",
+    role: "Verified Buyer",
+    text: "The absolute best oil for daily massage. My roots feel so much stronger and my scalp is no longer dry.",
+    rating: 5,
+    location: "Virar",
+    avatar: "https://ui-avatars.com/api/?name=Ruchi+Patil&background=122f1f&color=fff&size=150&font-size=0.4"
+  },
+  {
+    name: "Aditi Kini",
+    role: "Verified Buyer",
+    text: "The authentic Ayurvedic formulation really makes a difference. I've recommended this to all my friends and family.",
+    rating: 5,
+    location: "Nallasopara",
+    avatar: "/reviews/adi.jpeg"
+  },
+  {
+    name: "Darshana Bhamre",
+    role: "Verified Buyer",
+    text: "Visible results in hair density and shine. It's completely non-sticky and smells like pure, natural herbs.",
+    rating: 5,
+    location: "Vasai",
+    avatar: "/reviews/bhamre.jpg"
   }
 ];
 
