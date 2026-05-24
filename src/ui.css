@@ -1155,6 +1155,25 @@
   .floating-stat-chip { padding: 0.25rem 0.5rem; top: 0.5rem; right: 0.5rem; }
   .floating-stat-text { font-size: 0.75rem; }
   
+  .testimonials-stats {
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .stat-value {
+    font-size: 1.25rem;
+  }
+  .stat-label {
+    font-size: 0.55rem;
+    letter-spacing: 0;
+    text-align: center;
+  }
+  .stat-divider {
+    height: 30px;
+    margin: 0;
+  }
+  
   .floating-whatsapp {
     right: 0.9rem;
     bottom: 1rem;

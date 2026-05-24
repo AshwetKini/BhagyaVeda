@@ -176,7 +176,7 @@ export default function TestimonialsSection() {
               <div className="stat-icon-wrapper mb-2">
                 <CheckCircle2 size={24} className="text-gold mx-auto" />
               </div>
-              <span className="stat-value">94%</span>
+              <span className="stat-value">96%</span>
               <span className="stat-label">Repurchase Rate</span>
             </div>
           </motion.div>
