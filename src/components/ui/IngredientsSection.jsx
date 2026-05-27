@@ -182,7 +182,7 @@ export default function IngredientsSection() {
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
                 gap: '1.5rem',
-                marginTop: '-3rem', // Beautiful overlap effect over the video
+                marginTop: '2rem', // Spaced nicely below the video
                 position: 'relative',
                 zIndex: 10,
                 padding: '0 0.5rem' // Slight inset
