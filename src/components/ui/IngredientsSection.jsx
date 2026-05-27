@@ -171,75 +171,7 @@ export default function IngredientsSection() {
               <BackgroundVideo />
             </motion.div>
             
-            {/* Overlapping, Ultra-Premium Glassmorphic Grid */}
-            <motion.div 
-              className="ingredients-list"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-                gap: '1.5rem',
-                marginTop: '2rem', // Spaced nicely below the video
-                position: 'relative',
-                zIndex: 10,
-                padding: '0 0.5rem' // Slight inset
-              }}
-            >
-              {ingredients.map((item, index) => (
-                <motion.div 
-                  key={index} 
-                  className="ingredient-item" 
-                  variants={itemVariants}
-                  whileHover={{ 
-                    y: -10, 
-                    backgroundColor: 'rgba(255, 255, 255, 0.98)',
-                    boxShadow: '0 25px 50px rgba(10, 28, 17, 0.1)',
-                    transition: { type: "spring", stiffness: 300, damping: 20 } 
-                  }}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'flex-start',
-                    gap: '1.25rem',
-                    padding: '2rem 1.75rem',
-                    background: 'rgba(255, 255, 255, 0.85)',
-                    backdropFilter: 'blur(20px)',
-                    WebkitBackdropFilter: 'blur(20px)',
-                    border: '1px solid rgba(255, 255, 255, 1)',
-                    borderRadius: '24px',
-                    boxShadow: '0 15px 35px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.6)',
-                    margin: 0,
-                    cursor: 'default'
-                  }}
-                >
-                  <motion.div 
-                    className="ingredient-icon glass"
-                    whileHover={{ scale: 1.1, rotate: 8 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                    style={{
-                      width: '56px',
-                      height: '56px',
-                      background: 'linear-gradient(135deg, #091B11, #2d5a3f)', // Rich vibrant green squircle
-                      color: '#fff',
-                      borderRadius: '16px',
-                      boxShadow: '0 12px 24px rgba(16, 36, 22, 0.25)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center'
-                    }}
-                  >
-                    {item.icon}
-                  </motion.div>
-                  <div className="ingredient-info">
-                    <h3 style={{ fontSize: '1.2rem', fontWeight: 600, color: '#091B11', marginBottom: '0.4rem', letterSpacing: '-0.01em' }}>{item.name}</h3>
-                    <p style={{ fontSize: '0.95rem', lineHeight: 1.6, color: '#4a5d52' }}>{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
+
           </motion.div>
           
           {/* Right side is empty here because the 3D canvas is showing the bottle & floating ingredients */}
