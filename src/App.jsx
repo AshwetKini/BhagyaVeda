@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Lenis from 'lenis'
 import Scene from './components/canvas/Scene'
 import HeroSection from './components/ui/HeroSection'
@@ -15,6 +15,46 @@ import FloatingWhatsAppButton from './components/ui/FloatingWhatsAppButton'
 import FAQSection from './components/ui/FAQSection'
 
 function App() {
+  const [showCanvas, setShowCanvas] = useState(true)
+
+  useEffect(() => {
+    const activeSectionSelectors = [
+      '.hero-section',
+      '.promise-section',
+      '.ingredients-section',
+      '.results-section',
+      '.how-it-works-section',
+      '.faq-section'
+    ]
+
+    const elements = activeSectionSelectors.map(selector => document.querySelector(selector)).filter(Boolean)
+    if (elements.length === 0) return
+
+    const visibilityMap = new Map()
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        visibilityMap.set(entry.target, entry.isIntersecting)
+      })
+
+      // Check if at least one active section is visible
+      let isAnyVisible = false
+      elements.forEach(el => {
+        if (visibilityMap.get(el)) {
+          isAnyVisible = true
+        }
+      })
+
+      setShowCanvas(isAnyVisible)
+    }, { threshold: 0, rootMargin: '50px' })
+
+    elements.forEach(el => observer.observe(el))
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reducedMotion) {
@@ -51,8 +91,8 @@ function App() {
       <Navbar />
       
       {/* 3D Canvas layer fixed in background */}
-      <div className="canvas-container">
-        <Scene />
+      <div className="canvas-container" style={{ display: showCanvas ? 'block' : 'none' }}>
+        <Scene isVisible={showCanvas} />
       </div>
 
       {/* UI Elements scroll normally on top */}

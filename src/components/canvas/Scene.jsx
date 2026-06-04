@@ -39,7 +39,7 @@ function CameraRig() {
   return null
 }
 
-export default function Scene() {
+export default function Scene({ isVisible = true }) {
   const isLowPowerDevice = useMemo(() => {
     if (typeof window === 'undefined') return false
     return (
@@ -108,13 +108,17 @@ export default function Scene() {
 
       <Suspense fallback={null}>
         <CameraRig />
-        <Bottle />
-        <FloatingIngredients />
-        <Particles count={particleCount} />
+        {isVisible && (
+          <>
+            <Bottle />
+            <FloatingIngredients />
+            <Particles count={particleCount} />
+          </>
+        )}
         <Environment preset="city" blur={isLowPowerDevice ? 0.5 : 0.8} />
 
         {/* Post-processing effects */}
-        {!isLowPowerDevice && (
+        {!isLowPowerDevice && isVisible && (
           <EffectComposer>
             <Bloom 
               intensity={0.35}
