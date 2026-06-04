@@ -333,7 +333,7 @@ export default function BenefitsSection() {
             viewport={{ once: true }}
             transition={{ duration: 1 }}
           >
-            The BhagyaVeda <span className="text-gold">Advantage</span>
+            The BhagyaVeda <span className="advantage-title-italic">Advantage</span>
           </motion.h2>
           <motion.p
             className="advantage-section-subtitle mx-auto"
