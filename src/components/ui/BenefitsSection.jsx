@@ -577,9 +577,10 @@ export default function BenefitsSection() {
               </div>
               <div className="native-card-header">
                 <h3 className="native-card-title-serif">ANCIENT WISDOM</h3>
+                <span className="native-card-herb-subtitle">Featuring Amalaki (Amla)</span>
               </div>
               <p className="native-card-text-centered">
-                Harmonizing centuries-old Ayurvedic formulations with nature&apos;s purest herbs for holistic hair health.
+                Infused with Vitamin C-rich Amalaki to deeply purify the scalp, stimulate cellular renewal, and fortify hair follicles from root to tip.
               </p>
             </motion.div>
 
@@ -593,9 +594,10 @@ export default function BenefitsSection() {
               </div>
               <div className="native-card-header">
                 <h3 className="native-card-title-serif">ROOT-TO-TIP REPAIR</h3>
+                <span className="native-card-herb-subtitle">Bhringraj &amp; Ashwagandha</span>
               </div>
               <p className="native-card-text-centered">
-                Deeply nourishes and strengthens follicles, stimulating growth and preventing hair fall.
+                Synergizing Bhringraj (the &quot;King of Hair&quot;) to reactivate dormant follicles with Ashwagandha to minimize stress-induced shedding.
               </p>
             </motion.div>
 
@@ -609,9 +611,10 @@ export default function BenefitsSection() {
               </div>
               <div className="native-card-header">
                 <h3 className="native-card-title-serif">LUMINOUS VITALITY</h3>
+                <span className="native-card-herb-subtitle">Jasmine &amp; Hibiscus</span>
               </div>
               <p className="native-card-text-centered">
-                Restores natural shine, moisture, and smoothness, reviving tired hair with botanical brilliance.
+                Smoothens cuticles with deep conditioning Hibiscus extracts while calming Jasmine shields the strands to restore brilliant, natural shine.
               </p>
             </motion.div>
 
