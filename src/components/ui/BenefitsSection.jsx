@@ -517,19 +517,19 @@ export default function BenefitsSection() {
               
               {/* --- TRUNK LEAF CLUSTERS --- */}
               {/* Lower trunk leaf (pointing right-up) */}
-              <DetailedLeaf x={398} y={500} rotate={18} progress={tLeaf1Progress} />
+              <DetailedLeaf x={404} y={500} rotate={20} progress={tLeaf1Progress} />
               
-              {/* Mid trunk leaf (pointing left-up) */}
-              <DetailedLeaf x={415} y={450} rotate={-145} progress={tLeaf2Progress} />
+              {/* Mid trunk leaf (pointing left-down) */}
+              <DetailedLeaf x={396} y={450} rotate={-120} progress={tLeaf2Progress} />
               
               {/* Upper-mid trunk leaf (pointing right-up) */}
-              <DetailedLeaf x={375} y={320} rotate={35} progress={tLeaf3Progress} />
+              <DetailedLeaf x={392} y={320} rotate={35} progress={tLeaf3Progress} />
               
-              {/* Upper trunk leaf (pointing left-up) */}
-              <DetailedLeaf x={420} y={200} rotate={-135} progress={tLeaf4Progress} />
+              {/* Upper trunk leaf (pointing left-down) */}
+              <DetailedLeaf x={405} y={200} rotate={-120} progress={tLeaf4Progress} />
               
-              {/* Top-most trunk leaf (pointing right-up) */}
-              <DetailedLeaf x={395} y={90} rotate={45} progress={tLeaf5Progress} />
+              {/* Top-most terminal leaf (pointing left-up, perfectly connected at the trunk tip) */}
+              <DetailedLeaf x={400} y={57} rotate={-30} progress={tLeaf5Progress} scale={0.9} />
 
               {/* --- JUNCTION PAIRS (Sprouting directly from splitting nodes) --- */}
               {/* Junction 1: Bottom left branch node (Pair) */}
@@ -546,19 +546,22 @@ export default function BenefitsSection() {
 
               {/* --- BRANCH CLUSTERS --- */}
               {/* Bottom Left Branch (Luminous Vitality) Leaves */}
-              <DetailedLeaf x={338} y={418} rotate={-155} progress={b1Leaf1Progress} scale={0.9} />
-              <DetailedLeaf x={288} y={438} rotate={-140} progress={b1Leaf2Progress} scale={0.8} />
+              <DetailedLeaf x={338} y={418} rotate={-45} progress={b1Leaf1Progress} scale={0.9} />
+              <DetailedLeaf x={288} y={438} rotate={-50} progress={b1Leaf2Progress} scale={0.8} />
               <DetailedLeaf x={298} y={458} rotate={-120} progress={b1Leaf3Progress} scale={0.8} />
+              <DetailedLeaf x={250} y={470} rotate={-135} progress={b1Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
 
               {/* Middle Right Branch (Root-to-Tip Repair) Leaves */}
               <DetailedLeaf x={442} y={272} rotate={15} progress={b2Leaf1Progress} scale={0.9} />
               <DetailedLeaf x={493} y={291} rotate={30} progress={b2Leaf2Progress} scale={0.8} />
-              <DetailedLeaf x={497} y={245} rotate={-10} progress={b2Leaf3Progress} scale={0.8} />
+              <DetailedLeaf x={497} y={245} rotate={-45} progress={b2Leaf3Progress} scale={0.8} /> {/* Sub-branch Tip Leaf (Aligned to tangent) */}
+              <DetailedLeaf x={550} y={325} rotate={35} progress={b2Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
 
               {/* Top Left Branch (Ancient Wisdom) Leaves */}
-              <DetailedLeaf x={348} y={132} rotate={-160} progress={b3Leaf1Progress} scale={0.9} />
-              <DetailedLeaf x={293} y={137} rotate={-145} progress={b3Leaf2Progress} scale={0.8} />
-              <DetailedLeaf x={305} y={168} rotate={-130} progress={b3Leaf3Progress} scale={0.8} />
+              <DetailedLeaf x={348} y={132} rotate={-50} progress={b3Leaf1Progress} scale={0.9} />
+              <DetailedLeaf x={293} y={137} rotate={-55} progress={b3Leaf2Progress} scale={0.8} />
+              <DetailedLeaf x={305} y={168} rotate={-130} progress={b3Leaf3Progress} scale={0.8} /> {/* Sub-branch Tip Leaf */}
+              <DetailedLeaf x={250} y={155} rotate={-160} progress={b3Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
             </svg>
 
             {/* THREE ORGANIC NATIVE CARDS POSITIONED AROUND THE TREE */}
