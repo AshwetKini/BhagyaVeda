@@ -1,6 +1,63 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 
+// --- DETAILED VINTAGE LEAF COMPONENT ---
+// Renders hand-illustrated semi-translucent leaves with curved stems, gold outlines, and detailed side veins
+const DetailedLeaf = ({ x, y, rotate, scale = 1, progress }) => {
+  return (
+    <g transform={`translate(${x}, ${y}) rotate(${rotate}) scale(${scale})`}>
+      <motion.g
+        style={{ scale: progress, opacity: progress }}
+      >
+        {/* 1. Curved leaf petiole stem */}
+        <path
+          d="M 0,0 C 2,-3 5,-7 8,-12"
+          stroke="url(#realGoldLeaf)"
+          strokeWidth="0.8"
+          strokeLinecap="round"
+          fill="none"
+        />
+        {/* 2. Left Shaded Half (Shadow Side) */}
+        <path
+          d="M 8,-12 C 2,-25 0,-55 8,-72 C 9,-52 10,-32 8,-12 Z"
+          fill="url(#leafGradLeft)"
+        />
+        {/* 3. Right Highlighted Half (Highlight Side) */}
+        <path
+          d="M 8,-12 C 10,-32 9,-52 8,-72 C 14,-55 16,-25 8,-12 Z"
+          fill="url(#leafGradRight)"
+        />
+        {/* 4. Complete Outer Gold Outline for clean, crisp edges */}
+        <path
+          d="M 8,-12 C 2,-25 0,-55 8,-72 C 14,-55 16,-25 8,-12 Z"
+          stroke="url(#realGoldLeaf)"
+          strokeWidth="0.85"
+          strokeLinejoin="round"
+          fill="none"
+          filter="drop-shadow(0 2px 4px rgba(0,0,0,0.15))"
+        />
+        {/* 5. Gold central vein curving from base to tip */}
+        <path
+          d="M 8,-12 C 10,-32 9,-52 8,-72"
+          stroke="#FFF0B3"
+          strokeWidth="0.6"
+          fill="none"
+          strokeLinecap="round"
+          opacity="0.8"
+        />
+        {/* 6. Delicate side veins branching off central midrib (soft, low-opacity gold lines) */}
+        <path d="M 8,-27 C 6.5,-30 5,-34 4,-37" stroke="#FFF0B3" strokeWidth="0.35" fill="none" opacity="0.45" />
+        <path d="M 8,-42 C 6.5,-45 5,-49 3,-52" stroke="#FFF0B3" strokeWidth="0.35" fill="none" opacity="0.45" />
+        <path d="M 8,-57 C 6.5,-59 5.5,-62 5,-64" stroke="#FFF0B3" strokeWidth="0.35" fill="none" opacity="0.45" />
+        <path d="M 8,-27 C 9.5,-30 11,-34 12,-37" stroke="#FFF0B3" strokeWidth="0.35" fill="none" opacity="0.45" />
+        <path d="M 8,-42 C 9.5,-45 11,-49 13,-52" stroke="#FFF0B3" strokeWidth="0.35" fill="none" opacity="0.45" />
+        <path d="M 8,-57 C 9.5,-59 10.5,-62 11,-64" stroke="#FFF0B3" strokeWidth="0.35" fill="none" opacity="0.45" />
+      </motion.g>
+    </g>
+  )
+}
+
+
 // --- VINTAGE ENGRAVING-STYLE BOTANICAL SVGs ---
 
 const AmlaSvg = ({ className }) => (
@@ -22,15 +79,11 @@ const AmlaSvg = ({ className }) => (
       </linearGradient>
     </defs>
     
-    {/* Twisting detailed wood stems */}
     <path d="M15,20 C35,28 75,60 110,95" stroke="url(#vintageAmlaWood)" strokeWidth="2.5" strokeLinecap="round" />
     <path d="M45,43 C55,30 80,15 95,12" stroke="url(#vintageAmlaWood)" strokeWidth="1.5" strokeLinecap="round" />
     <path d="M70,64 C85,55 105,40 115,35" stroke="url(#vintageAmlaWood)" strokeWidth="1.2" strokeLinecap="round" />
 
-    {/* Compound pinnate leaflets with fine engraving hatching lines */}
-    {/* Left Stem Leaves */}
     <g fill="url(#vintageAmlaLeaf)" stroke="url(#vintageAmlaWood)" strokeWidth="0.5">
-      {/* Set of leaves on first branch */}
       <path d="M23,23 C21,11 11,8 9,19 C11,26 21,24 23,23 Z" />
       <path d="M35,31 C33,19 23,16 21,27 C23,34 33,32 35,31 Z" />
       <path d="M47,40 C45,28 35,25 33,36 C35,43 45,41 47,40 Z" />
@@ -39,21 +92,18 @@ const AmlaSvg = ({ className }) => (
       <path d="M83,72 C81,60 71,57 69,68 C71,75 81,73 83,72 Z" />
       <path d="M95,83 C93,71 83,68 81,79 C83,86 93,84 95,83 Z" />
       
-      {/* Right side leaflets */}
       <path d="M27,29 C37,20 40,26 31,37 C25,39 21,33 27,29 Z" />
       <path d="M39,38 C49,29 52,35 43,46 C37,48 33,42 39,38 Z" />
       <path d="M51,47 C61,38 64,44 55,55 C49,57 45,51 51,47 Z" />
       <path d="M63,57 C73,48 76,54 67,65 C61,67 57,61 63,57 Z" />
       <path d="M75,68 C85,59 88,65 79,76 C73,78 69,72 75,68 Z" />
       
-      {/* Second branch leaflets */}
       <path d="M55,27 C50,15 42,12 40,22 C42,28 50,28 55,27 Z" />
       <path d="M67,23 C62,11 54,8 52,18 C54,24 62,24 67,23 Z" />
       <path d="M79,19 C74,7 66,4 64,14 C66,20 74,20 79,19 Z" />
       <path d="M91,15 C86,3 78,0 76,10 C78,16 86,16 91,15 Z" />
     </g>
 
-    {/* Fine Engraving Line Overlays for leaf veins */}
     <g stroke="rgba(255,255,255,0.15)" strokeWidth="0.5">
       <path d="M16,16 L12,20" />
       <path d="M28,24 L24,28" />
@@ -63,20 +113,15 @@ const AmlaSvg = ({ className }) => (
       <path d="M76,65 L72,69" />
     </g>
 
-    {/* Amla Berries - Ribbed 3D vintage watercolors */}
     <g filter="drop-shadow(0 4px 8px rgba(0,0,0,0.2))">
-      {/* Berry 1 */}
       <circle cx="58" cy="68" r="14" fill="url(#vintageAmlaBerry)" stroke="url(#vintageAmlaWood)" strokeWidth="0.5" />
-      {/* Fine Rib Lines */}
       <path d="M58,54 C54,58 54,78 58,82 M58,54 C62,58 62,78 58,82" stroke="#4f5c20" strokeWidth="0.5" strokeDasharray="1 1" />
       <path d="M44,68 C48,64 68,64 72,68" stroke="#4f5c20" strokeWidth="0.5" strokeDasharray="1 1" opacity="0.6" />
       
-      {/* Berry 2 */}
       <circle cx="88" cy="90" r="16" fill="url(#vintageAmlaBerry)" stroke="url(#vintageAmlaWood)" strokeWidth="0.5" />
       <path d="M88,74 C83,79 83,101 88,106 M88,74 C93,79 93,101 88,106" stroke="#4f5c20" strokeWidth="0.5" strokeDasharray="1 1" />
       <path d="M72,90 C77,85 99,85 104,90" stroke="#4f5c20" strokeWidth="0.5" strokeDasharray="1 1" opacity="0.6" />
       
-      {/* Berry 3 */}
       <circle cx="106" cy="62" r="11" fill="url(#vintageAmlaBerry)" stroke="url(#vintageAmlaWood)" strokeWidth="0.5" />
       <path d="M106,51 C103,55 103,69 106,73 M106,51 C109,55 109,69 106,73" stroke="#4f5c20" strokeWidth="0.5" strokeDasharray="1 1" />
     </g>
@@ -96,28 +141,20 @@ const BhringrajSvg = ({ className }) => (
       </linearGradient>
     </defs>
     
-    {/* Fine organic stems */}
     <path d="M25,115 C45,95 70,55 85,20" stroke="url(#vintageWood)" strokeWidth="2.5" strokeLinecap="round" />
     <path d="M52,70 C70,62 95,50 110,45" stroke="url(#vintageWood)" strokeWidth="1.5" strokeLinecap="round" />
     <path d="M38,88 C25,82 15,75 10,72" stroke="url(#vintageWood)" strokeWidth="1.2" strokeLinecap="round" />
 
-    {/* Neem Leaves with serrated edges & etching shadow lines */}
-    {/* Left Leaf */}
     <path d="M53,68 C33,63 18,50 8,42 C20,49 29,62 45,71 C49,72 52,70 53,68 Z" fill="url(#vintageNeem)" stroke="url(#vintageWood)" strokeWidth="0.5" />
-    {/* Hatching lines inside leaf */}
     <path d="M46,65 C34,60 22,53 12,46 M42,67 C32,62 24,57 16,51 M36,68 C28,63 21,58 15,53" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
 
-    {/* Right Leaf */}
     <path d="M72,50 C92,44 108,30 118,22 C105,30 96,42 78,51 C74,52 72,50 72,50 Z" fill="url(#vintageNeem)" stroke="url(#vintageWood)" strokeWidth="0.5" />
     <path d="M82,43 C93,37 105,29 114,23 M80,48 C90,42 99,35 106,29 M76,50 C84,45 92,39 98,34" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
 
-    {/* Top Leaf */}
     <path d="M72,35 C60,23 42,16 30,12 C44,20 52,32 66,41 C70,42 72,39 72,35 Z" fill="url(#vintageNeem)" stroke="url(#vintageWood)" strokeWidth="0.5" />
     <path d="M64,30 C53,23 41,17 31,13 M60,33 C50,27 40,21 32,16 M54,35 C46,29 39,24 33,20" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
 
-    {/* Bhringraj Daisy Flowers - realistic detailed engraving */}
     <g transform="translate(56, 56)" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.15))">
-      {/* 16 distinct ray petals with fine lines */}
       {Array.from({ length: 16 }).map((_, i) => {
         const angle = (i * 360) / 16
         return (
@@ -127,14 +164,12 @@ const BhringrajSvg = ({ className }) => (
           </g>
         )
       })}
-      {/* Golden center disk with cross-hatch shading */}
       <circle cx="0" cy="0" r="5" fill="#f3bc18" stroke="#bd8d07" strokeWidth="0.5" />
       <circle cx="0" cy="0" r="3" fill="#d09d0b" />
       <circle cx="-1" cy="-1" r="1" fill="#fff" opacity="0.6" />
     </g>
 
     <g transform="translate(92, 28)" filter="drop-shadow(0 4px 6px rgba(0,0,0,0.15))">
-      {/* Smaller flower */}
       {Array.from({ length: 12 }).map((_, i) => {
         const angle = (i * 360) / 12
         return (
@@ -173,48 +208,36 @@ const HibiscusSvg = ({ className }) => (
       </linearGradient>
     </defs>
     
-    {/* Background detailed leaves */}
     <path d="M30,35 C12,22 18,3 35,8 C52,13 42,28 30,35 Z" fill="url(#vintageHibiscusLeaf)" stroke="url(#vintageHibiscusWood)" strokeWidth="0.5" />
-    {/* Veins */}
     <path d="M22,23 Q28,18 35,8 M26,27 Q32,23 34,16 M28,31 Q34,29 33,24" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
     
     <path d="M92,92 C108,102 112,85 102,70 C92,55 83,75 92,92 Z" fill="url(#vintageHibiscusLeaf)" stroke="url(#vintageHibiscusWood)" strokeWidth="0.5" />
     <path d="M96,81 Q102,83 102,70 M95,85 Q101,89 104,80 M93,89 Q98,95 101,90" stroke="rgba(255,255,255,0.18)" strokeWidth="0.5" />
     
-    {/* Overlapping Petals with detailed line engraving work */}
     <g transform="translate(68, 68)" filter="drop-shadow(0 6px 12px rgba(0,0,0,0.25))">
-      {/* Petal 1 (Bottom Left) */}
       <path d="M0,0 C-30,-25 -50,-5 -35,20 C-20,40 -5,20 0,0 Z" fill="url(#vintageHibiscusGrad)" stroke="#500701" strokeWidth="0.5" />
       <path d="M-10,8 C-18,12 -28,12 -33,6 M-8,14 C-15,20 -24,22 -28,16" stroke="rgba(255,255,255,0.15)" strokeWidth="0.4" />
       
-      {/* Petal 2 (Bottom Right) */}
       <path d="M0,0 C25,-30 45,-15 32,15 C20,40 5,20 0,0 Z" fill="url(#vintageHibiscusGrad)" stroke="#500701" strokeWidth="0.5" />
       <path d="M8,10 C16,18 25,20 28,12 M10,6 C20,10 28,8 28,0" stroke="rgba(255,255,255,0.15)" strokeWidth="0.4" />
       
-      {/* Petal 3 (Right) */}
       <path d="M0,0 C35,15 45,35 25,45 C5,55 10,25 0,0 Z" fill="url(#vintageHibiscusGrad)" stroke="#500701" strokeWidth="0.5" />
       <path d="M12,18 C18,28 20,38 12,42 M6,14 C10,24 10,34 2,38" stroke="rgba(255,255,255,0.15)" strokeWidth="0.4" />
       
-      {/* Petal 4 (Top Left) */}
       <path d="M0,0 C-40,5 -45,-20 -25,-30 C-5,-40 -10,-15 0,0 Z" fill="url(#vintageHibiscusGrad)" stroke="#500701" strokeWidth="0.5" />
       <path d="M-14,-10 C-24,-16 -32,-14 -32,-6 M-10,-12 C-18,-22 -24,-24 -20,-16" stroke="rgba(255,255,255,0.15)" strokeWidth="0.4" />
       
-      {/* Petal 5 (Top Right) */}
       <path d="M0,0 C5,-40 -15,-50 -30,-30 C-45,-10 -20,5 0,0 Z" fill="url(#vintageHibiscusGrad)" stroke="#500701" strokeWidth="0.5" />
       <path d="M-12,-18 C-18,-28 -28,-30 -30,-20 M-6,-15 C-8,-25 -16,-32 -22,-28" stroke="rgba(255,255,255,0.15)" strokeWidth="0.4" />
       
-      {/* Center Deep Color Hole */}
       <circle cx="0" cy="0" r="16" fill="url(#vintageFlowerCenter)" opacity="0.9" />
       
-      {/* Hand-drawn style engraving details for central core */}
       <path d="M-12,-5 A13,13 0 0 1 12,-5" stroke="#bc291b" strokeWidth="0.5" />
       <path d="M-8,5 A9,9 0 0 1 8,5" stroke="#bc291b" strokeWidth="0.5" />
 
-      {/* Elegant Curved Stamen */}
       <path d="M0,0 Q28,-22 46,-38" stroke="url(#vintageHibiscusWood)" strokeWidth="3.2" strokeLinecap="round" />
       <path d="M0,0 Q28,-22 46,-38" stroke="#d35400" strokeWidth="1" strokeLinecap="round" />
       
-      {/* Hand-drawn Pollen branches */}
       <line x1="32" y1="-23" x2="38" y2="-21" stroke="#f1c40f" strokeWidth="0.8" />
       <circle cx="38" cy="-21" r="2.2" fill="#f1c40f" stroke="#bd8d07" strokeWidth="0.4" />
       
@@ -249,6 +272,32 @@ export default function BenefitsSection() {
   const branch1Length = useTransform(smoothScroll, [0.25, 0.37], [0, 1]) // Bottom Left (Luminous Vitality)
   const branch2Length = useTransform(smoothScroll, [0.33, 0.45], [0, 1]) // Middle Right (Root-to-Tip Repair)
   const branch3Length = useTransform(smoothScroll, [0.41, 0.53], [0, 1]) // Top Left (Ancient Wisdom)
+
+  // Map branch growth to individual leaf sprouting (for realistic animated sprouting!)
+  // Trunk Leaves
+  const tLeaf1Progress = useTransform(trunkLength, [0.10, 0.35], [0, 1])
+  const tLeaf2Progress = useTransform(trunkLength, [0.25, 0.50], [0, 1])
+  const tLeaf3Progress = useTransform(trunkLength, [0.40, 0.65], [0, 1])
+  const tLeaf4Progress = useTransform(trunkLength, [0.60, 0.85], [0, 1])
+  const tLeaf5Progress = useTransform(trunkLength, [0.75, 1.00], [0, 1])
+
+  // Branch Leaves
+  const b1Leaf1Progress = useTransform(branch1Length, [0.20, 0.65], [0, 1])
+  const b1Leaf2Progress = useTransform(branch1Length, [0.40, 0.85], [0, 1])
+  const b1Leaf3Progress = useTransform(branch1Length, [0.55, 1.00], [0, 1])
+
+  const b2Leaf1Progress = useTransform(branch2Length, [0.20, 0.65], [0, 1])
+  const b2Leaf2Progress = useTransform(branch2Length, [0.40, 0.85], [0, 1])
+  const b2Leaf3Progress = useTransform(branch2Length, [0.55, 1.00], [0, 1])
+
+  const b3Leaf1Progress = useTransform(branch3Length, [0.20, 0.65], [0, 1])
+  const b3Leaf2Progress = useTransform(branch3Length, [0.40, 0.85], [0, 1])
+  const b3Leaf3Progress = useTransform(branch3Length, [0.55, 1.00], [0, 1])
+
+  // Junction Leaves (Pairs sprouting directly from trunk/branch intersections)
+  const j1LeafProgress = useTransform(smoothScroll, [0.26, 0.35], [0, 1]) // Junction 1
+  const j2LeafProgress = useTransform(smoothScroll, [0.34, 0.43], [0, 1]) // Junction 2
+  const j3LeafProgress = useTransform(smoothScroll, [0.42, 0.51], [0, 1]) // Junction 3
 
   // Map scroll progress to info card opacity & scale
   const card1Opacity = useTransform(smoothScroll, [0.45, 0.52], [0, 1])
@@ -317,6 +366,15 @@ export default function BenefitsSection() {
                   <stop offset="50%" stopColor="#D4AF37" />
                   <stop offset="100%" stopColor="#8A640F" />
                 </linearGradient>
+                {/* 3D Shading Gradients for Leaf Halves */}
+                <linearGradient id="leafGradLeft" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#06120b" stopOpacity="0.9" /> {/* Deep shadow forest */}
+                  <stop offset="100%" stopColor="#0f2617" stopOpacity="0.9" />
+                </linearGradient>
+                <linearGradient id="leafGradRight" x1="0" y1="1" x2="1" y2="0">
+                  <stop offset="0%" stopColor="#14301c" stopOpacity="0.95" /> {/* Highlighted side */}
+                  <stop offset="100%" stopColor="#255430" stopOpacity="0.95" />
+                </linearGradient>
                 {/* Luxury Soft Shadow/Glow */}
                 <filter id="luxuryVineGlow" x="-30%" y="-30%" width="160%" height="160%">
                   <feGaussianBlur stdDeviation="3.5" result="blur" />
@@ -330,7 +388,7 @@ export default function BenefitsSection() {
                 </filter>
               </defs>
 
-              {/* WATERMARK AYURVEDIC LABELS LAYERING DEPTH (Exactly matches reference screenshot) */}
+              {/* WATERMARK AYURVEDIC LABELS LAYERING DEPTH */}
               <text x="530" y="110" className="tree-watermark-text">Jasmine</text>
               <text x="240" y="230" className="tree-watermark-text">Amalaki</text>
               <text x="560" y="420" className="tree-watermark-text">Bhringraj</text>
@@ -345,7 +403,6 @@ export default function BenefitsSection() {
                 filter="url(#luxuryVineGlow)"
                 style={{ pathLength: trunkLength }}
               />
-              {/* Secondary wrapping vine for wood detail */}
               <motion.path
                 d="M 400,580 C 408,530 388,480 418,430 C 388,380 418,330 388,280 C 418,230 388,180 415,130 C 385,80 408,60 400,55"
                 stroke="url(#twistingVineGold)"
@@ -355,7 +412,7 @@ export default function BenefitsSection() {
                 style={{ pathLength: trunkLength }}
               />
 
-              {/* 2. Bottom Left Branch (Luminous Vitality) with curves & secondary wrapping vine */}
+              {/* 2. Bottom Left Branch (Luminous Vitality) with curves & twisting details */}
               <motion.path
                 d="M 397,420 C 370,410 330,425 290,440 Q 270,448 250,470"
                 stroke="url(#realGoldLeaf)"
@@ -368,7 +425,16 @@ export default function BenefitsSection() {
                 d="M 397,420 C 365,415 340,435 295,430"
                 stroke="url(#twistingVineGold)"
                 strokeWidth="1"
-                opacity="0.6"
+                opacity="0.65"
+                style={{ pathLength: branch1Length }}
+              />
+              {/* Secondary sub-branch curving off bottom left */}
+              <motion.path
+                d="M 342,419 C 322,425 310,440 298,458"
+                stroke="url(#realGoldLeaf)"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                opacity="0.8"
                 style={{ pathLength: branch1Length }}
               />
               
@@ -385,7 +451,16 @@ export default function BenefitsSection() {
                 d="M 401,280 C 445,285 470,270 515,312"
                 stroke="url(#twistingVineGold)"
                 strokeWidth="1"
-                opacity="0.6"
+                opacity="0.65"
+                style={{ pathLength: branch2Length }}
+              />
+              {/* Secondary sub-branch curving off middle right */}
+              <motion.path
+                d="M 454,274 C 474,269 487,258 497,245"
+                stroke="url(#realGoldLeaf)"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                opacity="0.8"
                 style={{ pathLength: branch2Length }}
               />
 
@@ -402,46 +477,88 @@ export default function BenefitsSection() {
                 d="M 404,140 C 365,135 340,145 295,138"
                 stroke="url(#twistingVineGold)"
                 strokeWidth="1"
-                opacity="0.6"
+                opacity="0.65"
+                style={{ pathLength: branch3Length }}
+              />
+              {/* Secondary sub-branch curving off top left */}
+              <motion.path
+                d="M 352,133 C 330,140 315,152 305,168"
+                stroke="url(#realGoldLeaf)"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                opacity="0.8"
                 style={{ pathLength: branch3Length }}
               />
 
               {/* Spiral organic tendrils winding off */}
               <motion.path
-                d="M 418,430 Q 435,420 440,405 T 430,395 T 420,405 T 425,415"
+                d="M 418,430 Q 435,420 440,405 T 430,395 T 420,405"
                 stroke="url(#twistingVineGold)"
-                strokeWidth="1"
+                strokeWidth="0.9"
                 opacity="0.5"
                 style={{ pathLength: trunkLength }}
               />
               <motion.path
                 d="M 388,280 Q 365,290 355,275 T 365,260 T 375,270"
                 stroke="url(#twistingVineGold)"
-                strokeWidth="1"
+                strokeWidth="0.9"
                 opacity="0.5"
                 style={{ pathLength: trunkLength }}
               />
               <motion.path
-                d="M 415,130 Q 435,120 440,105 T 430,95 T 420,105"
+                d="M 415,130 Q 435,120 440,105 T 430,95"
                 stroke="url(#twistingVineGold)"
-                strokeWidth="1"
+                strokeWidth="0.9"
                 opacity="0.5"
                 style={{ pathLength: trunkLength }}
               />
 
-              {/* Detailed Dual-Toned Olive & Gold Leaves sprouting along the vine */}
-              <g opacity="0.88">
-                {/* Leaf 1 (Bottom Right) */}
-                <path d="M 405,480 C 418,474 422,465 420,458 C 411,460 405,470 405,480" fill="#90a068" stroke="#D4AF37" strokeWidth="0.5" />
-                <path d="M 407,476 Q 413,472 419,462" stroke="#fff" strokeWidth="0.3" opacity="0.4" />
-                {/* Leaf 2 (Mid Left) */}
-                <path d="M 385,320 C 372,314 365,316 358,322 C 362,328 372,328 385,320" fill="#90a068" stroke="#D4AF37" strokeWidth="0.5" />
-                <path d="M 381,319 Q 373,317 362,321" stroke="#fff" strokeWidth="0.3" opacity="0.4" />
-                {/* Leaf 3 (Upper Right) */}
-                <path d="M 412,190 C 425,188 430,180 428,172 C 418,175 412,182 412,190" fill="#90a068" stroke="#D4AF37" strokeWidth="0.5" />
-                {/* Leaf 4 (Top Left) */}
-                <path d="M 390,95 C 378,92 370,95 365,102 C 370,107 380,105 390,95" fill="#90a068" stroke="#D4AF37" strokeWidth="0.5" />
-              </g>
+              {/* DETAILED DUAL-TONED LEAVES (Placed in organic pairs & clusters exactly matching reference layout) */}
+              
+              {/* --- TRUNK LEAF CLUSTERS --- */}
+              {/* Lower trunk leaf (pointing right-up) */}
+              <DetailedLeaf x={398} y={500} rotate={18} progress={tLeaf1Progress} />
+              
+              {/* Mid trunk leaf (pointing left-up) */}
+              <DetailedLeaf x={415} y={450} rotate={-145} progress={tLeaf2Progress} />
+              
+              {/* Upper-mid trunk leaf (pointing right-up) */}
+              <DetailedLeaf x={375} y={320} rotate={35} progress={tLeaf3Progress} />
+              
+              {/* Upper trunk leaf (pointing left-up) */}
+              <DetailedLeaf x={420} y={200} rotate={-135} progress={tLeaf4Progress} />
+              
+              {/* Top-most trunk leaf (pointing right-up) */}
+              <DetailedLeaf x={395} y={90} rotate={45} progress={tLeaf5Progress} />
+
+              {/* --- JUNCTION PAIRS (Sprouting directly from splitting nodes) --- */}
+              {/* Junction 1: Bottom left branch node (Pair) */}
+              <DetailedLeaf x={397} y={420} rotate={-150} progress={j1LeafProgress} scale={0.95} />
+              <DetailedLeaf x={397} y={420} rotate={-100} progress={j1LeafProgress} scale={0.8} />
+
+              {/* Junction 2: Middle right branch node (Pair) */}
+              <DetailedLeaf x={401} y={280} rotate={-20} progress={j2LeafProgress} scale={0.95} />
+              <DetailedLeaf x={401} y={280} rotate={40} progress={j2LeafProgress} scale={0.8} />
+
+              {/* Junction 3: Top left branch node (Pair) */}
+              <DetailedLeaf x={404} y={140} rotate={-160} progress={j3LeafProgress} scale={0.95} />
+              <DetailedLeaf x={404} y={140} rotate={-110} progress={j3LeafProgress} scale={0.8} />
+
+              {/* --- BRANCH CLUSTERS --- */}
+              {/* Bottom Left Branch (Luminous Vitality) Leaves */}
+              <DetailedLeaf x={338} y={418} rotate={-155} progress={b1Leaf1Progress} scale={0.9} />
+              <DetailedLeaf x={288} y={438} rotate={-140} progress={b1Leaf2Progress} scale={0.8} />
+              <DetailedLeaf x={298} y={458} rotate={-120} progress={b1Leaf3Progress} scale={0.8} />
+
+              {/* Middle Right Branch (Root-to-Tip Repair) Leaves */}
+              <DetailedLeaf x={442} y={272} rotate={15} progress={b2Leaf1Progress} scale={0.9} />
+              <DetailedLeaf x={493} y={291} rotate={30} progress={b2Leaf2Progress} scale={0.8} />
+              <DetailedLeaf x={497} y={245} rotate={-10} progress={b2Leaf3Progress} scale={0.8} />
+
+              {/* Top Left Branch (Ancient Wisdom) Leaves */}
+              <DetailedLeaf x={348} y={132} rotate={-160} progress={b3Leaf1Progress} scale={0.9} />
+              <DetailedLeaf x={293} y={137} rotate={-145} progress={b3Leaf2Progress} scale={0.8} />
+              <DetailedLeaf x={305} y={168} rotate={-130} progress={b3Leaf3Progress} scale={0.8} />
             </svg>
 
             {/* THREE ORGANIC NATIVE CARDS POSITIONED AROUND THE TREE */}
