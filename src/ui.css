@@ -624,6 +624,7 @@
     z-index: 1;
     opacity: 0.9;
     pointer-events: none;
+    will-change: transform;
   }
 
   .advantage-native-card {
@@ -634,6 +635,10 @@
     border-radius: 16px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4),
                 0 0 15px rgba(212, 175, 55, 0.03);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(10, 26, 17, 0.96) !important;
+    will-change: transform;
   }
 
   /* Staggered alternating absolute offsets on mobile */
