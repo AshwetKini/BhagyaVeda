@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 
 // --- DETAILED VINTAGE LEAF COMPONENT ---
 // Renders hand-illustrated semi-translucent leaves with curved stems, gold outlines, and detailed side veins
-const DetailedLeaf = ({ x, y, rotate, scale = 1, progress }) => {
+const DetailedLeaf = ({ x, y, rotate, scale = 1, progress, isMobile }) => {
   return (
     <g transform={`translate(${x}, ${y}) rotate(${rotate}) scale(${scale})`}>
       <motion.g
@@ -19,7 +19,7 @@ const DetailedLeaf = ({ x, y, rotate, scale = 1, progress }) => {
         />
         {/* 2. Left Shaded Half (Shadow Side) */}
         <path
-          d="M 8,-12 C 2,-25 0,-55 8,-72 C 9,-52 10,-32 8,-12 Z"
+          d="M 8,-12 C 2,-25 0,-55 8,-72 Z"
           fill="url(#leafGradLeft)"
         />
         {/* 3. Right Highlighted Half (Highlight Side) */}
@@ -34,7 +34,7 @@ const DetailedLeaf = ({ x, y, rotate, scale = 1, progress }) => {
           strokeWidth="0.85"
           strokeLinejoin="round"
           fill="none"
-          filter="drop-shadow(0 2px 4px rgba(0,0,0,0.15))"
+          filter={isMobile ? undefined : "drop-shadow(0 2px 4px rgba(0,0,0,0.15))"}
         />
         {/* 5. Gold central vein curving from base to tip */}
         <path
@@ -409,12 +409,22 @@ export default function BenefitsSection() {
 
               <g className="tree-trunk">
                 {/* 1. Main Tree Trunk Vine - Winding double-layered structure for natural hand-drawn look */}
+                {isMobile && (
+                  <motion.path
+                    d="M 400,580 C 400,480 430,420 395,350 C 360,280 440,210 405,140 C 385,100 410,60 400,55"
+                    stroke="#FFEAA2"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    opacity="0.12"
+                    style={{ pathLength: trunkLength }}
+                  />
+                )}
                 <motion.path
                   d="M 400,580 C 400,480 430,420 395,350 C 360,280 440,210 405,140 C 385,100 410,60 400,55"
                   stroke="url(#realGoldLeaf)"
                   strokeWidth="4"
                   strokeLinecap="round"
-                  filter="url(#luxuryVineGlow)"
+                  filter={isMobile ? undefined : "url(#luxuryVineGlow)"}
                   style={{ pathLength: trunkLength }}
                 />
                 <motion.path
@@ -451,29 +461,39 @@ export default function BenefitsSection() {
 
                 {/* --- TRUNK LEAF CLUSTERS --- */}
                 {/* Lower trunk leaf (pointing right-up) */}
-                <DetailedLeaf x={404} y={500} rotate={20} progress={tLeaf1Progress} />
+                <DetailedLeaf x={404} y={500} rotate={20} progress={tLeaf1Progress} isMobile={isMobile} />
                 
                 {/* Mid trunk leaf (pointing left-down) */}
-                <DetailedLeaf x={396} y={450} rotate={-120} progress={tLeaf2Progress} />
+                <DetailedLeaf x={396} y={450} rotate={-120} progress={tLeaf2Progress} isMobile={isMobile} />
                 
                 {/* Upper-mid trunk leaf (pointing right-up) */}
-                <DetailedLeaf x={392} y={320} rotate={35} progress={tLeaf3Progress} />
+                <DetailedLeaf x={392} y={320} rotate={35} progress={tLeaf3Progress} isMobile={isMobile} />
                 
                 {/* Upper trunk leaf (pointing left-down) */}
-                <DetailedLeaf x={405} y={200} rotate={-120} progress={tLeaf4Progress} />
+                <DetailedLeaf x={405} y={200} rotate={-120} progress={tLeaf4Progress} isMobile={isMobile} />
                 
                 {/* Top-most terminal leaf (pointing left-up, perfectly connected at the trunk tip) */}
-                <DetailedLeaf x={400} y={57} rotate={-30} progress={tLeaf5Progress} scale={0.9} />
+                <DetailedLeaf x={400} y={57} rotate={-30} progress={tLeaf5Progress} scale={0.9} isMobile={isMobile} />
               </g>
 
               {/* 2. Bottom Left Branch (Luminous Vitality) with curves & twisting details */}
               <g className="tree-branch branch-1">
+                {isMobile && (
+                  <motion.path
+                    d="M 397,420 C 370,410 330,425 290,440 Q 270,448 250,470"
+                    stroke="#FFEAA2"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    opacity="0.12"
+                    style={{ pathLength: branch1Length }}
+                  />
+                )}
                 <motion.path
                   d="M 397,420 C 370,410 330,425 290,440 Q 270,448 250,470"
                   stroke="url(#realGoldLeaf)"
                   strokeWidth="2.5"
                   strokeLinecap="round"
-                  filter="url(#luxuryVineGlow)"
+                  filter={isMobile ? undefined : "url(#luxuryVineGlow)"}
                   style={{ pathLength: branch1Length }}
                 />
                 <motion.path
@@ -494,24 +514,34 @@ export default function BenefitsSection() {
                 />
 
                 {/* Junction 1: Bottom left branch node (Pair) */}
-                <DetailedLeaf x={397} y={420} rotate={-150} progress={j1LeafProgress} scale={0.95} />
-                <DetailedLeaf x={397} y={420} rotate={-100} progress={j1LeafProgress} scale={0.8} />
+                <DetailedLeaf x={397} y={420} rotate={-150} progress={j1LeafProgress} scale={0.95} isMobile={isMobile} />
+                <DetailedLeaf x={397} y={420} rotate={-100} progress={j1LeafProgress} scale={0.8} isMobile={isMobile} />
 
                 {/* Bottom Left Branch (Luminous Vitality) Leaves */}
-                <DetailedLeaf x={338} y={418} rotate={-45} progress={b1Leaf1Progress} scale={0.9} />
-                <DetailedLeaf x={288} y={438} rotate={-50} progress={b1Leaf2Progress} scale={0.8} />
-                <DetailedLeaf x={298} y={458} rotate={-120} progress={b1Leaf3Progress} scale={0.8} />
-                <DetailedLeaf x={250} y={470} rotate={-135} progress={b1Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
+                <DetailedLeaf x={338} y={418} rotate={-45} progress={b1Leaf1Progress} scale={0.9} isMobile={isMobile} />
+                <DetailedLeaf x={288} y={438} rotate={-50} progress={b1Leaf2Progress} scale={0.8} isMobile={isMobile} />
+                <DetailedLeaf x={298} y={458} rotate={-120} progress={b1Leaf3Progress} scale={0.8} isMobile={isMobile} />
+                <DetailedLeaf x={250} y={470} rotate={-135} progress={b1Leaf3Progress} scale={0.9} isMobile={isMobile} /> {/* Branch Tip Terminal Leaf */}
               </g>
               
               {/* 3. Middle Right Branch (Root-to-Tip Repair) */}
               <g className="tree-branch branch-2">
+                {isMobile && (
+                  <motion.path
+                    d="M 401,280 C 440,270 480,285 515,305 Q 535,315 550,325"
+                    stroke="#FFEAA2"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    opacity="0.12"
+                    style={{ pathLength: branch2Length }}
+                  />
+                )}
                 <motion.path
                   d="M 401,280 C 440,270 480,285 515,305 Q 535,315 550,325"
                   stroke="url(#realGoldLeaf)"
                   strokeWidth="2.5"
                   strokeLinecap="round"
-                  filter="url(#luxuryVineGlow)"
+                  filter={isMobile ? undefined : "url(#luxuryVineGlow)"}
                   style={{ pathLength: branch2Length }}
                 />
                 <motion.path
@@ -532,24 +562,34 @@ export default function BenefitsSection() {
                 />
 
                 {/* Junction 2: Middle right branch node (Pair) */}
-                <DetailedLeaf x={401} y={280} rotate={-20} progress={j2LeafProgress} scale={0.95} />
-                <DetailedLeaf x={401} y={280} rotate={40} progress={j2LeafProgress} scale={0.8} />
+                <DetailedLeaf x={401} y={280} rotate={-20} progress={j2LeafProgress} scale={0.95} isMobile={isMobile} />
+                <DetailedLeaf x={401} y={280} rotate={40} progress={j2LeafProgress} scale={0.8} isMobile={isMobile} />
 
                 {/* Middle Right Branch (Root-to-Tip Repair) Leaves */}
-                <DetailedLeaf x={442} y={272} rotate={15} progress={b2Leaf1Progress} scale={0.9} />
-                <DetailedLeaf x={493} y={291} rotate={30} progress={b2Leaf2Progress} scale={0.8} />
-                <DetailedLeaf x={497} y={245} rotate={-45} progress={b2Leaf3Progress} scale={0.8} /> {/* Sub-branch Tip Leaf */}
-                <DetailedLeaf x={550} y={325} rotate={35} progress={b2Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
+                <DetailedLeaf x={442} y={272} rotate={15} progress={b2Leaf1Progress} scale={0.9} isMobile={isMobile} />
+                <DetailedLeaf x={493} y={291} rotate={30} progress={b2Leaf2Progress} scale={0.8} isMobile={isMobile} />
+                <DetailedLeaf x={497} y={245} rotate={-45} progress={b2Leaf3Progress} scale={0.8} isMobile={isMobile} /> {/* Sub-branch Tip Leaf */}
+                <DetailedLeaf x={550} y={325} rotate={35} progress={b2Leaf3Progress} scale={0.9} isMobile={isMobile} /> {/* Branch Tip Terminal Leaf */}
               </g>
 
               {/* 4. Top Left Branch (Ancient Wisdom) */}
               <g className="tree-branch branch-3">
+                {isMobile && (
+                  <motion.path
+                    d="M 404,140 C 370,130 330,135 290,140 Q 270,145 250,155"
+                    stroke="#FFEAA2"
+                    strokeWidth="8"
+                    strokeLinecap="round"
+                    opacity="0.12"
+                    style={{ pathLength: branch3Length }}
+                  />
+                )}
                 <motion.path
                   d="M 404,140 C 370,130 330,135 290,140 Q 270,145 250,155"
                   stroke="url(#realGoldLeaf)"
                   strokeWidth="2.5"
                   strokeLinecap="round"
-                  filter="url(#luxuryVineGlow)"
+                  filter={isMobile ? undefined : "url(#luxuryVineGlow)"}
                   style={{ pathLength: branch3Length }}
                 />
                 <motion.path
@@ -570,14 +610,14 @@ export default function BenefitsSection() {
                 />
 
                 {/* Junction 3: Top left branch node (Pair) */}
-                <DetailedLeaf x={404} y={140} rotate={-160} progress={j3LeafProgress} scale={0.95} />
-                <DetailedLeaf x={404} y={140} rotate={-110} progress={j3LeafProgress} scale={0.8} />
+                <DetailedLeaf x={404} y={140} rotate={-160} progress={j3LeafProgress} scale={0.95} isMobile={isMobile} />
+                <DetailedLeaf x={404} y={140} rotate={-110} progress={j3LeafProgress} scale={0.8} isMobile={isMobile} />
 
                 {/* Top Left Branch (Ancient Wisdom) Leaves */}
-                <DetailedLeaf x={348} y={132} rotate={-50} progress={b3Leaf1Progress} scale={0.9} />
-                <DetailedLeaf x={293} y={137} rotate={-55} progress={b3Leaf2Progress} scale={0.8} />
-                <DetailedLeaf x={305} y={168} rotate={-130} progress={b3Leaf3Progress} scale={0.8} /> {/* Sub-branch Tip Leaf */}
-                <DetailedLeaf x={250} y={155} rotate={-160} progress={b3Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
+                <DetailedLeaf x={348} y={132} rotate={-50} progress={b3Leaf1Progress} scale={0.9} isMobile={isMobile} />
+                <DetailedLeaf x={293} y={137} rotate={-55} progress={b3Leaf2Progress} scale={0.8} isMobile={isMobile} />
+                <DetailedLeaf x={305} y={168} rotate={-130} progress={b3Leaf3Progress} scale={0.8} isMobile={isMobile} /> {/* Sub-branch Tip Leaf */}
+                <DetailedLeaf x={250} y={155} rotate={-160} progress={b3Leaf3Progress} scale={0.9} isMobile={isMobile} /> {/* Branch Tip Terminal Leaf */}
               </g>
             </svg>
 

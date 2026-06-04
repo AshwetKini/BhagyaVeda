@@ -46,7 +46,7 @@ function App() {
       })
 
       setShowCanvas(isAnyVisible)
-    }, { threshold: 0, rootMargin: '50px' })
+    }, { threshold: 0, rootMargin: '0px' })
 
     elements.forEach(el => observer.observe(el))
 
