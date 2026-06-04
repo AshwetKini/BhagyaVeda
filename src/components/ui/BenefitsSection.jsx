@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 
 // --- DETAILED VINTAGE LEAF COMPONENT ---
@@ -255,6 +255,16 @@ const HibiscusSvg = ({ className }) => (
 
 export default function BenefitsSection() {
   const sectionRef = useRef(null)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Scroll tracking for tree growth
   const { scrollYProgress } = useScroll({
@@ -350,7 +360,7 @@ export default function BenefitsSection() {
         <div className="advantage-tree-wrapper">
           <div className="advantage-tree-container">
             {/* CENTRAL SVG TREE VIEWPORT */}
-            <svg className="advantage-native-tree-svg" viewBox="0 0 800 600" fill="none">
+            <svg className="advantage-native-tree-svg" viewBox={isMobile ? "200 0 400 600" : "0 0 800 600"} fill="none">
               <defs>
                 {/* Real Gold Leaf metallic gradient */}
                 <linearGradient id="realGoldLeaf" x1="0" y1="0" x2="1" y2="1">
@@ -397,229 +407,245 @@ export default function BenefitsSection() {
               <text x="600" y="260" className="tree-watermark-text">Red Onion</text>
               <text x="480" y="540" className="tree-watermark-text">Almond</text>
 
-              {/* 1. Main Tree Trunk Vine - Winding double-layered structure for natural hand-drawn look */}
-              <motion.path
-                d="M 400,580 C 400,480 430,420 395,350 C 360,280 440,210 405,140 C 385,100 410,60 400,55"
-                stroke="url(#realGoldLeaf)"
-                strokeWidth="4"
-                strokeLinecap="round"
-                filter="url(#luxuryVineGlow)"
-                style={{ pathLength: trunkLength }}
-              />
-              <motion.path
-                d="M 400,580 C 408,530 388,480 418,430 C 388,380 418,330 388,280 C 418,230 388,180 415,130 C 385,80 408,60 400,55"
-                stroke="url(#twistingVineGold)"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                opacity="0.75"
-                style={{ pathLength: trunkLength }}
-              />
+              <g className="tree-trunk">
+                {/* 1. Main Tree Trunk Vine - Winding double-layered structure for natural hand-drawn look */}
+                <motion.path
+                  d="M 400,580 C 400,480 430,420 395,350 C 360,280 440,210 405,140 C 385,100 410,60 400,55"
+                  stroke="url(#realGoldLeaf)"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  filter="url(#luxuryVineGlow)"
+                  style={{ pathLength: trunkLength }}
+                />
+                <motion.path
+                  d="M 400,580 C 408,530 388,480 418,430 C 388,380 418,330 388,280 C 418,230 388,180 415,130 C 385,80 408,60 400,55"
+                  stroke="url(#twistingVineGold)"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  opacity="0.75"
+                  style={{ pathLength: trunkLength }}
+                />
+
+                {/* Spiral organic tendrils winding off */}
+                <motion.path
+                  d="M 418,430 Q 435,420 440,405 T 430,395 T 420,405"
+                  stroke="url(#twistingVineGold)"
+                  strokeWidth="0.9"
+                  opacity="0.5"
+                  style={{ pathLength: trunkLength }}
+                />
+                <motion.path
+                  d="M 388,280 Q 365,290 355,275 T 365,260 T 375,270"
+                  stroke="url(#twistingVineGold)"
+                  strokeWidth="0.9"
+                  opacity="0.5"
+                  style={{ pathLength: trunkLength }}
+                />
+                <motion.path
+                  d="M 415,130 Q 435,120 440,105 T 430,95"
+                  stroke="url(#twistingVineGold)"
+                  strokeWidth="0.9"
+                  opacity="0.5"
+                  style={{ pathLength: trunkLength }}
+                />
+
+                {/* --- TRUNK LEAF CLUSTERS --- */}
+                {/* Lower trunk leaf (pointing right-up) */}
+                <DetailedLeaf x={404} y={500} rotate={20} progress={tLeaf1Progress} />
+                
+                {/* Mid trunk leaf (pointing left-down) */}
+                <DetailedLeaf x={396} y={450} rotate={-120} progress={tLeaf2Progress} />
+                
+                {/* Upper-mid trunk leaf (pointing right-up) */}
+                <DetailedLeaf x={392} y={320} rotate={35} progress={tLeaf3Progress} />
+                
+                {/* Upper trunk leaf (pointing left-down) */}
+                <DetailedLeaf x={405} y={200} rotate={-120} progress={tLeaf4Progress} />
+                
+                {/* Top-most terminal leaf (pointing left-up, perfectly connected at the trunk tip) */}
+                <DetailedLeaf x={400} y={57} rotate={-30} progress={tLeaf5Progress} scale={0.9} />
+              </g>
 
               {/* 2. Bottom Left Branch (Luminous Vitality) with curves & twisting details */}
-              <motion.path
-                d="M 397,420 C 370,410 330,425 290,440 Q 270,448 250,470"
-                stroke="url(#realGoldLeaf)"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                filter="url(#luxuryVineGlow)"
-                style={{ pathLength: branch1Length }}
-              />
-              <motion.path
-                d="M 397,420 C 365,415 340,435 295,430"
-                stroke="url(#twistingVineGold)"
-                strokeWidth="1"
-                opacity="0.65"
-                style={{ pathLength: branch1Length }}
-              />
-              {/* Secondary sub-branch curving off bottom left */}
-              <motion.path
-                d="M 342,419 C 322,425 310,440 298,458"
-                stroke="url(#realGoldLeaf)"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                opacity="0.8"
-                style={{ pathLength: branch1Length }}
-              />
+              <g className="tree-branch branch-1">
+                <motion.path
+                  d="M 397,420 C 370,410 330,425 290,440 Q 270,448 250,470"
+                  stroke="url(#realGoldLeaf)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  filter="url(#luxuryVineGlow)"
+                  style={{ pathLength: branch1Length }}
+                />
+                <motion.path
+                  d="M 397,420 C 365,415 340,435 295,430"
+                  stroke="url(#twistingVineGold)"
+                  strokeWidth="1"
+                  opacity="0.65"
+                  style={{ pathLength: branch1Length }}
+                />
+                {/* Secondary sub-branch curving off bottom left */}
+                <motion.path
+                  d="M 342,419 C 322,425 310,440 298,458"
+                  stroke="url(#realGoldLeaf)"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  opacity="0.8"
+                  style={{ pathLength: branch1Length }}
+                />
+
+                {/* Junction 1: Bottom left branch node (Pair) */}
+                <DetailedLeaf x={397} y={420} rotate={-150} progress={j1LeafProgress} scale={0.95} />
+                <DetailedLeaf x={397} y={420} rotate={-100} progress={j1LeafProgress} scale={0.8} />
+
+                {/* Bottom Left Branch (Luminous Vitality) Leaves */}
+                <DetailedLeaf x={338} y={418} rotate={-45} progress={b1Leaf1Progress} scale={0.9} />
+                <DetailedLeaf x={288} y={438} rotate={-50} progress={b1Leaf2Progress} scale={0.8} />
+                <DetailedLeaf x={298} y={458} rotate={-120} progress={b1Leaf3Progress} scale={0.8} />
+                <DetailedLeaf x={250} y={470} rotate={-135} progress={b1Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
+              </g>
               
               {/* 3. Middle Right Branch (Root-to-Tip Repair) */}
-              <motion.path
-                d="M 401,280 C 440,270 480,285 515,305 Q 535,315 550,325"
-                stroke="url(#realGoldLeaf)"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                filter="url(#luxuryVineGlow)"
-                style={{ pathLength: branch2Length }}
-              />
-              <motion.path
-                d="M 401,280 C 445,285 470,270 515,312"
-                stroke="url(#twistingVineGold)"
-                strokeWidth="1"
-                opacity="0.65"
-                style={{ pathLength: branch2Length }}
-              />
-              {/* Secondary sub-branch curving off middle right */}
-              <motion.path
-                d="M 454,274 C 474,269 487,258 497,245"
-                stroke="url(#realGoldLeaf)"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                opacity="0.8"
-                style={{ pathLength: branch2Length }}
-              />
+              <g className="tree-branch branch-2">
+                <motion.path
+                  d="M 401,280 C 440,270 480,285 515,305 Q 535,315 550,325"
+                  stroke="url(#realGoldLeaf)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  filter="url(#luxuryVineGlow)"
+                  style={{ pathLength: branch2Length }}
+                />
+                <motion.path
+                  d="M 401,280 C 445,285 470,270 515,312"
+                  stroke="url(#twistingVineGold)"
+                  strokeWidth="1"
+                  opacity="0.65"
+                  style={{ pathLength: branch2Length }}
+                />
+                {/* Secondary sub-branch curving off middle right */}
+                <motion.path
+                  d="M 454,274 C 474,269 487,258 497,245"
+                  stroke="url(#realGoldLeaf)"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  opacity="0.8"
+                  style={{ pathLength: branch2Length }}
+                />
+
+                {/* Junction 2: Middle right branch node (Pair) */}
+                <DetailedLeaf x={401} y={280} rotate={-20} progress={j2LeafProgress} scale={0.95} />
+                <DetailedLeaf x={401} y={280} rotate={40} progress={j2LeafProgress} scale={0.8} />
+
+                {/* Middle Right Branch (Root-to-Tip Repair) Leaves */}
+                <DetailedLeaf x={442} y={272} rotate={15} progress={b2Leaf1Progress} scale={0.9} />
+                <DetailedLeaf x={493} y={291} rotate={30} progress={b2Leaf2Progress} scale={0.8} />
+                <DetailedLeaf x={497} y={245} rotate={-45} progress={b2Leaf3Progress} scale={0.8} /> {/* Sub-branch Tip Leaf */}
+                <DetailedLeaf x={550} y={325} rotate={35} progress={b2Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
+              </g>
 
               {/* 4. Top Left Branch (Ancient Wisdom) */}
-              <motion.path
-                d="M 404,140 C 370,130 330,135 290,140 Q 270,145 250,155"
-                stroke="url(#realGoldLeaf)"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                filter="url(#luxuryVineGlow)"
-                style={{ pathLength: branch3Length }}
-              />
-              <motion.path
-                d="M 404,140 C 365,135 340,145 295,138"
-                stroke="url(#twistingVineGold)"
-                strokeWidth="1"
-                opacity="0.65"
-                style={{ pathLength: branch3Length }}
-              />
-              {/* Secondary sub-branch curving off top left */}
-              <motion.path
-                d="M 352,133 C 330,140 315,152 305,168"
-                stroke="url(#realGoldLeaf)"
-                strokeWidth="1.2"
-                strokeLinecap="round"
-                opacity="0.8"
-                style={{ pathLength: branch3Length }}
-              />
+              <g className="tree-branch branch-3">
+                <motion.path
+                  d="M 404,140 C 370,130 330,135 290,140 Q 270,145 250,155"
+                  stroke="url(#realGoldLeaf)"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  filter="url(#luxuryVineGlow)"
+                  style={{ pathLength: branch3Length }}
+                />
+                <motion.path
+                  d="M 404,140 C 365,135 340,145 295,138"
+                  stroke="url(#twistingVineGold)"
+                  strokeWidth="1"
+                  opacity="0.65"
+                  style={{ pathLength: branch3Length }}
+                />
+                {/* Secondary sub-branch curving off top left */}
+                <motion.path
+                  d="M 352,133 C 330,140 315,152 305,168"
+                  stroke="url(#realGoldLeaf)"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                  opacity="0.8"
+                  style={{ pathLength: branch3Length }}
+                />
 
-              {/* Spiral organic tendrils winding off */}
-              <motion.path
-                d="M 418,430 Q 435,420 440,405 T 430,395 T 420,405"
-                stroke="url(#twistingVineGold)"
-                strokeWidth="0.9"
-                opacity="0.5"
-                style={{ pathLength: trunkLength }}
-              />
-              <motion.path
-                d="M 388,280 Q 365,290 355,275 T 365,260 T 375,270"
-                stroke="url(#twistingVineGold)"
-                strokeWidth="0.9"
-                opacity="0.5"
-                style={{ pathLength: trunkLength }}
-              />
-              <motion.path
-                d="M 415,130 Q 435,120 440,105 T 430,95"
-                stroke="url(#twistingVineGold)"
-                strokeWidth="0.9"
-                opacity="0.5"
-                style={{ pathLength: trunkLength }}
-              />
+                {/* Junction 3: Top left branch node (Pair) */}
+                <DetailedLeaf x={404} y={140} rotate={-160} progress={j3LeafProgress} scale={0.95} />
+                <DetailedLeaf x={404} y={140} rotate={-110} progress={j3LeafProgress} scale={0.8} />
 
-              {/* DETAILED DUAL-TONED LEAVES (Placed in organic pairs & clusters exactly matching reference layout) */}
-              
-              {/* --- TRUNK LEAF CLUSTERS --- */}
-              {/* Lower trunk leaf (pointing right-up) */}
-              <DetailedLeaf x={404} y={500} rotate={20} progress={tLeaf1Progress} />
-              
-              {/* Mid trunk leaf (pointing left-down) */}
-              <DetailedLeaf x={396} y={450} rotate={-120} progress={tLeaf2Progress} />
-              
-              {/* Upper-mid trunk leaf (pointing right-up) */}
-              <DetailedLeaf x={392} y={320} rotate={35} progress={tLeaf3Progress} />
-              
-              {/* Upper trunk leaf (pointing left-down) */}
-              <DetailedLeaf x={405} y={200} rotate={-120} progress={tLeaf4Progress} />
-              
-              {/* Top-most terminal leaf (pointing left-up, perfectly connected at the trunk tip) */}
-              <DetailedLeaf x={400} y={57} rotate={-30} progress={tLeaf5Progress} scale={0.9} />
-
-              {/* --- JUNCTION PAIRS (Sprouting directly from splitting nodes) --- */}
-              {/* Junction 1: Bottom left branch node (Pair) */}
-              <DetailedLeaf x={397} y={420} rotate={-150} progress={j1LeafProgress} scale={0.95} />
-              <DetailedLeaf x={397} y={420} rotate={-100} progress={j1LeafProgress} scale={0.8} />
-
-              {/* Junction 2: Middle right branch node (Pair) */}
-              <DetailedLeaf x={401} y={280} rotate={-20} progress={j2LeafProgress} scale={0.95} />
-              <DetailedLeaf x={401} y={280} rotate={40} progress={j2LeafProgress} scale={0.8} />
-
-              {/* Junction 3: Top left branch node (Pair) */}
-              <DetailedLeaf x={404} y={140} rotate={-160} progress={j3LeafProgress} scale={0.95} />
-              <DetailedLeaf x={404} y={140} rotate={-110} progress={j3LeafProgress} scale={0.8} />
-
-              {/* --- BRANCH CLUSTERS --- */}
-              {/* Bottom Left Branch (Luminous Vitality) Leaves */}
-              <DetailedLeaf x={338} y={418} rotate={-45} progress={b1Leaf1Progress} scale={0.9} />
-              <DetailedLeaf x={288} y={438} rotate={-50} progress={b1Leaf2Progress} scale={0.8} />
-              <DetailedLeaf x={298} y={458} rotate={-120} progress={b1Leaf3Progress} scale={0.8} />
-              <DetailedLeaf x={250} y={470} rotate={-135} progress={b1Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
-
-              {/* Middle Right Branch (Root-to-Tip Repair) Leaves */}
-              <DetailedLeaf x={442} y={272} rotate={15} progress={b2Leaf1Progress} scale={0.9} />
-              <DetailedLeaf x={493} y={291} rotate={30} progress={b2Leaf2Progress} scale={0.8} />
-              <DetailedLeaf x={497} y={245} rotate={-45} progress={b2Leaf3Progress} scale={0.8} /> {/* Sub-branch Tip Leaf (Aligned to tangent) */}
-              <DetailedLeaf x={550} y={325} rotate={35} progress={b2Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
-
-              {/* Top Left Branch (Ancient Wisdom) Leaves */}
-              <DetailedLeaf x={348} y={132} rotate={-50} progress={b3Leaf1Progress} scale={0.9} />
-              <DetailedLeaf x={293} y={137} rotate={-55} progress={b3Leaf2Progress} scale={0.8} />
-              <DetailedLeaf x={305} y={168} rotate={-130} progress={b3Leaf3Progress} scale={0.8} /> {/* Sub-branch Tip Leaf */}
-              <DetailedLeaf x={250} y={155} rotate={-160} progress={b3Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
+                {/* Top Left Branch (Ancient Wisdom) Leaves */}
+                <DetailedLeaf x={348} y={132} rotate={-50} progress={b3Leaf1Progress} scale={0.9} />
+                <DetailedLeaf x={293} y={137} rotate={-55} progress={b3Leaf2Progress} scale={0.8} />
+                <DetailedLeaf x={305} y={168} rotate={-130} progress={b3Leaf3Progress} scale={0.8} /> {/* Sub-branch Tip Leaf */}
+                <DetailedLeaf x={250} y={155} rotate={-160} progress={b3Leaf3Progress} scale={0.9} /> {/* Branch Tip Terminal Leaf */}
+              </g>
             </svg>
 
             {/* THREE ORGANIC NATIVE CARDS POSITIONED AROUND THE TREE */}
+            <div className="advantage-cards-carousel">
+              {/* Card 1: Ancient Wisdom (Top Left) */}
+              <motion.div 
+                style={{ opacity: card1Opacity, scale: card1Scale }}
+                className="advantage-native-card card-pos-top-left glass-dark-premium"
+              >
+                {/* Botanical Illustration floating above */}
+                <div className="card-botanical-decor">
+                  <AmlaSvg className="native-botanical-svg" />
+                </div>
+                <div className="native-card-header">
+                  <h3 className="native-card-title-serif">ANCIENT WISDOM</h3>
+                  <span className="native-card-herb-subtitle">Amalaki (Amla) &amp; Aloe Vera</span>
+                </div>
+                <p className="native-card-text-centered">
+                  Infused with Vitamin C-rich Amalaki and hydrating Aloe Vera to deeply purify the scalp, stimulate cellular renewal, and fortify hair follicles from root to tip.
+                </p>
+              </motion.div>
 
-            {/* Card 1: Ancient Wisdom (Top Left) */}
-            <motion.div 
-              style={{ opacity: card1Opacity, scale: card1Scale }}
-              className="advantage-native-card card-pos-top-left glass-dark-premium"
-            >
-              {/* Botanical Illustration floating above */}
-              <div className="card-botanical-decor">
-                <AmlaSvg className="native-botanical-svg" />
-              </div>
-              <div className="native-card-header">
-                <h3 className="native-card-title-serif">ANCIENT WISDOM</h3>
-                <span className="native-card-herb-subtitle">Amalaki (Amla) &amp; Aloe Vera</span>
-              </div>
-              <p className="native-card-text-centered">
-                Infused with Vitamin C-rich Amalaki and hydrating Aloe Vera to deeply purify the scalp, stimulate cellular renewal, and fortify hair follicles from root to tip.
-              </p>
-            </motion.div>
+              {/* Card 2: Root-to-Tip Repair (Middle Right) */}
+              <motion.div 
+                style={{ opacity: card2Opacity, scale: card2Scale }}
+                className="advantage-native-card card-pos-middle-right glass-dark-premium"
+              >
+                <div className="card-botanical-decor decoration-right">
+                  <BhringrajSvg className="native-botanical-svg" />
+                </div>
+                <div className="native-card-header">
+                  <h3 className="native-card-title-serif">ROOT-TO-TIP REPAIR</h3>
+                  <span className="native-card-herb-subtitle">Bhringraj, Ashwagandha &amp; Onion</span>
+                </div>
+                <p className="native-card-text-centered">
+                  Synergizing Bhringraj and sulfur-rich Red Onion to reactivate dormant follicles and accelerate growth, with Ashwagandha to minimize stress-induced shedding.
+                </p>
+              </motion.div>
 
-            {/* Card 2: Root-to-Tip Repair (Middle Right) */}
-            <motion.div 
-              style={{ opacity: card2Opacity, scale: card2Scale }}
-              className="advantage-native-card card-pos-middle-right glass-dark-premium"
-            >
-              <div className="card-botanical-decor decoration-right">
-                <BhringrajSvg className="native-botanical-svg" />
-              </div>
-              <div className="native-card-header">
-                <h3 className="native-card-title-serif">ROOT-TO-TIP REPAIR</h3>
-                <span className="native-card-herb-subtitle">Bhringraj, Ashwagandha &amp; Onion</span>
-              </div>
-              <p className="native-card-text-centered">
-                Synergizing Bhringraj and sulfur-rich Red Onion to reactivate dormant follicles and accelerate growth, with Ashwagandha to minimize stress-induced shedding.
-              </p>
-            </motion.div>
+              {/* Card 3: Luminous Vitality (Bottom Left) */}
+              <motion.div 
+                style={{ opacity: card3Opacity, scale: card3Scale }}
+                className="advantage-native-card card-pos-bottom-left glass-dark-premium"
+              >
+                <div className="card-botanical-decor">
+                  <HibiscusSvg className="native-botanical-svg" />
+                </div>
+                <div className="native-card-header">
+                  <h3 className="native-card-title-serif">LUMINOUS VITALITY</h3>
+                  <span className="native-card-herb-subtitle">Jasmine, Hibiscus &amp; Almond</span>
+                </div>
+                <p className="native-card-text-centered">
+                  Smoothens cuticles with deep conditioning Hibiscus and nourishing Sweet Almond oil, while calming Jasmine shields the strands to restore brilliant, natural shine.
+                </p>
+              </motion.div>
+            </div>
 
-            {/* Card 3: Luminous Vitality (Bottom Left) */}
-            <motion.div 
-              style={{ opacity: card3Opacity, scale: card3Scale }}
-              className="advantage-native-card card-pos-bottom-left glass-dark-premium"
-            >
-              <div className="card-botanical-decor">
-                <HibiscusSvg className="native-botanical-svg" />
-              </div>
-              <div className="native-card-header">
-                <h3 className="native-card-title-serif">LUMINOUS VITALITY</h3>
-                <span className="native-card-herb-subtitle">Jasmine, Hibiscus &amp; Almond</span>
-              </div>
-              <p className="native-card-text-centered">
-                Smoothens cuticles with deep conditioning Hibiscus and nourishing Sweet Almond oil, while calming Jasmine shields the strands to restore brilliant, natural shine.
-              </p>
-            </motion.div>
+            {/* Navigation indicator dots */}
+            <div className="advantage-carousel-dots">
+              {[0, 1, 2].map((index) => (
+                <button
+                  key={index}
+                  className="carousel-dot"
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
 
           </div>
         </div>
