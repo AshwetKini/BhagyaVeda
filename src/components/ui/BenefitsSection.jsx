@@ -393,6 +393,9 @@ export default function BenefitsSection() {
               <text x="240" y="230" className="tree-watermark-text">Amalaki</text>
               <text x="560" y="420" className="tree-watermark-text">Bhringraj</text>
               <text x="210" y="520" className="tree-watermark-text">Ashwagandha</text>
+              <text x="150" y="340" className="tree-watermark-text">Aloe Vera</text>
+              <text x="600" y="260" className="tree-watermark-text">Red Onion</text>
+              <text x="480" y="540" className="tree-watermark-text">Almond</text>
 
               {/* 1. Main Tree Trunk Vine - Winding double-layered structure for natural hand-drawn look */}
               <motion.path
@@ -577,10 +580,10 @@ export default function BenefitsSection() {
               </div>
               <div className="native-card-header">
                 <h3 className="native-card-title-serif">ANCIENT WISDOM</h3>
-                <span className="native-card-herb-subtitle">Featuring Amalaki (Amla)</span>
+                <span className="native-card-herb-subtitle">Amalaki (Amla) &amp; Aloe Vera</span>
               </div>
               <p className="native-card-text-centered">
-                Infused with Vitamin C-rich Amalaki to deeply purify the scalp, stimulate cellular renewal, and fortify hair follicles from root to tip.
+                Infused with Vitamin C-rich Amalaki and hydrating Aloe Vera to deeply purify the scalp, stimulate cellular renewal, and fortify hair follicles from root to tip.
               </p>
             </motion.div>
 
@@ -594,10 +597,10 @@ export default function BenefitsSection() {
               </div>
               <div className="native-card-header">
                 <h3 className="native-card-title-serif">ROOT-TO-TIP REPAIR</h3>
-                <span className="native-card-herb-subtitle">Bhringraj &amp; Ashwagandha</span>
+                <span className="native-card-herb-subtitle">Bhringraj, Ashwagandha &amp; Onion</span>
               </div>
               <p className="native-card-text-centered">
-                Synergizing Bhringraj (the &quot;King of Hair&quot;) to reactivate dormant follicles with Ashwagandha to minimize stress-induced shedding.
+                Synergizing Bhringraj and sulfur-rich Red Onion to reactivate dormant follicles and accelerate growth, with Ashwagandha to minimize stress-induced shedding.
               </p>
             </motion.div>
 
@@ -611,10 +614,10 @@ export default function BenefitsSection() {
               </div>
               <div className="native-card-header">
                 <h3 className="native-card-title-serif">LUMINOUS VITALITY</h3>
-                <span className="native-card-herb-subtitle">Jasmine &amp; Hibiscus</span>
+                <span className="native-card-herb-subtitle">Jasmine, Hibiscus &amp; Almond</span>
               </div>
               <p className="native-card-text-centered">
-                Smoothens cuticles with deep conditioning Hibiscus extracts while calming Jasmine shields the strands to restore brilliant, natural shine.
+                Smoothens cuticles with deep conditioning Hibiscus and nourishing Sweet Almond oil, while calming Jasmine shields the strands to restore brilliant, natural shine.
               </p>
             </motion.div>
 
