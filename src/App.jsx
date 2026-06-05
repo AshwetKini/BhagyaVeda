@@ -39,7 +39,6 @@ function App() {
           '.promise-section',
           '.ingredients-section',
           '.results-section',
-          '.how-it-works-section',
           '.faq-section'
         ]
 
