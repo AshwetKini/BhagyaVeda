@@ -28,22 +28,27 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const activeSectionSelectors = isMobile
-      ? [
-          '.hero-section',
-          '.promise-section',
-          '.ingredients-section'
-        ]
-      : [
-          '.hero-section',
-          '.promise-section',
-          '.ingredients-section',
-          '.results-section',
-          '.faq-section'
-        ]
+    // Bottle renders ONLY during these early sections
+    const activeSectionSelectors = [
+      '.hero-section',
+      '.promise-section',
+      '.ingredients-section'
+    ]
 
-    const elements = activeSectionSelectors.map(selector => document.querySelector(selector)).filter(Boolean)
-    if (elements.length === 0) return
+    // Bottle is explicitly hidden for all sections after Ingredients
+    const hideCanvasSelectors = [
+      '.benefits-section',
+      '.results-section',
+      '.how-it-works-section',
+      '.testimonials-section',
+      '.faq-section',
+      'footer'
+    ]
+
+    const activeElements = activeSectionSelectors.map(selector => document.querySelector(selector)).filter(Boolean)
+    const hideElements = hideCanvasSelectors.map(selector => document.querySelector(selector)).filter(Boolean)
+    
+    if (activeElements.length === 0 && hideElements.length === 0) return
 
     const visibilityMap = new Map()
 
@@ -52,23 +57,36 @@ function App() {
         visibilityMap.set(entry.target, entry.isIntersecting)
       })
 
-      // Check if at least one active section is visible
-      let isAnyVisible = false
-      elements.forEach(el => {
+      // Check if any hide-canvas section is visible
+      let shouldHide = false
+      hideElements.forEach(el => {
         if (visibilityMap.get(el)) {
-          isAnyVisible = true
+          shouldHide = true
         }
       })
 
-      setShowCanvas(isAnyVisible)
-    }, { threshold: 0, rootMargin: '0px' })
+      // Check if at least one active section is visible
+      let isAnyActiveVisible = false
+      activeElements.forEach(el => {
+        if (visibilityMap.get(el)) {
+          isAnyActiveVisible = true
+        }
+      })
 
-    elements.forEach(el => observer.observe(el))
+      // Canvas is visible ONLY if an active section is visible AND we are not in a hide section
+      setShowCanvas(isAnyActiveVisible && !shouldHide)
+    }, { 
+      threshold: 0.05, 
+      rootMargin: '-5% 0px -5% 0px' 
+    })
+
+    activeElements.forEach(el => observer.observe(el))
+    hideElements.forEach(el => observer.observe(el))
 
     return () => {
       observer.disconnect()
     }
-  }, [isMobile])
+  }, [])
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
