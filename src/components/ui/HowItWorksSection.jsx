@@ -37,6 +37,33 @@ export default function HowItWorksSection() {
   const [progress, setProgress] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
 
+  // Touch swipe gesture support for mobile
+  const [touchStart, setTouchStart] = useState(null)
+  const [touchEnd, setTouchEnd] = useState(null)
+  const minSwipeDistance = 50
+
+  const handleTouchStart = (e) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > minSwipeDistance
+    const isRightSwipe = distance < -minSwipeDistance
+
+    if (isLeftSwipe) {
+      handleNext()
+    } else if (isRightSwipe) {
+      handlePrev()
+    }
+  }
+
   // Autoplay progression ticking
   useEffect(() => {
     if (!isPlaying) return
@@ -94,7 +121,12 @@ export default function HowItWorksSection() {
         <div className="ritual-visualizer-layout">
           
           {/* Left Column: Visualizer Vessel with Active SVG */}
-          <div className="visualizer-pane">
+          <div 
+            className="visualizer-pane"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div className="ritual-vessel">
               <div className="vessel-svg-wrapper">
                 
@@ -166,6 +198,9 @@ export default function HowItWorksSection() {
               role="tabpanel"
               aria-labelledby={`ritual-tab-${activeStep}`}
               className="ritual-step-card"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
               <div className="ritual-card-content">
                 <span className="step-phase-badge">{active.phase}</span>
