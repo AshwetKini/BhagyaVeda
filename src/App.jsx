@@ -16,16 +16,32 @@ import FAQSection from './components/ui/FAQSection'
 
 function App() {
   const [showCanvas, setShowCanvas] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const activeSectionSelectors = [
-      '.hero-section',
-      '.promise-section',
-      '.ingredients-section',
-      '.results-section',
-      '.how-it-works-section',
-      '.faq-section'
-    ]
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  useEffect(() => {
+    const activeSectionSelectors = isMobile
+      ? [
+          '.hero-section',
+          '.promise-section',
+          '.ingredients-section'
+        ]
+      : [
+          '.hero-section',
+          '.promise-section',
+          '.ingredients-section',
+          '.results-section',
+          '.how-it-works-section',
+          '.faq-section'
+        ]
 
     const elements = activeSectionSelectors.map(selector => document.querySelector(selector)).filter(Boolean)
     if (elements.length === 0) return
@@ -53,7 +69,7 @@ function App() {
     return () => {
       observer.disconnect()
     }
-  }, [])
+  }, [isMobile])
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
