@@ -55,7 +55,7 @@ export default function Scene({ isVisible = true }) {
 
   return (
     <Canvas 
-      shadows 
+      shadows={THREE.PCFShadowMap}
       dpr={canvasDpr}
       performance={{ min: 0.6 }}
       gl={{ 
@@ -68,7 +68,7 @@ export default function Scene({ isVisible = true }) {
     >
       <PerspectiveCamera makeDefault position={[0, 0, 8]} fov={35} />
       
-      <color attach="background" args={['transparent']} />
+      {/* Background transparency handled by gl.alpha: true */}
 
       {/* Soft ambient fill */}
       <ambientLight intensity={0.4} color="#FDFBF7" />
