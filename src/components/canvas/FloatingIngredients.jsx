@@ -7,9 +7,13 @@ function Ingredient({ position, color, scale, speed, type, emissive }) {
   const meshRef = useRef()
   const initialPos = useRef(new THREE.Vector3(...position))
   const smoothProgress = useRef(0)
+  const elapsedRef = useRef(0)
   
   useFrame((state, delta) => {
     if (meshRef.current) {
+      // Accumulate time locally to avoid deprecated THREE.Clock
+      elapsedRef.current += delta
+
       // Framerate-independent rotation
       meshRef.current.rotation.x = THREE.MathUtils.damp(
         meshRef.current.rotation.x,
@@ -34,7 +38,7 @@ function Ingredient({ position, color, scale, speed, type, emissive }) {
       )
 
       // Add a gentle breathing scale pulse
-      const pulse = 1 + Math.sin(state.clock.elapsedTime * speed) * 0.08
+      const pulse = 1 + Math.sin(elapsedRef.current * speed) * 0.08
       meshRef.current.scale.setScalar(scale * pulse)
     }
   })

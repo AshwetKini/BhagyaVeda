@@ -11,6 +11,7 @@ function pseudoRandom(seed) {
 export default function Particles({ count = 800 }) {
   const pointsRef = useRef()
   const tickRef = useRef(0)
+  const elapsedRef = useRef(0)
 
   // Generate random positions for particles in a cylindrical volume
   const [positions, sizes] = useMemo(() => {
@@ -37,6 +38,9 @@ export default function Particles({ count = 800 }) {
 
   useFrame((state, delta) => {
     if (pointsRef.current) {
+      // Accumulate time locally to avoid deprecated THREE.Clock
+      elapsedRef.current += delta
+
       tickRef.current += 1
       const frameStep = count > 400 ? 2 : 1
       if (tickRef.current % frameStep !== 0) return
@@ -46,7 +50,7 @@ export default function Particles({ count = 800 }) {
 
       // Gentle float upward with reset
       const posArray = pointsRef.current.geometry.attributes.position.array
-      const elapsed = state.clock.elapsedTime * 0.5
+      const elapsed = elapsedRef.current * 0.5
       for (let i = 0; i < count; i++) {
         posArray[i * 3 + 1] += delta * (0.1 + sizes[i] * 2)
         if (posArray[i * 3 + 1] > 12) {

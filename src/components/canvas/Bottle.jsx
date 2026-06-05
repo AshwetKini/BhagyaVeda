@@ -85,8 +85,12 @@ export default function Bottle(props) {
 
   // Smooth scroll tracking with damping
   const smoothProgress = useRef(0)
+  const elapsedRef = useRef(0)
 
   useFrame((state, delta) => {
+    // Accumulate time locally to avoid deprecated THREE.Clock
+    elapsedRef.current += delta
+
     // Get normalized scroll progress (0 to 1)
     const scrollY = window.scrollY
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight
@@ -128,7 +132,7 @@ export default function Bottle(props) {
 
     // Animate the oil inside with a subtle wobble
     if (oilRef.current) {
-      oilRef.current.rotation.y = state.clock.elapsedTime * 0.3
+      oilRef.current.rotation.y = elapsedRef.current * 0.3
     }
   })
 
