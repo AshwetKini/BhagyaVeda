@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
 import Scene from './components/canvas/Scene'
 import HeroSection from './components/ui/HeroSection'
@@ -12,20 +13,11 @@ import Footer from './components/ui/Footer'
 import Navbar from './components/ui/Navbar'
 import LoadingScreen from './components/ui/LoadingScreen'
 import FloatingWhatsAppButton from './components/ui/FloatingWhatsAppButton'
-import FAQSection from './components/ui/FAQSection'
+import HaveQuestionsSection from './components/ui/HaveQuestionsSection'
+import FAQPage from './components/ui/FAQPage'
 
-function App() {
+function HomePage() {
   const [showCanvas, setShowCanvas] = useState(true)
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   useEffect(() => {
     // Bottle renders ONLY during these early sections
@@ -41,7 +33,7 @@ function App() {
       '.results-section',
       '.how-it-works-section',
       '.testimonials-section',
-      '.faq-section',
+      '.have-questions-section',
       'footer'
     ]
 
@@ -88,6 +80,51 @@ function App() {
     }
   }, [])
 
+  return (
+    <>
+      <Navbar />
+      
+      {/* 3D Canvas layer fixed in background */}
+      <div className="canvas-container" style={{ display: showCanvas ? 'block' : 'none' }}>
+        <Scene isVisible={showCanvas} />
+      </div>
+
+      {/* UI Elements scroll normally on top */}
+      <main className="ui-layer">
+        <HeroSection />
+        <PromiseSection />
+        <IngredientsSection />
+        <BenefitsSection />
+        <ResultsSection />
+        <HowItWorksSection />
+        <TestimonialsSection />
+        <HaveQuestionsSection />
+      </main>
+      
+      <Footer className="ui-layer" />
+      <FloatingWhatsAppButton />
+    </>
+  )
+}
+
+function App() {
+  const [isMobile, setIsMobile] = useState(false)
+  const location = useLocation()
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reducedMotion) {
@@ -121,29 +158,13 @@ function App() {
   return (
     <>
       <LoadingScreen />
-      <Navbar />
-      
-      {/* 3D Canvas layer fixed in background */}
-      <div className="canvas-container" style={{ display: showCanvas ? 'block' : 'none' }}>
-        <Scene isVisible={showCanvas} />
-      </div>
-
-      {/* UI Elements scroll normally on top */}
-      <main className="ui-layer">
-        <HeroSection />
-        <PromiseSection />
-        <IngredientsSection />
-        <BenefitsSection />
-        <ResultsSection />
-        <HowItWorksSection />
-        <TestimonialsSection />
-        <FAQSection />
-      </main>
-      
-      <Footer className="ui-layer" />
-      <FloatingWhatsAppButton />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/faq" element={<FAQPage />} />
+      </Routes>
     </>
   )
 }
 
 export default App
+
