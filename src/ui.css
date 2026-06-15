@@ -2702,6 +2702,24 @@
   color: var(--color-primary);
 }
 
+.about-founder-img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  max-width: 320px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: 
+    0 10px 30px rgba(10, 28, 17, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+
+.about-founder-img:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
 .founder-initials {
   font-family: var(--font-heading);
   font-size: 3rem;

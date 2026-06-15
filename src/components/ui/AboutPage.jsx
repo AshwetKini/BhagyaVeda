@@ -160,6 +160,26 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: smoothEase }}
             >
+              <img 
+                src="/ashwini-tandel.png" 
+                alt="Ashwini Tandel" 
+                className="about-founder-img"
+                style={{ display: 'none' }}
+                onLoad={(e) => {
+                  e.target.style.display = 'block';
+                  const placeholder = e.target.nextElementSibling;
+                  if (placeholder) {
+                    placeholder.style.setProperty('display', 'none', 'important');
+                  }
+                }}
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  const placeholder = e.target.nextElementSibling;
+                  if (placeholder) {
+                    placeholder.style.setProperty('display', 'flex', 'important');
+                  }
+                }}
+              />
               <div className="about-founder-placeholder">
                 <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.4">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
