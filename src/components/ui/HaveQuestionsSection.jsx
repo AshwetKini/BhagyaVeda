@@ -25,8 +25,8 @@ const cards = [
     ),
     title: 'About us',
     description: 'Know more about BhagyaVeda',
-    action: 'scroll',
-    target: '#promise'
+    action: 'navigate',
+    target: '/about'
   },
   {
     icon: (

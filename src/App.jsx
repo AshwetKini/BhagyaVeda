@@ -15,6 +15,7 @@ import LoadingScreen from './components/ui/LoadingScreen'
 import FloatingWhatsAppButton from './components/ui/FloatingWhatsAppButton'
 import HaveQuestionsSection from './components/ui/HaveQuestionsSection'
 import FAQPage from './components/ui/FAQPage'
+import AboutPage from './components/ui/AboutPage'
 
 function HomePage() {
   const [showCanvas, setShowCanvas] = useState(true)
@@ -161,6 +162,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/faq" element={<FAQPage />} />
+        <Route path="/about" element={<AboutPage />} />
       </Routes>
     </>
   )
