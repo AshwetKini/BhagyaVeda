@@ -121,6 +121,26 @@ function App() {
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
+  // Single optimized scroll progress tracker (prevents R3F layout thrashing)
+  useEffect(() => {
+    const updateScrollProgress = () => {
+      const scrollY = window.scrollY
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+      window.__scrollProgress = maxScroll > 0 ? scrollY / maxScroll : 0
+    }
+
+    updateScrollProgress()
+
+    window.addEventListener('scroll', updateScrollProgress, { passive: true })
+    window.addEventListener('resize', updateScrollProgress, { passive: true })
+
+    return () => {
+      window.removeEventListener('scroll', updateScrollProgress)
+      window.removeEventListener('resize', updateScrollProgress)
+    }
+  }, [])
+
+
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0)

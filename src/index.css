@@ -143,6 +143,8 @@ html.lenis, html.lenis body {
   height: 100vh;
   z-index: 0;
   pointer-events: none; /* Let clicks pass through to UI by default */
+  will-change: transform;
+  transform: translate3d(0, 0, 0); /* Promotes canvas to its own GPU composite layer */
 }
 
 /* Ensure UI is above canvas */
@@ -150,6 +152,8 @@ html.lenis, html.lenis body {
   position: relative;
   z-index: 10;
   pointer-events: auto;
+  will-change: transform;
+  transform: translate3d(0, 0, 0); /* Promotes scrolling UI to its own GPU composite layer */
 }
 
 /* Buttons */

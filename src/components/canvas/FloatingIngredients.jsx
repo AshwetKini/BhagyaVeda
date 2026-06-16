@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { Float } from '@react-three/drei'
 import * as THREE from 'three'
 
 function Ingredient({ position, color, scale, speed, type, emissive }) {
@@ -14,30 +13,36 @@ function Ingredient({ position, color, scale, speed, type, emissive }) {
       // Accumulate time locally to avoid deprecated THREE.Clock
       elapsedRef.current += delta
 
-      // Framerate-independent rotation
+      // Scroll-linked parallax using cached progress (no layout thrashing)
+      const rawProgress = window.__scrollProgress || 0
+      smoothProgress.current = THREE.MathUtils.damp(smoothProgress.current, rawProgress, 2, delta)
+      const p = smoothProgress.current
+
+      // Calculate float behavior inline (replaces Drei's expensive <Float> wrapper)
+      const floatTime = elapsedRef.current * speed * 1.5
+      const floatOffsetY = Math.sin(floatTime) * (scale * 0.5)
+      const floatRotX = Math.sin(floatTime * 0.7) * (speed * 0.15)
+      const floatRotZ = Math.cos(floatTime * 0.7) * (speed * 0.15)
+
+      // Apply coordinates (parallax + float)
+      meshRef.current.position.y = THREE.MathUtils.damp(
+        meshRef.current.position.y,
+        initialPos.current.y + (p * 4 * speed) - (p * 2) + floatOffsetY,
+        3,
+        delta
+      )
+      
+      // Apply rotation (continuous rotation + float wobble)
       meshRef.current.rotation.x = THREE.MathUtils.damp(
         meshRef.current.rotation.x,
-        meshRef.current.rotation.x + speed * 0.01,
+        meshRef.current.rotation.x + speed * 0.01 + floatRotX,
         10,
         delta
       )
       meshRef.current.rotation.y += speed * delta * 0.5
-      
-      // Scroll-linked parallax with damping
-      const scrollY = window.scrollY
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
-      const rawProgress = maxScroll > 0 ? scrollY / maxScroll : 0
-      smoothProgress.current = THREE.MathUtils.damp(smoothProgress.current, rawProgress, 2, delta)
-      
-      const p = smoothProgress.current
-      meshRef.current.position.y = THREE.MathUtils.damp(
-        meshRef.current.position.y,
-        initialPos.current.y + (p * 4 * speed) - (p * 2),
-        3,
-        delta
-      )
+      meshRef.current.rotation.z += floatRotZ * delta
 
-      // Add a gentle breathing scale pulse
+      // Gentle breathing scale pulse
       const pulse = 1 + Math.sin(elapsedRef.current * speed) * 0.08
       meshRef.current.scale.setScalar(scale * pulse)
     }
@@ -45,28 +50,26 @@ function Ingredient({ position, color, scale, speed, type, emissive }) {
 
   const getGeometry = () => {
     switch(type) {
-      case 'amla': return <sphereGeometry args={[1, 32, 32]} />
-      case 'neem': return <torusGeometry args={[0.8, 0.3, 16, 32]} />
-      case 'coconut': return <sphereGeometry args={[1.2, 16, 16]} />
+      case 'amla': return <sphereGeometry args={[1, 16, 16]} /> // Reduced segments for mobile performance
+      case 'neem': return <torusGeometry args={[0.8, 0.3, 8, 16]} /> // Reduced segments
+      case 'coconut': return <sphereGeometry args={[1.2, 12, 12]} /> // Reduced segments
       default: return <dodecahedronGeometry args={[1, 0]} />
     }
   }
 
   return (
-    <Float speed={speed * 1.5} rotationIntensity={speed * 0.8} floatIntensity={speed * 0.6}>
-      <mesh ref={meshRef} position={position} scale={scale} castShadow receiveShadow>
-        {getGeometry()}
-        <meshPhysicalMaterial 
-          color={color}
-          roughness={type === 'coconut' ? 0.85 : 0.2}
-          metalness={0.05}
-          clearcoat={type === 'amla' ? 0.8 : 0.2}
-          clearcoatRoughness={0.1}
-          emissive={emissive || color}
-          emissiveIntensity={0.05}
-        />
-      </mesh>
-    </Float>
+    <mesh ref={meshRef} position={position} scale={scale} castShadow receiveShadow>
+      {getGeometry()}
+      <meshPhysicalMaterial 
+        color={color}
+        roughness={type === 'coconut' ? 0.85 : 0.2}
+        metalness={0.05}
+        clearcoat={type === 'amla' ? 0.8 : 0.2}
+        clearcoatRoughness={0.1}
+        emissive={emissive || color}
+        emissiveIntensity={0.05}
+      />
+    </mesh>
   )
 }
 

@@ -50,7 +50,7 @@ export default function Scene({ isVisible = true }) {
   }, [])
 
   const canvasDpr = isLowPowerDevice ? [1, 1] : [1, 2]
-  const particleCount = isLowPowerDevice ? 260 : 520
+  const particleCount = isLowPowerDevice ? 80 : 520
   const shadowMapSize = isLowPowerDevice ? 512 : 1024
 
   return (

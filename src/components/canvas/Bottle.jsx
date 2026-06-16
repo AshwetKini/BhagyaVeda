@@ -91,10 +91,8 @@ export default function Bottle(props) {
     // Accumulate time locally to avoid deprecated THREE.Clock
     elapsedRef.current += delta
 
-    // Get normalized scroll progress (0 to 1)
-    const scrollY = window.scrollY
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight
-    const rawProgress = maxScroll > 0 ? scrollY / maxScroll : 0
+    // Read from optimized cached scroll progress (no layout thrashing)
+    const rawProgress = window.__scrollProgress || 0
 
     // Framerate-independent damping for buttery smooth transitions
     // damp(current, target, lambda, delta) — higher lambda = faster approach
