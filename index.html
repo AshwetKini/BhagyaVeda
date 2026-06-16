@@ -112,8 +112,8 @@
     }
     </script>
 
-    <script type="module" crossorigin src="/assets/index-C1xiHA_1.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C5EMRlKA.css">
+    <script type="module" crossorigin src="/assets/index-BjsKWtDX.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-zI0M7RqE.css">
   </head>
   <body>
     <div id="root">
@@ -131,45 +131,204 @@
           justify-content: center;
           align-items: center;
           z-index: 99999;
+          overflow: hidden;
         }
-        .preloader-logo {
-          height: 80px;
-          width: auto;
+        
+        .preloader-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 2rem;
+          max-width: 480px;
+        }
+
+        .preloader-logo-container {
+          position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 140px;
+          height: 140px;
           margin-bottom: 1rem;
+        }
+
+        .preloader-logo {
+          height: 84px;
+          width: auto;
           object-fit: contain;
+          z-index: 2;
           opacity: 0;
-          animation: preloaderFadeIn 0.6s ease-out forwards;
+          animation: preloaderFadeIn 0.5s ease-out forwards;
         }
-        .preloader-tagline {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 1.25rem;
-          color: #FDFBF7;
-          letter-spacing: 0.05em;
-          font-style: italic;
-          opacity: 0;
-          margin-top: 1.25rem;
-          animation: preloaderFadeIn 0.6s ease-out 0.2s forwards;
-        }
-        .preloader-spinner {
-          width: 30px;
-          height: 30px;
-          border: 2px solid rgba(212, 175, 55, 0.1);
-          border-top-color: #D4AF37;
+
+        .preloader-ripple {
+          position: absolute;
+          width: 90px;
+          height: 90px;
+          border: 1px solid rgba(212, 175, 55, 0.45);
           border-radius: 50%;
-          margin-top: 2rem;
-          animation: preloaderSpin 1s linear infinite;
+          pointer-events: none;
+          animation: preloaderRippleAnim 2.2s infinite ease-out;
         }
+
+        .preloader-ripple:nth-child(2) {
+          animation-delay: 1.1s;
+        }
+
+        .preloader-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 2.25rem;
+          color: #FDFBF7;
+          letter-spacing: 0.04em;
+          margin: 0 0 0.25rem 0;
+          font-weight: 600;
+          opacity: 0;
+          animation: preloaderFadeIn 0.5s ease-out 0.15s forwards;
+        }
+
+        .preloader-subtitle {
+          font-family: 'Manrope', sans-serif;
+          font-size: 0.72rem;
+          color: #D4AF37;
+          letter-spacing: 0.25em;
+          margin: 0 0 2.5rem 0;
+          font-weight: 700;
+          opacity: 0;
+          animation: preloaderFadeIn 0.5s ease-out 0.25s forwards;
+        }
+
+        .preloader-progress-section {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.75rem;
+          margin-bottom: 3rem;
+          width: 100%;
+          opacity: 0;
+          animation: preloaderFadeIn 0.5s ease-out 0.35s forwards;
+        }
+
+        .preloader-percentage {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.15rem;
+          color: #FDFBF7;
+          font-style: italic;
+          letter-spacing: 0.05em;
+        }
+
+        .preloader-bar-container {
+          width: 160px;
+          height: 2px;
+          background-color: rgba(255, 255, 255, 0.12);
+          border-radius: 1px;
+          overflow: hidden;
+        }
+
+        .preloader-bar {
+          height: 100%;
+          width: 5%;
+          background-color: #D4AF37;
+          border-radius: 1px;
+        }
+
+        .preloader-tip-container {
+          height: 3.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          max-width: 280px;
+          margin: 0 auto;
+          opacity: 0;
+          animation: preloaderFadeIn 0.5s ease-out 0.45s forwards;
+        }
+
+        .preloader-tip {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.05rem;
+          line-height: 1.45;
+          color: #FDFBF7;
+          font-style: italic;
+          text-align: center;
+          opacity: 0.85;
+          margin: 0;
+        }
+
+        /* Ambient floating sparks in background */
+        .preloader-particles {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        .preloader-particle {
+          position: absolute;
+          width: 4px;
+          height: 4px;
+          background-color: #D4AF37;
+          border-radius: 50%;
+          opacity: 0;
+          animation: preloaderFloatUp 7s infinite linear;
+        }
+
+        .preloader-particle:nth-child(1) { left: 15%; bottom: -10px; animation-delay: 0s; animation-duration: 6s; }
+        .preloader-particle:nth-child(2) { left: 35%; bottom: -10px; animation-delay: 2.2s; animation-duration: 8.5s; width: 3px; height: 3px; }
+        .preloader-particle:nth-child(3) { left: 50%; bottom: -10px; animation-delay: 1.1s; animation-duration: 7s; }
+        .preloader-particle:nth-child(4) { left: 70%; bottom: -10px; animation-delay: 3.3s; animation-duration: 8s; width: 5px; height: 5px; }
+
         @keyframes preloaderFadeIn {
           to { opacity: 0.95; transform: translateY(0); }
         }
-        @keyframes preloaderSpin {
-          to { transform: rotate(360deg); }
+
+        @keyframes preloaderRippleAnim {
+          0% { transform: scale(0.95); opacity: 0.5; }
+          100% { transform: scale(1.8); opacity: 0; }
+        }
+
+        @keyframes preloaderFloatUp {
+          0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0; }
+          15% { opacity: 0.35; }
+          85% { opacity: 0.35; }
+          100% { transform: translateY(-110vh) translateX(40px) scale(0.4); opacity: 0; }
         }
       </style>
       <div class="preloader-container">
-        <img class="preloader-logo" src="/logo.png" alt="BhagyaVeda" />
-        <p class="preloader-tagline">BhagyaVeda Premium Ayurvedic Hair Oil</p>
-        <div class="preloader-spinner"></div>
+        <!-- Floating Sparks -->
+        <div class="preloader-particles">
+          <div class="preloader-particle"></div>
+          <div class="preloader-particle"></div>
+          <div class="preloader-particle"></div>
+          <div class="preloader-particle"></div>
+        </div>
+
+        <div class="preloader-content">
+          <div class="preloader-logo-container">
+            <div class="preloader-ripple"></div>
+            <div class="preloader-ripple"></div>
+            <img class="preloader-logo" src="/logo.png" alt="BhagyaVeda" />
+          </div>
+
+          <h2 class="preloader-title">BhagyaVeda</h2>
+          <p class="preloader-subtitle">PREMIUM AYURVEDIC HAIR OIL</p>
+
+          <div class="preloader-progress-section">
+            <span class="preloader-percentage">0%</span>
+            <div class="preloader-bar-container">
+              <div class="preloader-bar"></div>
+            </div>
+          </div>
+
+          <div class="preloader-tip-container">
+            <p class="preloader-tip">
+              Infused with Bhringraj, the 'King of Herbs' for natural hair rejuvenation.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </body>
