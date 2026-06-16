@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Lenis from 'lenis'
-import Scene from './components/canvas/Scene'
 import HeroSection from './components/ui/HeroSection'
 import PromiseSection from './components/ui/PromiseSection'
 import IngredientsSection from './components/ui/IngredientsSection'
@@ -14,8 +13,11 @@ import Navbar from './components/ui/Navbar'
 import LoadingScreen from './components/ui/LoadingScreen'
 import FloatingWhatsAppButton from './components/ui/FloatingWhatsAppButton'
 import HaveQuestionsSection from './components/ui/HaveQuestionsSection'
-import FAQPage from './components/ui/FAQPage'
-import AboutPage from './components/ui/AboutPage'
+
+// Lazy-loaded components (heavy 3D elements and secondary pages)
+const Scene = lazy(() => import('./components/canvas/Scene'))
+const FAQPage = lazy(() => import('./components/ui/FAQPage'))
+const AboutPage = lazy(() => import('./components/ui/AboutPage'))
 
 function HomePage() {
   const [showCanvas, setShowCanvas] = useState(true)
@@ -87,7 +89,9 @@ function HomePage() {
       
       {/* 3D Canvas layer fixed in background */}
       <div className="canvas-container" style={{ display: showCanvas ? 'block' : 'none' }}>
-        <Scene isVisible={showCanvas} />
+        <Suspense fallback={null}>
+          <Scene isVisible={showCanvas} />
+        </Suspense>
       </div>
 
       {/* UI Elements scroll normally on top */}
@@ -179,11 +183,13 @@ function App() {
   return (
     <>
       <LoadingScreen />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/faq" element={<FAQPage />} />
-        <Route path="/about" element={<AboutPage />} />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
+      </Suspense>
     </>
   )
 }

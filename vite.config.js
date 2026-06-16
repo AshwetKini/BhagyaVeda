@@ -21,4 +21,11 @@ export default defineConfig({
       }
     })
   ],
+  build: {
+    // Let Rollup's default code splitting handle the chunking naturally,
+    // which automatically separates lazy-loaded dependencies like Three.js.
+    chunkSizeWarningLimit: 1600
+  }
 })
+
+
