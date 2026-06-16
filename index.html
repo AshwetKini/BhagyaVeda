@@ -114,7 +114,62 @@
 
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Native Preloader (renders instantly before React bundle loads) -->
+      <style>
+        .preloader-container {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #0A1C11;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 99999;
+        }
+        .preloader-logo {
+          height: 80px;
+          width: auto;
+          margin-bottom: 1rem;
+          object-fit: contain;
+          opacity: 0;
+          animation: preloaderFadeIn 0.6s ease-out forwards;
+        }
+        .preloader-tagline {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.25rem;
+          color: #FDFBF7;
+          letter-spacing: 0.05em;
+          font-style: italic;
+          opacity: 0;
+          margin-top: 1.25rem;
+          animation: preloaderFadeIn 0.6s ease-out 0.2s forwards;
+        }
+        .preloader-spinner {
+          width: 30px;
+          height: 30px;
+          border: 2px solid rgba(212, 175, 55, 0.1);
+          border-top-color: #D4AF37;
+          border-radius: 50%;
+          margin-top: 2rem;
+          animation: preloaderSpin 1s linear infinite;
+        }
+        @keyframes preloaderFadeIn {
+          to { opacity: 0.95; transform: translateY(0); }
+        }
+        @keyframes preloaderSpin {
+          to { transform: rotate(360deg); }
+        }
+      </style>
+      <div class="preloader-container">
+        <img class="preloader-logo" src="/logo.png" alt="BhagyaVeda" />
+        <p class="preloader-tagline">BhagyaVeda Premium Ayurvedic Hair Oil</p>
+        <div class="preloader-spinner"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

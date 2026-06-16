@@ -73,7 +73,7 @@ export default function LoadingScreen() {
             <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
               <img src="/logo.png" alt="BhagyaVeda" style={{ height: '80px', width: 'auto', objectFit: 'contain' }} />
             </div>
-            <p className="loading-tagline">Ancient Wisdom. Modern Luxury.</p>
+            <p className="loading-tagline">BhagyaVeda Premium Ayurvedic Hair Oil</p>
             <div className="loading-bar-container">
               <motion.div 
                 className="loading-bar"
