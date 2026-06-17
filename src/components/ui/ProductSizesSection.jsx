@@ -10,7 +10,6 @@ const bottleSizes = [
     size: '50ml',
     name: 'Travel & Trial Pack',
     description: 'Perfect for first-time users looking to experience our traditional formula, or as a compact companion for your travels.',
-    duration: 'Lasts approx. 10-15 days',
     features: [
       'TSA-friendly travel size',
       'Perfect for testing scalp compatibility',
@@ -25,7 +24,6 @@ const bottleSizes = [
     size: '100ml',
     name: 'Daily Nourishment Pack',
     description: 'Our signature and most popular size. Carefully measured to complete a full 30-day hair restoration cycle.',
-    duration: 'Lasts approx. 25-30 days',
     features: [
       'Standard restoration course size',
       'Gold foil premium detailing',
@@ -41,7 +39,6 @@ const bottleSizes = [
     size: '200ml',
     name: 'Family & Deep Therapy Pack',
     description: 'The ultimate value pack designed for long-term consistency. Perfect for advanced therapies or family use.',
-    duration: 'Lasts approx. 50-60 days',
     features: [
       'Best value per ml',
       'Ideal for severe hair fall regimes',
@@ -164,7 +161,6 @@ export default function ProductSizesSection() {
                     <span className="size-label-large">{activeSize.badge}</span>
                     <h3 className="size-name">{activeSize.name}</h3>
                   </div>
-                  <span className="duration-tag">{activeSize.duration}</span>
                 </div>
                 
                 <p className="size-description">{activeSize.description}</p>
