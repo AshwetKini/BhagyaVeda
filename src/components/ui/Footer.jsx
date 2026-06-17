@@ -18,7 +18,7 @@ export default function Footer() {
             <span className="text-gold">BhagyaVeda</span>
           </motion.h2>
           <motion.a
-            href="#ingredients"
+            href="#sizes"
             className="btn btn-primary btn-glow btn-large"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -46,8 +46,8 @@ export default function Footer() {
 
           <div className="footer-links">
             <h4>About</h4>
-            <a href="#">Our Story</a>
-            <a href="#">Ingredients</a>
+            <a href="/about">Our Story</a>
+            <a href="#ingredients">Ingredients</a>
             <a href="#">Sustainability</a>
           </div>
 
