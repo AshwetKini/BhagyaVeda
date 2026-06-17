@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 
@@ -38,6 +38,25 @@ const faqs = [
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState(null)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    document.title = "Frequently Asked Questions (FAQ) | BhagyaVeda"
+    
+    // Update meta description dynamically
+    const metaDescription = document.querySelector('meta[name="description"]')
+    const originalDescription = metaDescription ? metaDescription.getAttribute('content') : ''
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Find answers to common questions about BhagyaVeda Premium Ayurvedic Hair Oil, usage instructions, safety on colored hair, shipping, and results.')
+    }
+
+    return () => {
+      // Restore original title and description when unmounting
+      document.title = "BhagyaVeda | Premium Ayurvedic Hair Care Oil"
+      if (metaDescription && originalDescription) {
+        metaDescription.setAttribute('content', originalDescription)
+      }
+    }
+  }, [])
 
   // Generate FAQ Schema dynamically from visible content only
   const faqSchema = {

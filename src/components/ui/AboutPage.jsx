@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 
@@ -56,8 +57,52 @@ const milestones = [
 export default function AboutPage() {
   const navigate = useNavigate()
 
+  useEffect(() => {
+    document.title = "Our Story - Ancient Ayurvedic Wisdom & Science | BhagyaVeda"
+    
+    // Update meta description dynamically
+    const metaDescription = document.querySelector('meta[name="description"]')
+    const originalDescription = metaDescription ? metaDescription.getAttribute('content') : ''
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Learn about the origin of BhagyaVeda. Founded by Ashwini Tandel, we combine centuries-old Ayurvedic heritage with cold-pressed botanical oils for premium hair rejuvenation.')
+    }
+
+    return () => {
+      // Restore original title and description when unmounting
+      document.title = "BhagyaVeda | Premium Ayurvedic Hair Care Oil"
+      if (metaDescription && originalDescription) {
+        metaDescription.setAttribute('content', originalDescription)
+      }
+    }
+  }, [])
+
+  // About & Founder Schema (E-E-A-T builder)
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "BhagyaVeda",
+      "url": "https://bhagyaveda.in/",
+      "logo": "https://bhagyaveda.in/logo.png",
+      "description": "Premium Ayurvedic hair care solutions rooted in ancient wisdom and modern science.",
+      "founder": {
+        "@type": "Person",
+        "name": "Ashwini Tandel",
+        "jobTitle": "Founder & Ayurvedic Researcher",
+        "image": "https://bhagyaveda.in/ashwini-tandel.png"
+      }
+    }
+  }
+
   return (
     <div className="about-page">
+      {/* Inject SEO Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
+      
       {/* Hero Section */}
       <div className="about-hero">
         <div className="about-hero-overlay" />
