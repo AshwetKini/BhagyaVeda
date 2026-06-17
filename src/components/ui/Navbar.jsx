@@ -1,7 +1,10 @@
-import { motion } from 'framer-motion'
-import { Menu, ShoppingBag } from 'lucide-react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X, ShoppingBag } from 'lucide-react'
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <motion.nav
       className="navbar glass-dark"
@@ -27,11 +30,37 @@ export default function Navbar() {
           <a href="#sizes" className="icon-btn" aria-label="View available sizes" style={{ display: 'inline-flex', alignItems: 'center' }}>
             <ShoppingBag size={20} />
           </a>
-          <button className="icon-btn mobile-only" aria-label="Open menu">
-            <Menu size={20} />
+          <button 
+            className="icon-btn mobile-only" 
+            onClick={() => setIsOpen(!isOpen)} 
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
+
+      {/* Mobile Menu Panel */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="mobile-menu-links">
+              <a href="#promise" onClick={() => setIsOpen(false)}>Our Promise</a>
+              <a href="#ingredients" onClick={() => setIsOpen(false)}>Ingredients</a>
+              <a href="#benefits" onClick={() => setIsOpen(false)}>Benefits</a>
+              <a href="#sizes" onClick={() => setIsOpen(false)}>Sizes</a>
+              <a href="#how-it-works" onClick={() => setIsOpen(false)}>How It Works</a>
+              <a href="#testimonials" onClick={() => setIsOpen(false)}>Reviews</a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   )
 }

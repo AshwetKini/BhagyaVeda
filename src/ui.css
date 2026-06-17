@@ -69,6 +69,48 @@
   display: none;
 }
 
+/* Mobile Menu Panel */
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: rgba(9, 27, 17, 0.96);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+  z-index: 99;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 2rem;
+  gap: 1.25rem;
+}
+
+.mobile-menu-links a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.3s, padding-left 0.3s;
+}
+
+.mobile-menu-links a:hover {
+  color: var(--color-accent);
+  padding-left: 0.25rem;
+}
+
+@media (min-width: 769px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
+
 .floating-whatsapp {
   position: fixed;
   right: 1.1rem;
