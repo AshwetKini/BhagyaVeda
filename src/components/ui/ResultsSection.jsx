@@ -42,8 +42,12 @@ const results = [
 export default function ResultsSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
+  
+  // Touch coordinates for swipe logic
   const [touchStartX, setTouchStartX] = useState(0)
+  const [touchStartY, setTouchStartY] = useState(0)
   const [touchEndX, setTouchEndX] = useState(0)
+  const [touchEndY, setTouchEndY] = useState(0)
 
   // Autoplay functionality
   useEffect(() => {
@@ -64,24 +68,40 @@ export default function ResultsSection() {
 
   const handleTouchStart = (e) => {
     setTouchStartX(e.targetTouches[0].clientX)
+    setTouchStartY(e.targetTouches[0].clientY)
+    // Clear previous ends to avoid false swipe triggers on tap
+    setTouchEndX(0)
+    setTouchEndY(0)
   }
 
   const handleTouchMove = (e) => {
     setTouchEndX(e.targetTouches[0].clientX)
+    setTouchEndY(e.targetTouches[0].clientY)
   }
 
   const handleTouchEnd = () => {
-    if (!touchStartX || !touchEndX) return
+    if (!touchStartX || !touchEndX || !touchStartY || !touchEndY) return
+
     const diffX = touchStartX - touchEndX
-    const swipeThreshold = 50 // Minimum distance in pixels
-    if (diffX > swipeThreshold) {
-      nextSlide()
-    } else if (diffX < -swipeThreshold) {
-      prevSlide()
+    const diffY = touchStartY - touchEndY
+    const minSwipeDistance = 50 // Minimum swipe distance in px
+
+    // Only swipe if the gesture was primarily horizontal rather than vertical
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (Math.abs(diffX) > minSwipeDistance) {
+        if (diffX > 0) {
+          nextSlide()
+        } else {
+          prevSlide()
+        }
+      }
     }
-    // reset
+
+    // Reset
     setTouchStartX(0)
+    setTouchStartY(0)
     setTouchEndX(0)
+    setTouchEndY(0)
   }
 
   return (
@@ -155,10 +175,14 @@ export default function ResultsSection() {
                 className="results-carousel-track"
                 onPanEnd={(e, info) => {
                   const swipeThreshold = 50;
-                  if (info.offset.x < -swipeThreshold) {
-                    nextSlide();
-                  } else if (info.offset.x > swipeThreshold) {
-                    prevSlide();
+                  const diffX = info.offset.x;
+                  const diffY = info.offset.y;
+                  if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (diffX < -swipeThreshold) {
+                      nextSlide();
+                    } else if (diffX > swipeThreshold) {
+                      prevSlide();
+                    }
                   }
                 }}
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
