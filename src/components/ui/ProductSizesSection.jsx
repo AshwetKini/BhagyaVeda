@@ -101,7 +101,7 @@ export default function ProductSizesSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.1, ease: smoothEase }}
           >
-            Sizes Tailored to Your <span className="text-gold">Lifestyle</span>
+            Sizes Tailored to Your <span className="text-gold">Hair Goals</span>
           </motion.h2>
           
           <motion.p 
@@ -112,7 +112,7 @@ export default function ProductSizesSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: smoothEase }}
             style={{ margin: '0 auto' }}
           >
-            From your travel kit to your vanity counter, discover the perfect BhagyaVeda size for your hair care routine.
+            From initial compatibility trial to comprehensive hair restoration therapy, select the perfect size to support your consistent hair growth journey.
           </motion.p>
         </div>
 
