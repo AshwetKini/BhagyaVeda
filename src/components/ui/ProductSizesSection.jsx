@@ -11,10 +11,10 @@ const bottleSizes = [
     name: 'Travel & Trial Pack',
     description: 'Perfect for first-time users looking to experience our traditional formula, or as a compact companion for your travels.',
     features: [
-      'TSA-friendly travel size',
-      'Perfect for testing scalp compatibility',
-      'Leak-proof flip-cap design',
-      'Ideal for active, on-the-go lifestyles'
+      'Perfect for testing scalp & formula compatibility',
+      'Travel-friendly, lightweight design',
+      'Leak-proof cap prevents accidental spills',
+      'Perfect entry point to try the Ayurvedic formula'
     ],
     whatsappMsg: 'Hi BhagyaVeda, I would like to order the 50ml Travel & Trial pack of Premium Ayurvedic Hair Oil.',
     badge: 'Starter'
@@ -25,10 +25,10 @@ const bottleSizes = [
     name: 'Daily Nourishment Pack',
     description: 'Our signature and most popular size. Carefully measured to complete a full 30-day hair restoration cycle.',
     features: [
-      'Standard restoration course size',
-      'Gold foil premium detailing',
-      'Optimized dropper compatibility',
-      'Most recommended by hair specialists'
+      'Recommended standard course for active hair fall control',
+      'Infused with premium Bhringraj, Amla & Neem',
+      'Precision dropper ensures direct-to-root absorption',
+      'Highly recommended by hair care specialists'
     ],
     whatsappMsg: 'Hi BhagyaVeda, I would like to order the 100ml Daily Nourishment pack of Premium Ayurvedic Hair Oil.',
     badge: 'Most Popular',
@@ -40,10 +40,10 @@ const bottleSizes = [
     name: 'Family & Deep Therapy Pack',
     description: 'The ultimate value pack designed for long-term consistency. Perfect for advanced therapies or family use.',
     features: [
-      'Best value per ml',
+      'Best value pack with maximum savings',
       'Ideal for severe hair fall regimes',
       'Perfect for shared family use',
-      'Saves packaging waste'
+      'Ensures uninterrupted consistency for best results'
     ],
     whatsappMsg: 'Hi BhagyaVeda, I would like to order the 200ml Family & Deep Therapy pack of Premium Ayurvedic Hair Oil.',
     badge: 'Best Value',
