@@ -214,7 +214,7 @@ export default function ProductSizesSection() {
                     style={{ width: '100%', gap: '0.75rem' }}
                   >
                     <MessageCircle size={20} />
-                    <span>Order {activeSize.size} on WhatsApp</span>
+                    <span>Order Now</span>
                   </a>
                 </div>
               </motion.div>
