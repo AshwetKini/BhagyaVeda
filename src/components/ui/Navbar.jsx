@@ -18,16 +18,16 @@ export default function Navbar() {
         </div>
 
         <div className="nav-links">
-          <a href="#promise">Our Promise</a>
-          <a href="#ingredients">Ingredients</a>
-          <a href="#benefits">Benefits</a>
-          <a href="#sizes">Sizes</a>
-          <a href="#how-it-works">How It Works</a>
-          <a href="#testimonials">Reviews</a>
+          <a href="/#promise">Our Promise</a>
+          <a href="/#ingredients">Ingredients</a>
+          <a href="/#benefits">Benefits</a>
+          <a href="/#sizes">Sizes</a>
+          <a href="/#how-it-works">How It Works</a>
+          <a href="/#testimonials">Reviews</a>
         </div>
 
         <div className="nav-actions">
-          <a href="#sizes" className="icon-btn" aria-label="View available sizes" style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <a href="/#sizes" className="icon-btn" aria-label="View available sizes" style={{ display: 'inline-flex', alignItems: 'center' }}>
             <ShoppingBag size={20} />
           </a>
           <button 
@@ -51,12 +51,12 @@ export default function Navbar() {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="mobile-menu-links">
-              <a href="#promise" onClick={() => setIsOpen(false)}>Our Promise</a>
-              <a href="#ingredients" onClick={() => setIsOpen(false)}>Ingredients</a>
-              <a href="#benefits" onClick={() => setIsOpen(false)}>Benefits</a>
-              <a href="#sizes" onClick={() => setIsOpen(false)}>Sizes</a>
-              <a href="#how-it-works" onClick={() => setIsOpen(false)}>How It Works</a>
-              <a href="#testimonials" onClick={() => setIsOpen(false)}>Reviews</a>
+              <a href="/#promise" onClick={() => setIsOpen(false)}>Our Promise</a>
+              <a href="/#ingredients" onClick={() => setIsOpen(false)}>Ingredients</a>
+              <a href="/#benefits" onClick={() => setIsOpen(false)}>Benefits</a>
+              <a href="/#sizes" onClick={() => setIsOpen(false)}>Sizes</a>
+              <a href="/#how-it-works" onClick={() => setIsOpen(false)}>How It Works</a>
+              <a href="/#testimonials" onClick={() => setIsOpen(false)}>Reviews</a>
             </div>
           </motion.div>
         )}

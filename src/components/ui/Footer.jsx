@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 const smoothEase = [0.16, 1, 0.3, 1]
 
 export default function Footer() {
+  const navigate = useNavigate()
   return (
     <footer className="footer ui-layer glass-dark">
       <div className="container">
@@ -46,7 +48,15 @@ export default function Footer() {
 
           <div className="footer-links">
             <h4>About</h4>
-            <a href="/about">Our Story</a>
+            <a 
+              href="/about"
+              onClick={(e) => {
+                e.preventDefault()
+                navigate('/about')
+              }}
+            >
+              Our Story
+            </a>
             <a href="#ingredients">Ingredients</a>
             <a href="#">Sustainability</a>
           </div>
