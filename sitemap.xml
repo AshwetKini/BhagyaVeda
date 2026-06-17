@@ -10,38 +10,87 @@
     <image:image>
       <image:loc>https://bhagyaveda.in/logo.png</image:loc>
       <image:title>BhagyaVeda Ayurvedic Hair Oil Logo</image:title>
+      <image:caption>BhagyaVeda Premium Ayurvedic Hair Oil brand logo showcasing authentic Ayurvedic luxury.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://bhagyaveda.in/bottle-label-reference.png</image:loc>
       <image:title>BhagyaVeda Premium Ayurvedic Hair Oil Bottle</image:title>
+      <image:caption>Luxury glass packaging of BhagyaVeda Ayurvedic Hair Oil infused with ancient herbs.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://bhagyaveda.in/bottles.jpg</image:loc>
       <image:title>BhagyaVeda Premium Ayurvedic Hair Oil Sizes (50ml, 100ml, 200ml)</image:title>
+      <image:caption>BhagyaVeda hair oil available in travel-friendly 50ml, signature 100ml, and value 200ml glass bottles.</image:caption>
+    </image:image>
+    
+    <!-- Clinical Results - Partition Widening -->
+    <image:image>
+      <image:loc>https://bhagyaveda.in/results/indian_hair_part_day0.png</image:loc>
+      <image:title>Female Pattern Baldness Partition Widening - Day 0</image:title>
+      <image:caption>Before treatment: Visible widening of the hair partition due to female pattern baldness.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/results/indian_hair_part_day90.png</image:loc>
+      <image:title>Hair Regrowth and Partition Density - Day 90</image:title>
+      <image:caption>After 90 days: Significant improvement in hair partition density and thickness with consistent use of BhagyaVeda hair oil.</image:caption>
+    </image:image>
+
+    <!-- Clinical Results - Temple Area -->
+    <image:image>
+      <image:loc>https://bhagyaveda.in/results/indian_hair_temple_day0.png</image:loc>
+      <image:title>Receding Hairline Temple Area - Day 0</image:title>
+      <image:caption>Before treatment: Receding hairline at the temple area showing thinning and hair loss.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/results/indian_hair_temple_day90.png</image:loc>
+      <image:title>Receding Hairline Regrowth Results - Day 90</image:title>
+      <image:caption>After 90 days: Clear regrowth of new hair follicles at the receding temple hairline (+38% regrowth).</image:caption>
+    </image:image>
+
+    <!-- Clinical Results - Crown Area -->
+    <image:image>
+      <image:loc>https://bhagyaveda.in/results/indian_hair_crown_day0.png</image:loc>
+      <image:title>Overall Hair Thinning Crown Area - Day 0</image:title>
+      <image:caption>Before treatment: Severe thinning and visible scalp showing at the crown area.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://bhagyaveda.in/results/indian_hair_crown_day90.png</image:loc>
-      <image:title>Before and After Hair Growth Results after 90 Days</image:title>
+      <image:title>Before and After Hair Growth Results - Day 90</image:title>
+      <image:caption>After 90 days: Thickened hair shafts and full coverage of the crown area (+50% volume boost).</image:caption>
+    </image:image>
+
+    <!-- Clinical Results - Postpartum Hair Loss -->
+    <image:image>
+      <image:loc>https://bhagyaveda.in/results/indian_female_postpartum_day0.png</image:loc>
+      <image:title>Postpartum Hair Loss Frontal Hairline - Day 0</image:title>
+      <image:caption>Before treatment: Rapid postpartum hair fall showing patchiness along the frontal hairline.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://bhagyaveda.in/results/indian_female_postpartum_day90.png</image:loc>
-      <image:title>Postpartum Hair Fall Recovery Results</image:title>
+      <image:title>Postpartum Hair Fall Recovery - Day 90</image:title>
+      <image:caption>After 90 days: Dramatic recovery from postpartum hair fall with +60% new baby hairs sprouted.</image:caption>
     </image:image>
+
+    <!-- Ritual Steps -->
     <image:image>
       <image:loc>https://bhagyaveda.in/ritual_step_1.png</image:loc>
       <image:title>Step 1: Applying BhagyaVeda Ayurvedic Hair Oil to Scalp</image:title>
+      <image:caption>Drip-applying the nutrient-rich oil directly to roots using the luxury glass dropper.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://bhagyaveda.in/ritual_step_2.png</image:loc>
       <image:title>Step 2: Massaging Scalp Gently for Blood Circulation</image:title>
+      <image:caption>Massaging the oil in circular motions to activate hair follicles and improve scalp circulation.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://bhagyaveda.in/ritual_step_3.png</image:loc>
       <image:title>Step 3: Deep Absorption of Ayurvedic Herbs Overnight</image:title>
+      <image:caption>Allowing active bio-nutrients like Bhringraj and Amla to deeply penetrate the scalp layers overnight.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://bhagyaveda.in/ritual_step_4.png</image:loc>
       <image:title>Step 4: Visible Hair Growth and Thickness Results</image:title>
+      <image:caption>Rinsing with a mild cleanser to reveal silky, strong, and visibly thicker hair.</image:caption>
     </image:image>
   </url>
 
@@ -54,10 +103,12 @@
     <image:image>
       <image:loc>https://bhagyaveda.in/faqimage.png</image:loc>
       <image:title>BhagyaVeda Brand Story Banner</image:title>
+      <image:caption>BhagyaVeda brand storytelling banner showcasing clean, natural ingredients.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://bhagyaveda.in/ashwini-tandel.png</image:loc>
       <image:title>Ashwini Tandel - Founder of BhagyaVeda</image:title>
+      <image:caption>Ashwini Tandel, the founder of BhagyaVeda, dedicated to sourcing high-quality Ayurvedic herbs.</image:caption>
     </image:image>
   </url>
 
@@ -70,6 +121,7 @@
     <image:image>
       <image:loc>https://bhagyaveda.in/faqimage.png</image:loc>
       <image:title>BhagyaVeda Frequently Asked Questions Banner</image:title>
+      <image:caption>Help desk and Frequently Asked Questions banner for BhagyaVeda customer support.</image:caption>
     </image:image>
   </url>
 </urlset>
