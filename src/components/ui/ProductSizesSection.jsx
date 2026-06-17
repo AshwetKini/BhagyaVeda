@@ -51,6 +51,27 @@ const bottleSizes = [
   }
 ]
 
+const listVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.15
+    }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -12, filter: "blur(2px)" },
+  show: { 
+    opacity: 1, 
+    x: 0, 
+    filter: "blur(0px)",
+    transition: { type: 'spring', stiffness: 180, damping: 20 } 
+  }
+}
+
 export default function ProductSizesSection() {
   const [selectedSize, setSelectedSize] = useState('100ml')
   const activeSize = bottleSizes.find(b => b.id === selectedSize)
@@ -131,6 +152,7 @@ export default function ProductSizesSection() {
           
           {/* Right Column: Size Selector & Details */}
           <div className="sizes-selector-details">
+            <div className="details-bg-glow"></div>
             
             {/* Size Tabs Selector */}
             <div className="size-selector-tabs">
@@ -166,15 +188,21 @@ export default function ProductSizesSection() {
                 <p className="size-description">{activeSize.description}</p>
                 
                 <div className="features-list">
-                  <h4 className="features-title">Highlights:</h4>
-                  <ul>
+                  <h4 className="features-title">Highlights</h4>
+                  <motion.ul 
+                    variants={listVariants}
+                    initial="hidden"
+                    animate="show"
+                  >
                     {activeSize.features.map((feature, index) => (
-                      <li key={index}>
-                        <Check size={16} style={{ color: 'var(--color-accent)', flexShrink: 0, marginTop: '2px' }} />
+                      <motion.li key={index} variants={itemVariants}>
+                        <div className="highlight-icon-wrapper">
+                          <Check size={11} className="highlight-check" />
+                        </div>
                         <span>{feature}</span>
-                      </li>
+                      </motion.li>
                     ))}
-                  </ul>
+                  </motion.ul>
                 </div>
 
                 <div className="card-cta">
