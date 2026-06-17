@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, CheckCircle2, TrendingUp, Sparkles, Calendar } from 'lucide-react'
+import { CheckCircle2, TrendingUp, Sparkles, Calendar } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
 const smoothEase = [0.16, 1, 0.3, 1]
@@ -106,7 +106,7 @@ export default function ResultsSection() {
             >
               WHAT <span className="results-title-highlight">90 Days</span> OF <span className="results-title-bold">CONSISTENT</span> USE LOOKS LIKE
             </motion.h2>
-            <motion.p
+             <motion.p
               className="results-text"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -115,29 +115,6 @@ export default function ResultsSection() {
             >
               Experience the transformative power of Ayurvedic science. Watch your hair regain its natural density, strength, and vibrant health.
             </motion.p>
-            
-            <motion.div 
-              className="results-nav"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.2, ease: smoothEase }}
-            >
-              <button 
-                onClick={prevSlide}
-                className="carousel-btn"
-                aria-label="Previous slide"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button 
-                onClick={nextSlide}
-                className="carousel-btn"
-                aria-label="Next slide"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </motion.div>
           </div>
 
           {/* Right Carousel Content */}
@@ -149,6 +126,14 @@ export default function ResultsSection() {
             <div className="results-carousel-viewport">
               <motion.div 
                 className="results-carousel-track"
+                onPanEnd={(e, info) => {
+                  const swipeThreshold = 50;
+                  if (info.offset.x < -swipeThreshold) {
+                    nextSlide();
+                  } else if (info.offset.x > swipeThreshold) {
+                    prevSlide();
+                  }
+                }}
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
                 {results.map((item) => (
@@ -174,6 +159,7 @@ export default function ResultsSection() {
                             src={item.day0} 
                             alt="Day 0 Result" 
                             className="result-image"
+                            draggable="false"
                           />
                           <div className="result-image-overlay" />
                           <div className="result-image-badge">
@@ -188,6 +174,7 @@ export default function ResultsSection() {
                             src={item.day90} 
                             alt="Day 90 Result" 
                             className="result-image"
+                            draggable="false"
                           />
                           <div className="result-image-overlay-glow" />
                           
@@ -228,23 +215,7 @@ export default function ResultsSection() {
                   onClick={() => setCurrentIndex(idx)}
                   className={`pagination-dot ${idx === currentIndex ? 'active' : ''}`}
                   aria-label={`Go to slide ${idx + 1}`}
-                >
-                  {/* Progress ring animation for active dot */}
-                  {idx === currentIndex && (
-                    <motion.svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
-                      <motion.circle
-                        cx="50" cy="50" r="40"
-                        stroke="currentColor"
-                        strokeWidth="15"
-                        fill="transparent"
-                        className="text-gold"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 5, ease: "linear", repeat: isHovering ? 0 : Infinity }}
-                      />
-                    </motion.svg>
-                  )}
-                </button>
+                />
               ))}
             </div>
           </div>
