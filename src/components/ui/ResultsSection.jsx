@@ -42,6 +42,8 @@ const results = [
 export default function ResultsSection() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovering, setIsHovering] = useState(false)
+  const [touchStartX, setTouchStartX] = useState(0)
+  const [touchEndX, setTouchEndX] = useState(0)
 
   // Autoplay functionality
   useEffect(() => {
@@ -58,6 +60,28 @@ export default function ResultsSection() {
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + results.length) % results.length)
+  }
+
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.targetTouches[0].clientX)
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return
+    const diffX = touchStartX - touchEndX
+    const swipeThreshold = 50 // Minimum distance in pixels
+    if (diffX > swipeThreshold) {
+      nextSlide()
+    } else if (diffX < -swipeThreshold) {
+      prevSlide()
+    }
+    // reset
+    setTouchStartX(0)
+    setTouchEndX(0)
   }
 
   return (
@@ -122,6 +146,9 @@ export default function ResultsSection() {
             className="results-carousel-container"
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             <div className="results-carousel-viewport">
               <motion.div 
