@@ -90,7 +90,7 @@ export default function ProductSizesSection() {
             style={{ display: 'inline-flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1.25rem' }}
           >
             <div style={{ height: '2px', width: '40px', background: 'var(--color-accent)' }}></div>
-            <span style={{ color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.15em', fontSize: '0.85rem', fontWeight: 700 }}>Choose Your Size</span>
+            <span style={{ color: 'var(--color-accent)', textTransform: 'uppercase', letterSpacing: '0.15em', fontSize: '0.85rem', fontWeight: 700 }}>Select Your Regimen</span>
             <div style={{ height: '2px', width: '40px', background: 'var(--color-accent)' }}></div>
           </motion.div>
           
