@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ShoppingBag } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const navigate = useNavigate()
 
   return (
     <motion.nav
@@ -13,9 +15,17 @@ export default function Navbar() {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="container nav-container">
-        <div className="nav-logo">
+        <a 
+          href="/" 
+          onClick={(e) => {
+            e.preventDefault()
+            navigate('/')
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }}
+          className="nav-logo"
+        >
           <img src="/logo.png" alt="BhagyaVeda" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
-        </div>
+        </a>
 
         <div className="nav-links">
           <a href="/#promise">Our Promise</a>

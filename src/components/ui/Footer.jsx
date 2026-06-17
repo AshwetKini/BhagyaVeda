@@ -34,10 +34,19 @@ export default function Footer() {
         </div>
 
         <div className="footer-content">
-          <div className="footer-brand">
+          <a 
+            href="/"
+            onClick={(e) => {
+              e.preventDefault()
+              navigate('/')
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+            className="footer-brand"
+            style={{ textDecoration: 'none', display: 'block' }}
+          >
             <h3 className="footer-logo">BhagyaVeda</h3>
             <p>Ancient Wisdom. Modern Luxury.</p>
-          </div>
+          </a>
           
           <div className="footer-links">
             <h4>Shop</h4>
