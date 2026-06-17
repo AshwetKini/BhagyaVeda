@@ -54,7 +54,13 @@ export default function Footer() {
           <div className="footer-socials">
             <h4>Follow Us</h4>
             <div className="social-links flex gap-4 mt-4">
-              <a href="#" className="icon-link" aria-label="Instagram">
+              <a 
+                href="https://www.instagram.com/bhagyaveda__0115/" 
+                className="icon-link" 
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                   <path
                     fill="currentColor"
@@ -62,7 +68,13 @@ export default function Footer() {
                   />
                 </svg>
               </a>
-              <a href="#" className="icon-link" aria-label="Facebook">
+              <a 
+                href="https://www.facebook.com/share/1Cm4mR58qL/" 
+                className="icon-link" 
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
                   <path
                     fill="currentColor"
