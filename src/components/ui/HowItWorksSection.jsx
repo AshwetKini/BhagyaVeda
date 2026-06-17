@@ -6,7 +6,7 @@ const steps = [
     num: "01",
     phase: "Phase I: Preparation",
     title: "Apply Oil",
-    desc: "Take a few drops of BhagyaVeda oil on your palms. Warm the oil slightly by rubbing your palms together to activate the rich, cold-pressed herbs and release the soothing therapeutic aromas.",
+    desc: "Take oil on your palms. Warm the oil slightly by rubbing your palms together to activate the rich, cold-pressed herbs and release the soothing therapeutic aromas.",
     tip: "Warm the oil slightly by placing the bottle in warm water or rubbing your palms together. This opens up the herbal essences and enhances deep absorption."
   },
   {
