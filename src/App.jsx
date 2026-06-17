@@ -148,10 +148,21 @@ function App() {
   }, [])
 
 
-  // Scroll to top on route change
+  // Scroll to top or to hash on route change
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location.pathname])
+    if (location.hash) {
+      const id = location.hash.replace('#', '')
+      const element = document.getElementById(id)
+      if (element) {
+        // Wait a tiny bit for the page/assets to render/settle
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }, 150)
+      }
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, [location.pathname, location.hash])
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
