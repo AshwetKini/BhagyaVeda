@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <!-- Homepage -->
   <url>
     <loc>https://bhagyaveda.in/</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-06-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -15,12 +16,60 @@
       <image:title>BhagyaVeda Premium Ayurvedic Hair Oil Bottle</image:title>
     </image:image>
     <image:image>
+      <image:loc>https://bhagyaveda.in/bottles.jpg</image:loc>
+      <image:title>BhagyaVeda Premium Ayurvedic Hair Oil Sizes (50ml, 100ml, 200ml)</image:title>
+    </image:image>
+    <image:image>
       <image:loc>https://bhagyaveda.in/results/indian_hair_crown_day90.png</image:loc>
       <image:title>Before and After Hair Growth Results after 90 Days</image:title>
     </image:image>
     <image:image>
       <image:loc>https://bhagyaveda.in/results/indian_female_postpartum_day90.png</image:loc>
       <image:title>Postpartum Hair Fall Recovery Results</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/ritual_step_1.png</image:loc>
+      <image:title>Step 1: Applying BhagyaVeda Ayurvedic Hair Oil to Scalp</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/ritual_step_2.png</image:loc>
+      <image:title>Step 2: Massaging Scalp Gently for Blood Circulation</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/ritual_step_3.png</image:loc>
+      <image:title>Step 3: Deep Absorption of Ayurvedic Herbs Overnight</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/ritual_step_4.png</image:loc>
+      <image:title>Step 4: Visible Hair Growth and Thickness Results</image:title>
+    </image:image>
+  </url>
+
+  <!-- About Us (Our Story) -->
+  <url>
+    <loc>https://bhagyaveda.in/about</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/faqimage.png</image:loc>
+      <image:title>BhagyaVeda Brand Story Banner</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/ashwini-tandel.png</image:loc>
+      <image:title>Ashwini Tandel - Founder of BhagyaVeda</image:title>
+    </image:image>
+  </url>
+
+  <!-- Frequently Asked Questions (FAQ) -->
+  <url>
+    <loc>https://bhagyaveda.in/faq</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://bhagyaveda.in/faqimage.png</image:loc>
+      <image:title>BhagyaVeda Frequently Asked Questions Banner</image:title>
     </image:image>
   </url>
 </urlset>
