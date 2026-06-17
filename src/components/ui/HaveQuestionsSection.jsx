@@ -37,7 +37,7 @@ const cards = [
     title: 'Call Us',
     description: 'Call us for quick assistance.',
     action: 'link',
-    target: 'tel:+919763567410'
+    target: 'tel:+918369527382'
   }
 ]
 

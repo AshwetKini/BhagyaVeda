@@ -207,7 +207,7 @@ export default function ProductSizesSection() {
 
                 <div className="card-cta">
                   <a
-                    href={`https://wa.me/919763567410?text=${encodeURIComponent(activeSize.whatsappMsg)}`}
+                    href={`https://wa.me/918369527382?text=${encodeURIComponent(activeSize.whatsappMsg)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn btn-primary btn-glow w-full animate-hover"

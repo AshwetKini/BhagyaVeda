@@ -202,7 +202,7 @@ export default function TestimonialsSection() {
 
           {/* Interactive Button */}
           <motion.a
-            href="https://wa.me/919763567410?text=Hi%20BhagyaVeda%2C%20I%20want%20to%20share%20my%20hair%20journey%20and%20review!"
+            href="https://wa.me/918369527382?text=Hi%20BhagyaVeda%2C%20I%20want%20to%20share%20my%20hair%20journey%20and%20review!"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary btn-glow mt-8 inline-flex"
