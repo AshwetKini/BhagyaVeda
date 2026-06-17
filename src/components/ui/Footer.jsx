@@ -39,7 +39,7 @@ export default function Footer() {
           
           <div className="footer-links">
             <h4>Shop</h4>
-            <a href="#">Hair Oil</a>
+            <a href="#sizes">Hair Oil Sizes</a>
             <a href="#">Bundles</a>
             <a href="#">Gift Sets</a>
           </div>

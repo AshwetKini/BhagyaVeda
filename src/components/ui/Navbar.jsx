@@ -18,14 +18,15 @@ export default function Navbar() {
           <a href="#promise">Our Promise</a>
           <a href="#ingredients">Ingredients</a>
           <a href="#benefits">Benefits</a>
+          <a href="#sizes">Sizes</a>
           <a href="#how-it-works">How It Works</a>
           <a href="#testimonials">Reviews</a>
         </div>
 
         <div className="nav-actions">
-          <button className="icon-btn" aria-label="Open shopping bag">
+          <a href="#sizes" className="icon-btn" aria-label="View available sizes" style={{ display: 'inline-flex', alignItems: 'center' }}>
             <ShoppingBag size={20} />
-          </button>
+          </a>
           <button className="icon-btn mobile-only" aria-label="Open menu">
             <Menu size={20} />
           </button>

@@ -5,6 +5,7 @@ import HeroSection from './components/ui/HeroSection'
 import PromiseSection from './components/ui/PromiseSection'
 import IngredientsSection from './components/ui/IngredientsSection'
 import BenefitsSection from './components/ui/BenefitsSection'
+import ProductSizesSection from './components/ui/ProductSizesSection'
 import ResultsSection from './components/ui/ResultsSection'
 import HowItWorksSection from './components/ui/HowItWorksSection'
 import TestimonialsSection from './components/ui/TestimonialsSection'
@@ -33,6 +34,7 @@ function HomePage() {
     // Bottle is explicitly hidden for all sections after Ingredients
     const hideCanvasSelectors = [
       '.benefits-section',
+      '.sizes-section',
       '.results-section',
       '.how-it-works-section',
       '.testimonials-section',
@@ -100,6 +102,7 @@ function HomePage() {
         <PromiseSection />
         <IngredientsSection />
         <BenefitsSection />
+        <ProductSizesSection />
         <ResultsSection />
         <HowItWorksSection />
         <TestimonialsSection />
