@@ -169,6 +169,19 @@ export default function IngredientsSection() {
               }}
             >
               <BackgroundVideo />
+              {/* Invisible overlay to prevent touch interactions and block YouTube pause overlay on mobile */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  zIndex: 2,
+                  background: 'transparent',
+                  pointerEvents: 'auto'
+                }}
+              />
             </motion.div>
             
 
