@@ -3223,10 +3223,16 @@
 }
 
 .size-description {
-  color: var(--color-text-light);
+  color: #3b4d40;
   font-size: 1.05rem;
-  line-height: 1.65;
+  line-height: 1.7;
+  font-style: italic;
   margin-bottom: 2rem;
+  padding: 1rem 1.25rem;
+  background: rgba(46, 75, 49, 0.04);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  position: relative;
 }
 
 .features-list {
