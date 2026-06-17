@@ -118,9 +118,17 @@ export default function ProductSizesSection() {
               <div className="gold-vignette"></div>
               
               {/* Highlight Overlay/Badge corresponding to selected size */}
-              <div className="size-highlight-overlay">
+              <motion.div 
+                className="size-highlight-overlay"
+                initial={false}
+                animate={{ 
+                  left: selectedSize === '50ml' ? '26%' : selectedSize === '100ml' ? '50%' : '74%',
+                  x: '-50%'
+                }}
+                transition={{ type: 'spring', stiffness: 220, damping: 25 }}
+              >
                 <span className="highlight-tag">{activeSize.size} - {activeSize.badge}</span>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
           

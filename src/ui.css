@@ -3085,7 +3085,8 @@
 .size-highlight-overlay {
   position: absolute;
   bottom: 1.5rem;
-  left: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
   background: rgba(10, 28, 17, 0.88);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -3095,6 +3096,7 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   pointer-events: none;
   z-index: 2;
+  white-space: nowrap;
 }
 
 .highlight-tag {
